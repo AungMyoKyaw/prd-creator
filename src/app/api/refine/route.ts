@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Type } from "@google/genai";
+import { Type, GoogleGenAI } from "@google/genai";
 import { PrdInput, SECTION_FIELD_MAPPING } from "../../../lib/prd";
-import { DEFAULT_GEMINI_MODEL, getGeminiClient } from "../_lib/gemini-client";
 
 function isPrdInput(value: unknown): value is PrdInput {
   if (!value || typeof value !== "object") {
@@ -24,11 +23,17 @@ function isPrdInput(value: unknown): value is PrdInput {
 
 export async function POST(request: NextRequest) {
   try {
-    const { currentInputs, sectionTitle, userFeedback } = (await request.json()) as {
+    const { currentInputs, sectionTitle, userFeedback, apiKey, model } = (await request.json()) as {
       currentInputs?: unknown;
       sectionTitle?: string;
       userFeedback?: string;
+      apiKey?: string;
+      model?: string;
     };
+
+    if (!apiKey || typeof apiKey !== 'string') {
+      return NextResponse.json({ error: "API key is required." }, { status: 400 });
+    }
 
     if (!sectionTitle || !SECTION_FIELD_MAPPING[sectionTitle]) {
       return NextResponse.json({ error: "Invalid section title provided." }, { status: 400 });
@@ -66,9 +71,9 @@ Your task is to update the values for the fields in the "${sectionTitle}" sectio
       responseSchemaProperties[field] = { type: Type.STRING };
     });
 
-    const client = getGeminiClient();
+    const client = new GoogleGenAI({ apiKey });
     const response = await client.models.generateContent({
-      model: DEFAULT_GEMINI_MODEL,
+      model: model || "gemini-2.0-flash-exp",
       contents: prompt,
       config: {
         responseMimeType: "application/json",

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildGenerationPrompt, PrdInput } from "../../../lib/prd";
-import { DEFAULT_GEMINI_MODEL, getGeminiClient } from "../_lib/gemini-client";
+import { GoogleGenAI } from "@google/genai";
 
 function validateInputs(value: unknown): value is PrdInput {
   if (!value || typeof value !== "object") {
@@ -23,15 +23,24 @@ function validateInputs(value: unknown): value is PrdInput {
 
 export async function POST(request: NextRequest) {
   try {
-    const { inputs } = (await request.json()) as { inputs?: unknown };
+    const { inputs, apiKey, model } = (await request.json()) as { 
+      inputs?: unknown;
+      apiKey?: string;
+      model?: string;
+    };
+
+    if (!apiKey || typeof apiKey !== 'string') {
+      return NextResponse.json({ error: "API key is required." }, { status: 400 });
+    }
+
     if (!validateInputs(inputs)) {
       return NextResponse.json({ error: "Invalid PRD inputs provided." }, { status: 400 });
     }
 
-    const client = getGeminiClient();
+    const client = new GoogleGenAI({ apiKey });
     const prompt = buildGenerationPrompt(inputs);
     const response = await client.models.generateContent({
-      model: DEFAULT_GEMINI_MODEL,
+      model: model || "gemini-2.0-flash-exp",
       contents: prompt,
     });
 

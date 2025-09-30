@@ -10,8 +10,16 @@ import { Loader } from '@/components/loader';
 import { TextareaField } from '@/components/textarea-field';
 import { Button } from '@/components/button';
 import { RefineModal } from '@/components/refine-modal';
+import { SettingsModal } from '@/components/settings-modal';
+import { GEMINI_MODELS } from '@/lib/models';
 
 export default function Home() {
+  // Settings state
+  const [apiKey, setApiKey] = useState<string>('');
+  const [selectedModel, setSelectedModel] = useState<string>(GEMINI_MODELS[0].value);
+  const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
+  const [showSetupPrompt, setShowSetupPrompt] = useState<boolean>(false);
+
   const [productIdea, setProductIdea] = useState<string>('');
   const [isPrefilling, setIsPrefilling] = useState<boolean>(false);
   const [prefillError, setPrefillError] = useState<string>('');
@@ -29,13 +37,43 @@ export default function Home() {
   const [isRefining, setIsRefining] = useState(false);
   const [refineError, setRefineError] = useState('');
 
+  // Load settings from localStorage on mount
+  useEffect(() => {
+    const storedApiKey = localStorage.getItem('gemini_api_key');
+    const storedModel = localStorage.getItem('gemini_model');
+    
+    if (storedApiKey) {
+      setApiKey(storedApiKey);
+    } else {
+      setShowSetupPrompt(true);
+    }
+    
+    if (storedModel) {
+      setSelectedModel(storedModel);
+    }
+  }, []);
+
   useEffect(() => {
     setLivePreviewContent(generatePreviewMarkdown(prdInput));
   }, [prdInput]);
 
+  const handleSaveSettings = (newApiKey: string, newModel: string) => {
+    setApiKey(newApiKey);
+    setSelectedModel(newModel);
+    localStorage.setItem('gemini_api_key', newApiKey);
+    localStorage.setItem('gemini_model', newModel);
+    setShowSetupPrompt(false);
+  };
+
   const handlePrefillInputs = async () => {
     if (!productIdea.trim()) {
       setPrefillError('Please enter a product idea to prefill the form.');
+      return;
+    }
+
+    if (!apiKey) {
+      setPrefillError('Please configure your API key in settings first.');
+      setIsSettingsOpen(true);
       return;
     }
 
@@ -48,7 +86,11 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ productIdea }),
+        body: JSON.stringify({ 
+          productIdea,
+          apiKey,
+          model: selectedModel,
+        }),
       });
 
       if (!response.ok) {
@@ -69,6 +111,13 @@ export default function Home() {
 
   const handleGeneratePRD = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!apiKey) {
+      setGenerateError('Please configure your API key in settings first.');
+      setIsSettingsOpen(true);
+      return;
+    }
+
     setIsGenerating(true);
     setGenerateError('');
     setGeneratedPrd('');
@@ -79,7 +128,11 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ inputs: prdInput }),
+        body: JSON.stringify({ 
+          inputs: prdInput,
+          apiKey,
+          model: selectedModel,
+        }),
       });
 
       if (!response.ok) {
@@ -103,6 +156,12 @@ export default function Home() {
       return;
     }
 
+    if (!apiKey) {
+      setRefineError('Please configure your API key in settings first.');
+      setIsSettingsOpen(true);
+      return;
+    }
+
     setIsRefining(true);
     setRefineError('');
 
@@ -116,6 +175,8 @@ export default function Home() {
           currentInputs: prdInput,
           sectionTitle: refiningSection,
           userFeedback: refineFeedback,
+          apiKey,
+          model: selectedModel,
         }),
       });
 
@@ -147,10 +208,45 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <Header />
+      <Header onSettingsClick={() => setIsSettingsOpen(true)} />
       
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="max-w-7xl mx-auto">
+          {/* Setup Prompt Banner */}
+          {showSetupPrompt && (
+            <div className="mb-6 bg-indigo-900/50 border border-indigo-700 rounded-lg p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <svg
+                    className="w-6 h-6 text-indigo-400 mr-3"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <div>
+                    <h3 className="text-white font-medium">Welcome! Setup Required</h3>
+                    <p className="text-indigo-300 text-sm">
+                      Please configure your Gemini API key to get started.
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsSettingsOpen(true)}
+                  className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                >
+                  Open Settings
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Product Idea Prefill Section */}
           <div className="mb-8 bg-slate-800/50 rounded-lg border border-slate-700 shadow-lg p-6">
             <h2 className="text-xl font-semibold mb-4 text-white">
@@ -260,6 +356,15 @@ export default function Home() {
       </main>
 
       <Footer />
+
+      {/* Settings Modal */}
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        onSave={handleSaveSettings}
+        currentApiKey={apiKey}
+        currentModel={selectedModel}
+      />
 
       {/* Refine Modal */}
       <RefineModal
