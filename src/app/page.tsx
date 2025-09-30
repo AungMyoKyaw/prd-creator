@@ -11,6 +11,7 @@ import { TextareaField } from '@/components/textarea-field';
 import { Button } from '@/components/button';
 import { RefineModal } from '@/components/refine-modal';
 import { SettingsModal } from '@/components/settings-modal';
+import { PWAInstallPrompt } from '@/components/pwa-install-prompt';
 import { GEMINI_MODELS } from '@/lib/models';
 
 export default function Home() {
@@ -356,6 +357,9 @@ export default function Home() {
       </main>
 
       <Footer />
+
+      {/* PWA Install Prompt */}
+      <PWAInstallPrompt />
 
       {/* Settings Modal */}
       <SettingsModal
