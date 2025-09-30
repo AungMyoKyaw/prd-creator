@@ -12,12 +12,11 @@ import { Button } from '@/components/button';
 import { RefineModal } from '@/components/refine-modal';
 import { SettingsModal } from '@/components/settings-modal';
 import { PWAInstallPrompt } from '@/components/pwa-install-prompt';
-import { GEMINI_MODELS } from '@/lib/models';
 
 export default function Home() {
   // Settings state
   const [apiKey, setApiKey] = useState<string>('');
-  const [selectedModel, setSelectedModel] = useState<string>(GEMINI_MODELS[0].value);
+  const [selectedModel, setSelectedModel] = useState<string>('gemini-2.5-flash');
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const [showSetupPrompt, setShowSetupPrompt] = useState<boolean>(false);
 
@@ -47,6 +46,13 @@ export default function Home() {
       setApiKey(storedApiKey);
     } else {
       setShowSetupPrompt(true);
+    }
+    
+    if (storedModel) {
+      setSelectedModel(storedModel);
+    } else {
+      // Set default to gemini-2.5-flash
+      setSelectedModel('gemini-2.5-flash');
     }
     
     if (storedModel) {

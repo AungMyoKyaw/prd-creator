@@ -3,6 +3,15 @@
 import React, { useState, useEffect } from 'react';
 import { GEMINI_MODELS } from '@/lib/models';
 
+interface Model {
+  value: string;
+  label: string;
+  description: string;
+  displayName?: string;
+  inputTokenLimit?: number | null;
+  outputTokenLimit?: number | null;
+}
+
 interface SettingsModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -21,16 +30,77 @@ export function SettingsModal({
   const [apiKey, setApiKey] = useState(currentApiKey);
   const [model, setModel] = useState(currentModel);
   const [showApiKey, setShowApiKey] = useState(false);
+  const [models, setModels] = useState<Model[]>(GEMINI_MODELS);
+  const [loadingModels, setLoadingModels] = useState(false);
+  const [modelsError, setModelsError] = useState('');
 
   useEffect(() => {
     setApiKey(currentApiKey);
     setModel(currentModel);
   }, [currentApiKey, currentModel, isOpen]);
 
+  // Fetch models when API key is entered and modal is opened
+  useEffect(() => {
+    if (isOpen && apiKey && apiKey.trim().length > 20) {
+      fetchModels(apiKey);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, apiKey]);
+
+  const fetchModels = async (key: string) => {
+    setLoadingModels(true);
+    setModelsError('');
+
+    try {
+      const response = await fetch('/api/models', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ apiKey: key }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch models');
+      }
+
+      const data = await response.json();
+      
+      if (data.models && data.models.length > 0) {
+        setModels(data.models);
+        // If current model is not in the list, select the first one
+        if (!data.models.find((m: Model) => m.value === model)) {
+          setModel(data.models[0].value);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching models:', error);
+      setModelsError('Could not fetch models. Using default list.');
+      // Fallback to static list
+      setModels(GEMINI_MODELS);
+    } finally {
+      setLoadingModels(false);
+    }
+  };
+
   const handleSave = () => {
     if (apiKey.trim()) {
       onSave(apiKey.trim(), model);
       onClose();
+    }
+  };
+
+  const handleApiKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newKey = e.target.value;
+    setApiKey(newKey);
+    
+    // Auto-fetch models when API key looks valid (basic length check)
+    if (newKey.trim().length > 20) {
+      // Debounce the fetch
+      const timeoutId = setTimeout(() => {
+        fetchModels(newKey);
+      }, 1000);
+      return () => clearTimeout(timeoutId);
     }
   };
 
@@ -75,7 +145,7 @@ export function SettingsModal({
                   type={showApiKey ? 'text' : 'password'}
                   id="apiKey"
                   value={apiKey}
-                  onChange={(e) => setApiKey(e.target.value)}
+                  onChange={handleApiKeyChange}
                   placeholder="Enter your Gemini API key"
                   className="w-full px-4 py-3 pr-24 bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 />
@@ -102,24 +172,56 @@ export function SettingsModal({
 
             {/* Model Selection */}
             <div>
-              <label htmlFor="model" className="block text-sm font-medium text-white mb-2">
-                Model Selection
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label htmlFor="model" className="block text-sm font-medium text-white">
+                  Model Selection
+                </label>
+                {loadingModels && (
+                  <span className="text-xs text-indigo-400 flex items-center">
+                    <svg className="animate-spin h-3 w-3 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Fetching models...
+                  </span>
+                )}
+                {!loadingModels && models.length > GEMINI_MODELS.length && (
+                  <span className="text-xs text-green-400">✓ {models.length} models loaded</span>
+                )}
+              </div>
+              
+              {modelsError && (
+                <div className="mb-2 text-xs text-yellow-400 bg-yellow-900/20 border border-yellow-700/50 rounded px-2 py-1">
+                  {modelsError}
+                </div>
+              )}
+              
               <select
                 id="model"
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
-                className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                disabled={loadingModels}
+                className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {GEMINI_MODELS.map((modelOption) => (
+                {models.map((modelOption) => (
                   <option key={modelOption.value} value={modelOption.value}>
-                    {modelOption.label}
+                    {modelOption.displayName || modelOption.label}
                   </option>
                 ))}
               </select>
-              <p className="mt-2 text-sm text-slate-400">
-                {GEMINI_MODELS.find((m) => m.value === model)?.description}
-              </p>
+              <div className="mt-2 space-y-1">
+                <p className="text-sm text-slate-400">
+                  {models.find((m) => m.value === model)?.description}
+                </p>
+                {models.find((m) => m.value === model)?.inputTokenLimit && (
+                  <p className="text-xs text-slate-500">
+                    Input limit: {models.find((m) => m.value === model)?.inputTokenLimit?.toLocaleString()} tokens
+                    {models.find((m) => m.value === model)?.outputTokenLimit && 
+                      ` • Output limit: ${models.find((m) => m.value === model)?.outputTokenLimit?.toLocaleString()} tokens`
+                    }
+                  </p>
+                )}
+              </div>
             </div>
 
             {/* Token Info */}
