@@ -1,51 +1,339 @@
 @import "tailwindcss";
 
+/* ============================================
+   Apple-Inspired Glassmorphism Design System
+   Following Apple Human Interface Guidelines
+   ============================================ */
+
 :root {
-  color-scheme: light dark;
-  --background: radial-gradient(circle at 20% 20%, #f4f6ff 0%, #ecf0ff 45%, #dde2f7 100%);
-  --background-dark: radial-gradient(circle at 20% 20%, #151821 0%, #11131b 60%, #090b12 100%);
-  --foreground: #15141a;
-  --foreground-dark: #f5f6ff;
-  --glass-light: rgba(255, 255, 255, 0.55);
-  --glass-dark: rgba(32, 34, 41, 0.55);
-  --border-light: rgba(255, 255, 255, 0.8);
-  --border-dark: rgba(25, 27, 35, 0.8);
+  /* Apple Color Palette */
+  --apple-blue: #007AFF;
+  --apple-indigo: #5856D6;
+  --apple-purple: #AF52DE;
+  --apple-pink: #FF2D55;
+  --apple-red: #FF3B30;
+  --apple-orange: #FF9500;
+  --apple-yellow: #FFCC00;
+  --apple-green: #34C759;
+  --apple-teal: #5AC8FA;
+  --apple-cyan: #32ADE6;
+  
+  /* Glassmorphism Variables */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: rgba(0, 0, 0, 0.1);
+  --glass-blur: 40px;
+  
+  /* Apple System Colors - Light Mode */
+  --system-bg: #F2F2F7;
+  --system-bg-secondary: #FFFFFF;
+  --system-bg-tertiary: #F2F2F7;
+  --system-elevated: #FFFFFF;
+  --system-grouped-bg: #F2F2F7;
+  --system-grouped-secondary: #FFFFFF;
+  
+  /* Text Colors */
+  --text-primary: #000000;
+  --text-secondary: rgba(60, 60, 67, 0.6);
+  --text-tertiary: rgba(60, 60, 67, 0.3);
+  --text-quaternary: rgba(60, 60, 67, 0.18);
+  
+  /* Separators */
+  --separator-opaque: #C6C6C8;
+  --separator: rgba(60, 60, 67, 0.29);
+  
+  /* Apple Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15), 0 8px 10px rgba(0, 0, 0, 0.06);
+  
+  /* Apple Animations */
+  --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+  --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground: var(--foreground-dark);
+    /* Glassmorphism - Dark Mode */
+    --glass-bg: rgba(30, 30, 30, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-shadow: rgba(0, 0, 0, 0.3);
+    
+    /* Apple System Colors - Dark Mode */
+    --system-bg: #000000;
+    --system-bg-secondary: #1C1C1E;
+    --system-bg-tertiary: #2C2C2E;
+    --system-elevated: #1C1C1E;
+    --system-grouped-bg: #000000;
+    --system-grouped-secondary: #1C1C1E;
+    
+    /* Text Colors - Dark Mode */
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(235, 235, 245, 0.6);
+    --text-tertiary: rgba(235, 235, 245, 0.3);
+    --text-quaternary: rgba(235, 235, 245, 0.18);
+    
+    /* Separators - Dark Mode */
+    --separator-opaque: #38383A;
+    --separator: rgba(84, 84, 88, 0.65);
   }
+}
+
+@theme inline {
+  --color-background: var(--system-bg);
+  --color-foreground: var(--text-primary);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", "Courier New", monospace;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  min-height: 100vh;
-  margin: 0;
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
-    "SF Pro", "Segoe UI", sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-  transition: background 250ms ease, color 250ms ease;
+  background: var(--system-bg);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.47059;
+  font-weight: 400;
+  letter-spacing: -0.022em;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background: var(--background-dark);
+/* ============================================
+   Glassmorphism Utilities
+   ============================================ */
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s var(--ease-out);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.glass-input {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--separator);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 17px;
+  color: var(--text-primary);
+  transition: all 0.2s var(--ease-out);
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+  background: var(--system-elevated);
+}
+
+.glass-button {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 17px;
+  font-weight: 590;
+  color: var(--apple-blue);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  opacity: 0;
+  transition: opacity 0.2s var(--ease-out);
+}
+
+.glass-button:hover::before {
+  opacity: 1;
+}
+
+.glass-button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 122, 255, 0.2);
+}
+
+.glass-button:active {
+  transform: scale(0.98);
+}
+
+.glass-button-primary {
+  background: linear-gradient(180deg, var(--apple-blue) 0%, #0051D5 100%);
+  color: white;
+  border: none;
+  box-shadow: 
+    0 4px 16px rgba(0, 122, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-button-primary:hover {
+  box-shadow: 
+    0 8px 24px rgba(0, 122, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   Apple System Backgrounds
+   ============================================ */
+
+.bg-system {
+  background: var(--system-bg);
+}
+
+.bg-system-secondary {
+  background: var(--system-bg-secondary);
+}
+
+.bg-system-elevated {
+  background: var(--system-elevated);
+}
+
+.bg-gradient-mesh {
+  background: 
+    radial-gradient(at 27% 37%, rgba(0, 122, 255, 0.15) 0px, transparent 50%),
+    radial-gradient(at 97% 21%, rgba(88, 86, 214, 0.15) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, rgba(175, 82, 222, 0.15) 0px, transparent 50%),
+    radial-gradient(at 10% 29%, rgba(255, 45, 85, 0.15) 0px, transparent 50%),
+    radial-gradient(at 97% 96%, rgba(255, 204, 0, 0.15) 0px, transparent 50%),
+    radial-gradient(at 33% 50%, rgba(52, 199, 89, 0.15) 0px, transparent 50%),
+    radial-gradient(at 79% 53%, rgba(90, 200, 250, 0.15) 0px, transparent 50%);
+  background-color: var(--system-bg);
+}
+
+/* ============================================
+   Apple Typography
+   ============================================ */
+
+.text-large-title {
+  font-size: 34px;
+  line-height: 41px;
+  font-weight: 700;
+  letter-spacing: -0.022em;
+}
+
+.text-title-1 {
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 700;
+  letter-spacing: -0.022em;
+}
+
+.text-title-2 {
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+}
+
+.text-title-3 {
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+}
+
+.text-headline {
+  font-size: 17px;
+  line-height: 22px;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+}
+
+.text-body {
+  font-size: 17px;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+}
+
+.text-callout {
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+}
+
+.text-subheadline {
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+}
+
+.text-footnote {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+}
+
+.text-caption-1 {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+}
+
+.text-caption-2 {
+  font-size: 11px;
+  line-height: 13px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+}
+
+/* ============================================
+   Apple Animations
+   ============================================ */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-main {
-  width: 100%;
-}
-
-/* PWA Install Animation */
 @keyframes slide-up {
   from {
-    transform: translateY(100%);
+    transform: translateY(20px);
     opacity: 0;
   }
   to {
@@ -54,6 +342,232 @@ main {
   }
 }
 
+@keyframes scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s var(--ease-out);
+}
+
 .animate-slide-up {
-  animation: slide-up 0.3s ease-out;
+  animation: slide-up 0.5s var(--ease-out);
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s var(--spring);
+}
+
+/* ============================================
+   Apple Component Styles
+   ============================================ */
+
+.apple-card {
+  background: var(--system-elevated);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 0 1px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s var(--ease-out);
+}
+
+.apple-card:hover {
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 0 1px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.apple-divider {
+  height: 1px;
+  background: var(--separator);
+  border: none;
+  margin: 16px 0;
+}
+
+.apple-list-item {
+  background: var(--system-elevated);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 8px;
+  border: 1px solid var(--separator);
+  transition: all 0.2s var(--ease-out);
+}
+
+.apple-list-item:hover {
+  background: var(--system-bg-secondary);
+  transform: translateX(4px);
+}
+
+.apple-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+.apple-progress {
+  height: 4px;
+  background: var(--separator);
+  border-radius: 100px;
+  overflow: hidden;
+  position: relative;
+}
+
+.apple-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--apple-blue), var(--apple-cyan));
+  border-radius: 100px;
+  transition: width 0.3s var(--ease-out);
+}
+
+/* ============================================
+   Scrollbar Styling (macOS-like)
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--separator);
+  border-radius: 100px;
+  transition: background 0.2s var(--ease-out);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--separator-opaque);
+}
+
+/* ============================================
+   Selection Styling
+   ============================================ */
+
+::selection {
+  background: rgba(0, 122, 255, 0.2);
+  color: var(--text-primary);
+}
+
+::-moz-selection {
+  background: rgba(0, 122, 255, 0.2);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   Focus Visible (Accessibility)
+   ============================================ */
+
+*:focus-visible {
+  outline: 2px solid var(--apple-blue);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ============================================
+   Utilities
+   ============================================ */
+
+.blur-heavy {
+  backdrop-filter: blur(80px) saturate(180%);
+  -webkit-backdrop-filter: blur(80px) saturate(180%);
+}
+
+.blur-medium {
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+}
+
+.blur-light {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.shadow-apple {
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-apple-hover {
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+.transition-apple {
+  transition: all 0.3s var(--ease-out);
+}
+
+/* ============================================
+   Responsive Design (iPad, iPhone)
+   ============================================ */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  
+  .glass-card {
+    border-radius: 16px;
+  }
+  
+  .apple-card {
+    border-radius: 16px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 390px) {
+  .text-large-title {
+    font-size: 28px;
+    line-height: 34px;
+  }
+  
+  .text-title-1 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+  .glass,
+  .glass-card,
+  .glass-button {
+    background: white !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
 }
