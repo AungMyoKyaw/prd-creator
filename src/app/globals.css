@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  color-scheme: light dark;
+  --background: radial-gradient(circle at 20% 20%, #f4f6ff 0%, #ecf0ff 45%, #dde2f7 100%);
+  --background-dark: radial-gradient(circle at 20% 20%, #151821 0%, #11131b 60%, #090b12 100%);
+  --foreground: #15141a;
+  --foreground-dark: #f5f6ff;
+  --glass-light: rgba(255, 255, 255, 0.55);
+  --glass-dark: rgba(32, 34, 41, 0.55);
+  --border-light: rgba(255, 255, 255, 0.8);
+  --border-dark: rgba(25, 27, 35, 0.8);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: var(--foreground-dark);
   }
 }
 
 body {
+  min-height: 100vh;
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "SF Pro", "Segoe UI", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  transition: background 250ms ease, color 250ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: var(--background-dark);
+  }
+}
+
+main {
+  width: 100%;
 }
