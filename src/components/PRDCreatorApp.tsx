@@ -17,6 +17,11 @@ import type { PRDInput } from '../types';
 import { cn, formatError } from '../lib/utils';
 import { useGeminiKey } from '../hooks/useGeminiKey';
 import {
+  generateInputsFromIdea,
+  generatePRDStream,
+  refineSection
+} from '../lib/geminiClient';
+import {
   Sparkles,
   Target,
   ClipboardList,
@@ -202,14 +207,6 @@ const PRDCreatorApp: React.FC = () => {
     constraints: null
   });
 
-  const activeControllers = useRef<
-    Record<ApiOperation, AbortController | null>
-  >({
-    prefill: null,
-    generate: null,
-    refine: null
-  });
-
   const requestCounters = useRef<Record<ApiOperation, number>>({
     prefill: 0,
     generate: 0,
@@ -281,57 +278,6 @@ const PRDCreatorApp: React.FC = () => {
     };
   }, [prdInput]);
 
-  const callApi = useCallback(
-    async <T,>(
-      operation: ApiOperation,
-      endpoint: string,
-      body: unknown
-    ): Promise<T> => {
-      const previousController = activeControllers.current[operation];
-      if (previousController) {
-        previousController.abort();
-      }
-
-      const controller = new AbortController();
-      activeControllers.current[operation] = controller;
-
-      const headers: HeadersInit = apiKey
-        ? {
-            'Content-Type': 'application/json',
-            'x-gemini-key': apiKey
-          }
-        : { 'Content-Type': 'application/json' };
-
-      try {
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers,
-          body: JSON.stringify(body),
-          signal: controller.signal
-        });
-
-        const raw = (await response.json()) as unknown;
-        if (!response.ok) {
-          const errorMessage =
-            typeof raw === 'object' && raw !== null && 'error' in raw
-              ? String(
-                  (raw as { error?: unknown }).error ??
-                    'Unexpected error occurred.'
-                )
-              : 'Unexpected error occurred.';
-          throw new Error(errorMessage);
-        }
-
-        return raw as T;
-      } finally {
-        if (activeControllers.current[operation] === controller) {
-          activeControllers.current[operation] = null;
-        }
-      }
-    },
-    [apiKey]
-  );
-
   const handlePrefill = useCallback(async () => {
     if (!trimmedIdea) {
       setPrefillError(
@@ -340,35 +286,33 @@ const PRDCreatorApp: React.FC = () => {
       return;
     }
 
+    if (!apiKey) {
+      setPrefillError('Please add your Gemini API key first.');
+      return;
+    }
+
     setPrefillError(null);
     const currentRequest = requestCounters.current.prefill + 1;
     requestCounters.current.prefill = currentRequest;
     setIsPrefilling(true);
     try {
-      const data = await callApi<{
-        success: boolean;
-        data: { input: PRDInput };
-      }>('prefill', '/api/generate-inputs', { idea: trimmedIdea });
+      const result = await generateInputsFromIdea(apiKey, trimmedIdea);
 
-      if (data.success) {
-        setPrdInput(data.data.input);
+      if (result.success && result.data) {
+        setPrdInput(result.data.input);
         setGeneratedPrd('');
         setFormErrors({});
+      } else {
+        setPrefillError(result.error || 'Failed to generate inputs');
       }
     } catch (error) {
-      if (error instanceof DOMException && error.name === 'AbortError') {
-        return;
-      }
-      if (error instanceof Error && error.name === 'AbortError') {
-        return;
-      }
       setPrefillError(formatError(error));
     } finally {
       if (requestCounters.current.prefill === currentRequest) {
         setIsPrefilling(false);
       }
     }
-  }, [trimmedIdea, callApi]);
+  }, [trimmedIdea, apiKey]);
 
   const handleGenerate = useCallback(async () => {
     setGenerationError(null);
@@ -387,33 +331,44 @@ const PRDCreatorApp: React.FC = () => {
       return;
     }
 
+    if (!apiKey) {
+      setGenerationError('Please add your Gemini API key first.');
+      return;
+    }
+
     const currentRequest = requestCounters.current.generate + 1;
     requestCounters.current.generate = currentRequest;
     setIsGenerating(true);
-    try {
-      const data = await callApi<{ success: boolean; data: { prd: string } }>(
-        'generate',
-        '/api/generate-prd',
-        { input: prdInput }
-      );
+    setGeneratedPrd(''); // Reset PRD before streaming
 
-      if (data.success) {
-        setGeneratedPrd(data.data.prd);
+    try {
+      let accumulatedText = '';
+
+      for await (const chunk of generatePRDStream(apiKey, prdInput)) {
+        if (chunk.type === 'chunk' && chunk.text) {
+          accumulatedText += chunk.text;
+          setGeneratedPrd(accumulatedText);
+        } else if (chunk.type === 'complete') {
+          if (chunk.fullText) {
+            setGeneratedPrd(chunk.fullText);
+          }
+
+          // Check if generation was incomplete
+          if (!chunk.wasComplete && chunk.finishReason === 'MAX_TOKENS') {
+            setGenerationError(
+              'The PRD reached the maximum length limit and may be incomplete. The AI generated as much as it could. Consider simplifying your inputs or breaking this into multiple PRDs.'
+            );
+          }
+        }
       }
     } catch (error) {
-      if (error instanceof DOMException && error.name === 'AbortError') {
-        return;
-      }
-      if (error instanceof Error && error.name === 'AbortError') {
-        return;
-      }
       setGenerationError(formatError(error));
     } finally {
       if (requestCounters.current.generate === currentRequest) {
         setIsGenerating(false);
       }
     }
-  }, [prdInput, validateForm, scrollToField, callApi]);
+  }, [prdInput, validateForm, scrollToField, apiKey]);
 
   const openRefineModal = useCallback((sectionKey: SectionKey) => {
     setRefineState({ isOpen: true, sectionKey, feedback: '' });
@@ -434,38 +389,37 @@ const PRDCreatorApp: React.FC = () => {
       return;
     }
 
+    if (!apiKey) {
+      setRefineError('Please add your Gemini API key first.');
+      return;
+    }
+
     const currentRequest = requestCounters.current.refine + 1;
     requestCounters.current.refine = currentRequest;
     setIsRefining(true);
     setRefineError(null);
     try {
-      const data = await callApi<{
-        success: boolean;
-        data: { updatedInput: Partial<PRDInput> };
-      }>('refine', '/api/refine-section', {
-        sectionTitle: SECTION_TITLES[refineState.sectionKey],
-        feedback: refineState.feedback,
-        currentInputs: prdInput
-      });
+      const result = await refineSection(
+        apiKey,
+        SECTION_TITLES[refineState.sectionKey],
+        refineState.feedback,
+        prdInput
+      );
 
-      if (data.success) {
-        setPrdInput((prev) => ({ ...prev, ...data.data.updatedInput }));
+      if (result.success && result.data) {
+        setPrdInput((prev) => ({ ...prev, ...result.data!.updatedInput }));
         closeRefineModal();
+      } else {
+        setRefineError(result.error || 'Failed to refine section');
       }
     } catch (error) {
-      if (error instanceof DOMException && error.name === 'AbortError') {
-        return;
-      }
-      if (error instanceof Error && error.name === 'AbortError') {
-        return;
-      }
       setRefineError(formatError(error));
     } finally {
       if (requestCounters.current.refine === currentRequest) {
         setIsRefining(false);
       }
     }
-  }, [refineState, prdInput, callApi, closeRefineModal]);
+  }, [refineState, prdInput, apiKey, closeRefineModal]);
 
   const openKeyModal = useCallback(() => {
     setKeyFeedback(null);

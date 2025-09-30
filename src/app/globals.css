@@ -1,93 +1,214 @@
 @import 'tailwindcss';
 
 :root {
-  /* Color System */
-  --background: 15 23 42; /* slate-900 */
-  --foreground: 248 250 252; /* slate-50 */
-  --card: 30 41 59; /* slate-800 */
-  --card-foreground: 226 232 240; /* slate-200 */
-  --popover: 15 23 42; /* slate-900 */
-  --popover-foreground: 248 250 252; /* slate-50 */
-  --primary: 99 102 241; /* indigo-500 */
-  --primary-foreground: 255 255 255;
-  --secondary: 51 65 85; /* slate-700 */
-  --secondary-foreground: 248 250 252; /* slate-50 */
-  --muted: 30 41 59; /* slate-800 */
-  --muted-foreground: 148 163 184; /* slate-400 */
-  --accent: 51 65 85; /* slate-700 */
-  --accent-foreground: 248 250 252; /* slate-50 */
-  --destructive: 239 68 68; /* red-500 */
-  --destructive-foreground: 248 250 252; /* slate-50 */
-  --border: 51 65 85; /* slate-700 */
-  --input: 30 41 59; /* slate-800 */
-  --ring: 99 102 241; /* indigo-500 */
-  --radius: 0.75rem;
+  /* === Liquid Glass Design System === */
 
-  /* Glass morphism effects */
-  --glass-bg: rgba(15, 23, 42, 0.7);
-  --glass-border: rgba(148, 163, 184, 0.1);
-  --glass-blur: blur(16px);
+  /* Base Colors - macOS inspired palette */
+  --background: 10 15 25; /* Deep midnight blue */
+  --foreground: 250 252 255; /* Near white */
 
-  /* Font variables */
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-jetbrains-mono);
+  /* Glass Materials */
+  --glass-primary: rgba(255, 255, 255, 0.08);
+  --glass-secondary: rgba(255, 255, 255, 0.05);
+  --glass-tertiary: rgba(255, 255, 255, 0.03);
+  --glass-hover: rgba(255, 255, 255, 0.12);
+  --glass-active: rgba(255, 255, 255, 0.15);
+
+  /* Vibrant Blur Effects */
+  --blur-sm: blur(8px);
+  --blur-md: blur(16px);
+  --blur-lg: blur(24px);
+  --blur-xl: blur(32px);
+
+  /* Translucent Backgrounds */
+  --bg-translucent-10: rgba(10, 15, 25, 0.1);
+  --bg-translucent-20: rgba(10, 15, 25, 0.2);
+  --bg-translucent-30: rgba(10, 15, 25, 0.3);
+  --bg-translucent-40: rgba(10, 15, 25, 0.4);
+  --bg-translucent-50: rgba(10, 15, 25, 0.5);
+  --bg-translucent-60: rgba(10, 15, 25, 0.6);
+  --bg-translucent-70: rgba(10, 15, 25, 0.7);
+  --bg-translucent-80: rgba(10, 15, 25, 0.8);
+  --bg-translucent-90: rgba(10, 15, 25, 0.9);
+
+  /* Vibrant Accents */
+  --accent-blue: 99 102 241; /* Indigo */
+  --accent-purple: 139 92 246; /* Purple */
+  --accent-pink: 236 72 153; /* Pink */
+  --accent-cyan: 34 211 238; /* Cyan */
+  --accent-emerald: 16 185 129; /* Emerald */
+  --accent-amber: 251 191 36; /* Amber */
+
+  /* Gradient Stops */
+  --gradient-primary: linear-gradient(
+    135deg,
+    rgb(99, 102, 241) 0%,
+    rgb(139, 92, 246) 100%
+  );
+  --gradient-secondary: linear-gradient(
+    135deg,
+    rgb(34, 211, 238) 0%,
+    rgb(99, 102, 241) 100%
+  );
+  --gradient-tertiary: linear-gradient(
+    135deg,
+    rgb(236, 72, 153) 0%,
+    rgb(251, 191, 36) 100%
+  );
+
+  /* Elevation & Shadows - Soft, diffused like macOS */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* Glowing Shadows */
+  --glow-blue: 0 0 20px rgba(99, 102, 241, 0.3);
+  --glow-purple: 0 0 20px rgba(139, 92, 246, 0.3);
+  --glow-cyan: 0 0 20px rgba(34, 211, 238, 0.3);
+
+  /* Border Opacity - Subtle separation */
+  --border-opacity-10: rgba(255, 255, 255, 0.05);
+  --border-opacity-15: rgba(255, 255, 255, 0.08);
+  --border-opacity-20: rgba(255, 255, 255, 0.1);
+  --border-opacity-30: rgba(255, 255, 255, 0.15);
+
+  /* Spacing - macOS standard */
+  --spacing-xs: 0.5rem; /* 8px */
+  --spacing-sm: 0.75rem; /* 12px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+
+  /* Radius - Smooth, modern curves */
+  --radius-sm: 0.5rem; /* 8px */
+  --radius-md: 0.75rem; /* 12px */
+  --radius-lg: 1rem; /* 16px */
+  --radius-xl: 1.25rem; /* 20px */
+  --radius-2xl: 1.5rem; /* 24px */
+  --radius-full: 9999px;
+
+  /* Typography - SF Pro inspired */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Display', var(--font-inter),
+    system-ui, sans-serif;
+  --font-mono: 'SF Mono', var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* Transition Timings - macOS spring animations */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 * {
-  border-color: rgb(var(--border));
+  border-color: var(--border-opacity-10);
 }
 
 body {
   color: rgb(var(--foreground));
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   font-variant: common-ligatures;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* Glass morphism utility classes */
+/* === Liquid Glass Materials === */
+
 .glass {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
+  background: var(--glass-primary);
+  backdrop-filter: var(--blur-md) saturate(180%);
+  -webkit-backdrop-filter: var(--blur-md) saturate(180%);
+  border: 1px solid var(--border-opacity-15);
+  box-shadow: var(--shadow-lg);
 }
 
-.glass-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.glass-strong {
+  background: var(--glass-hover);
+  backdrop-filter: var(--blur-lg) saturate(180%);
+  -webkit-backdrop-filter: var(--blur-lg) saturate(180%);
+  border: 1px solid var(--border-opacity-20);
+  box-shadow: var(--shadow-xl);
 }
 
-.glass-hover:hover {
-  background: rgba(15, 23, 42, 0.8);
-  border-color: rgba(148, 163, 184, 0.2);
+.glass-subtle {
+  background: var(--glass-secondary);
+  backdrop-filter: var(--blur-sm) saturate(150%);
+  -webkit-backdrop-filter: var(--blur-sm) saturate(150%);
+  border: 1px solid var(--border-opacity-10);
+  box-shadow: var(--shadow-md);
+}
+
+/* Interactive Glass States */
+.glass-interactive {
+  background: var(--glass-primary);
+  backdrop-filter: var(--blur-md) saturate(180%);
+  -webkit-backdrop-filter: var(--blur-md) saturate(180%);
+  border: 1px solid var(--border-opacity-15);
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.glass-interactive:hover {
+  background: var(--glass-hover);
+  border-color: var(--border-opacity-20);
   transform: translateY(-1px);
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-xl);
 }
 
-/* Custom scrollbar */
+.glass-interactive:active {
+  background: var(--glass-active);
+  transform: translateY(0);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Vibrant Glow Effects */
+.glow-blue {
+  box-shadow: var(--glow-blue), var(--shadow-lg);
+}
+
+.glow-purple {
+  box-shadow: var(--glow-purple), var(--shadow-lg);
+}
+
+.glow-cyan {
+  box-shadow: var(--glow-cyan), var(--shadow-lg);
+}
+
+/* Custom Scrollbar - macOS inspired */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(var(--muted));
-  border-radius: 4px;
+  background: var(--glass-tertiary);
+  border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(var(--muted-foreground));
-  border-radius: 4px;
-  transition: background 0.2s ease;
+  background: var(--glass-hover);
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background var(--transition-fast);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--accent-foreground));
+  background: var(--glass-active);
+  background-clip: content-box;
 }
 
-/* Animation utilities */
+/* === Smooth Animations === */
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -99,10 +220,10 @@ body {
   }
 }
 
-@keyframes slide-in {
+@keyframes slide-in-left {
   from {
     opacity: 0;
-    transform: translateX(-10px);
+    transform: translateX(-20px);
   }
   to {
     opacity: 1;
@@ -110,120 +231,40 @@ body {
   }
 }
 
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes pulse-glow {
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    box-shadow: var(--glow-blue), var(--shadow-lg);
   }
   50% {
-    box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+    box-shadow:
+      0 0 30px rgba(99, 102, 241, 0.5),
+      var(--shadow-xl);
   }
 }
 
-.animate-fade-in {
-  animation: fade-in 0.6s ease-out;
-}
-
-.animate-slide-in {
-  animation: slide-in 0.6s ease-out;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-/* Focus states */
-.focus-ring:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgb(var(--ring));
-  border-radius: var(--radius);
-}
-
-/* Markdown content styling */
-.markdown-content {
-  max-width: none;
-  color: rgb(var(--foreground));
-  line-height: 1.7;
-}
-
-.markdown-content h1 {
-  font-size: 1.875rem;
-  font-weight: 700;
-  color: rgb(248 250 252);
-  margin-bottom: 1.5rem;
-  margin-top: 2rem;
-}
-
-.markdown-content h1:first-child {
-  margin-top: 0;
-}
-
-.markdown-content h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: rgb(241 245 249);
-  margin-bottom: 1rem;
-  margin-top: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgb(51 65 85);
-}
-
-.markdown-content h3 {
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: rgb(226 232 240);
-  margin-bottom: 0.75rem;
-  margin-top: 1.25rem;
-}
-
-.markdown-content p {
-  color: rgb(203 213 225);
-  margin-bottom: 1rem;
-  line-height: 1.625;
-}
-
-.markdown-content ul {
-  color: rgb(203 213 225);
-  margin-bottom: 1rem;
-  margin-left: 1.5rem;
-  list-style-type: disc;
-}
-
-.markdown-content li {
-  position: relative;
-  margin-bottom: 0.5rem;
-}
-
-.markdown-content li::marker {
-  color: rgb(129 140 248);
-}
-
-.markdown-content strong {
-  font-weight: 600;
-  color: rgb(248 250 252);
-}
-
-.markdown-content em {
-  font-style: italic;
-  color: rgb(226 232 240);
-}
-
-.markdown-content hr {
-  border-color: rgb(51 65 85);
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-.markdown-content code {
-  background-color: rgb(30 41 59);
-  color: rgb(165 180 252);
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-}
-
-/* Loading animations */
 @keyframes shimmer {
   0% {
     background-position: -200px 0;
@@ -233,25 +274,204 @@ body {
   }
 }
 
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+  animation: fade-in 600ms var(--transition-spring);
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 600ms var(--transition-spring);
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 600ms var(--transition-spring);
+}
+
+.animate-scale-in {
+  animation: scale-in 400ms var(--transition-spring);
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
 .shimmer {
   background: linear-gradient(
     90deg,
-    rgb(var(--muted)) 0%,
-    rgba(148, 163, 184, 0.1) 50%,
-    rgb(var(--muted)) 100%
+    var(--glass-tertiary) 0%,
+    var(--glass-hover) 50%,
+    var(--glass-tertiary) 100%
   );
   background-size: 200px 100%;
   animation: shimmer 1.6s ease-in-out infinite;
 }
 
-/* Button animations */
-.button-gradient {
-  background: linear-gradient(135deg, rgb(var(--primary)), #7c3aed);
-  transition: all 0.3s ease;
+/* Focus States - macOS style */
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+  border-radius: var(--radius-md);
 }
 
-.button-gradient:hover {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  transform: translateY(-1px);
-  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+.focus-visible:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+  border-radius: var(--radius-md);
+}
+
+/* === Markdown Content Styling === */
+
+.markdown-content {
+  max-width: none;
+  color: rgb(var(--foreground));
+  line-height: 1.7;
+}
+
+.markdown-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgb(250 252 255);
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.markdown-content h1:first-child {
+  margin-top: 0;
+}
+
+.markdown-content h2 {
+  font-size: 1.625rem;
+  font-weight: 600;
+  color: rgb(245 248 255);
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-opacity-15);
+  letter-spacing: -0.01em;
+}
+
+.markdown-content h3 {
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: rgb(240 245 255);
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.markdown-content p {
+  color: rgb(226 232 240);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.markdown-content ul {
+  color: rgb(226 232 240);
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;
+  list-style-type: none;
+}
+
+.markdown-content li {
+  position: relative;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.markdown-content li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, rgb(99, 102, 241), rgb(139, 92, 246));
+  border-radius: 50%;
+}
+
+.markdown-content strong {
+  font-weight: 600;
+  color: rgb(250 252 255);
+}
+
+.markdown-content em {
+  font-style: italic;
+  color: rgb(240 245 255);
+}
+
+.markdown-content hr {
+  border-color: var(--border-opacity-15);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.markdown-content code {
+  background: var(--glass-primary);
+  color: rgb(165 180 252);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  border: 1px solid var(--border-opacity-10);
+}
+
+.markdown-content a {
+  color: rgb(99, 102, 241);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.markdown-content a:hover {
+  color: rgb(129, 140, 248);
+  text-decoration: underline;
+}
+
+/* === Interactive Elements === */
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  user-select: none;
+}
+
+input:disabled,
+textarea:disabled,
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* === Utility Classes === */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

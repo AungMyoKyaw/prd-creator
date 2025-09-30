@@ -18,23 +18,26 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 focus-ring disabled:opacity-50 disabled:cursor-not-allowed';
+      'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 ease-out focus-visible relative overflow-hidden group';
 
     const variants = {
       primary:
-        'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl hover:shadow-indigo-500/25 active:scale-95',
+        'bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-700 text-white shadow-lg shadow-indigo-500/25 hover:shadow-xl hover:shadow-indigo-500/40 hover:scale-[1.02] active:scale-[0.98] rounded-xl border border-white/10',
       secondary:
-        'glass glass-hover text-slate-200 border-slate-600 hover:text-white',
+        'glass-interactive text-slate-100 hover:text-white rounded-xl shadow-md',
       outline:
-        'border border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-slate-500',
-      ghost: 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+        'border-2 border-white/20 text-slate-200 hover:bg-white/5 hover:border-white/30 hover:text-white rounded-xl backdrop-blur-sm hover:scale-[1.02] active:scale-[0.98]',
+      ghost:
+        'text-slate-300 hover:text-white hover:bg-white/5 rounded-lg backdrop-blur-sm'
     };
 
     const sizes = {
-      sm: 'px-3 py-1.5 text-sm',
-      md: 'px-4 py-2 text-sm',
-      lg: 'px-6 py-3 text-base'
+      sm: 'px-4 py-2 text-sm',
+      md: 'px-5 py-2.5 text-sm',
+      lg: 'px-7 py-3.5 text-base'
     };
+
+    const isDisabled = disabled || isLoading;
 
     return (
       <button
@@ -44,22 +47,30 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           variants[variant],
           sizes[size],
           isLoading && 'cursor-wait',
+          isDisabled && 'opacity-50 cursor-not-allowed hover:scale-100',
           className
         )}
-        disabled={disabled || isLoading}
+        disabled={isDisabled}
         {...props}
       >
-        {isLoading ? (
-          <>
-            <Loader2 className="h-4 w-4 animate-spin" />
-            <span>Loading...</span>
-          </>
-        ) : (
-          <>
-            {icon && <span className="flex-shrink-0">{icon}</span>}
-            {children}
-          </>
+        {/* Shimmer effect on hover */}
+        {variant === 'primary' && !isDisabled && (
+          <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         )}
+
+        <span className="relative z-10 flex items-center justify-center gap-2">
+          {isLoading ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              <span>Loading...</span>
+            </>
+          ) : (
+            <>
+              {icon && <span className="flex-shrink-0">{icon}</span>}
+              {children}
+            </>
+          )}
+        </span>
       </button>
     );
   }

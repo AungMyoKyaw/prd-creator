@@ -15,20 +15,21 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title:
-    'AI PRD Creator - Transform Ideas into Professional Product Requirements',
+  title: 'PRD Creator - Transform Ideas into Professional Product Requirements',
   description:
-    'Turn your product ideas into comprehensive Product Requirements Documents (PRDs) instantly with AI. Create professional documentation that development teams love to work with.',
+    'Design, refine, and ship extraordinary product narratives in minutes with AI-powered PRD generation. Native macOS experience.',
   keywords: [
     'PRD',
     'Product Requirements Document',
     'AI',
     'Product Management',
     'Documentation',
-    'Product Strategy'
+    'Product Strategy',
+    'macOS',
+    'Progressive Web App'
   ],
-  authors: [{ name: 'PRD Creator Team' }],
-  creator: 'PRD Creator',
+  authors: [{ name: 'Aung Myo Kyaw' }],
+  creator: 'Aung Myo Kyaw',
   publisher: 'PRD Creator',
   formatDetection: {
     email: false,
@@ -40,18 +41,24 @@ export const metadata: Metadata = {
       ? 'https://prd-creator.vercel.app'
       : 'http://localhost:3000'
   ),
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'PRD Creator'
+  },
   openGraph: {
-    title: 'AI PRD Creator - Professional Product Requirements Documents',
+    title: 'PRD Creator - Professional Product Requirements Documents',
     description:
-      'Transform your product ideas into comprehensive PRDs instantly with AI-powered assistance',
+      'Design, refine, and ship extraordinary product narratives in minutes with AI-powered assistance',
     url: '/',
-    siteName: 'AI PRD Creator',
+    siteName: 'PRD Creator',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'AI PRD Creator - Professional Product Requirements Documents'
+        alt: 'PRD Creator - Professional Product Requirements Documents'
       }
     ],
     locale: 'en_US',
@@ -59,9 +66,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI PRD Creator - Professional Product Requirements Documents',
+    title: 'PRD Creator - Professional Product Requirements Documents',
     description:
-      'Transform your product ideas into comprehensive PRDs instantly with AI-powered assistance',
+      'Design, refine, and ship extraordinary product narratives in minutes with AI-powered assistance',
     images: ['/og-image.png']
   },
   robots: {
@@ -74,6 +81,15 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1
     }
+  },
+  icons: {
+    icon: [
+      { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512x512.png', sizes: '512x512', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+    ]
   }
 };
 
@@ -91,6 +107,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="PRD Creator" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 min-h-screen`}
       >
