@@ -15,7 +15,7 @@ interface Model {
 interface SettingsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (apiKey: string, model: string) => void;
+  onSave: (apiKey: string, model: string, modelDisplayName?: string) => void;
   currentApiKey: string;
   currentModel: string;
 }
@@ -85,7 +85,9 @@ export function SettingsModal({
 
   const handleSave = () => {
     if (apiKey.trim()) {
-      onSave(apiKey.trim(), model);
+      const selectedModelData = models.find(m => m.value === model);
+      const displayName = selectedModelData?.displayName || selectedModelData?.label || model;
+      onSave(apiKey.trim(), model, displayName);
       onClose();
     }
   };

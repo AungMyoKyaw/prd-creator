@@ -17,6 +17,7 @@ export default function Home() {
   // Settings state
   const [apiKey, setApiKey] = useState<string>('');
   const [selectedModel, setSelectedModel] = useState<string>('gemini-2.5-flash');
+  const [modelDisplayName, setModelDisplayName] = useState<string>('Gemini 2.5 Flash');
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const [showSetupPrompt, setShowSetupPrompt] = useState<boolean>(false);
 
@@ -41,6 +42,7 @@ export default function Home() {
   useEffect(() => {
     const storedApiKey = localStorage.getItem('gemini_api_key');
     const storedModel = localStorage.getItem('gemini_model');
+    const storedModelDisplayName = localStorage.getItem('gemini_model_display_name');
     
     if (storedApiKey) {
       setApiKey(storedApiKey);
@@ -55,8 +57,8 @@ export default function Home() {
       setSelectedModel('gemini-2.5-flash');
     }
     
-    if (storedModel) {
-      setSelectedModel(storedModel);
+    if (storedModelDisplayName) {
+      setModelDisplayName(storedModelDisplayName);
     }
   }, []);
 
@@ -64,11 +66,17 @@ export default function Home() {
     setLivePreviewContent(generatePreviewMarkdown(prdInput));
   }, [prdInput]);
 
-  const handleSaveSettings = (newApiKey: string, newModel: string) => {
+  const handleSaveSettings = (newApiKey: string, newModel: string, newModelDisplayName?: string) => {
     setApiKey(newApiKey);
     setSelectedModel(newModel);
+    if (newModelDisplayName) {
+      setModelDisplayName(newModelDisplayName);
+    }
     localStorage.setItem('gemini_api_key', newApiKey);
     localStorage.setItem('gemini_model', newModel);
+    if (newModelDisplayName) {
+      localStorage.setItem('gemini_model_display_name', newModelDisplayName);
+    }
     setShowSetupPrompt(false);
   };
 
@@ -215,7 +223,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <Header onSettingsClick={() => setIsSettingsOpen(true)} />
+      <Header 
+        onSettingsClick={() => setIsSettingsOpen(true)} 
+        currentModel={selectedModel}
+        modelDisplayName={modelDisplayName}
+      />
       
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="max-w-7xl mx-auto">
@@ -325,12 +337,19 @@ export default function Home() {
               {isGenerating && <Loader />}
               
               {generatedPrd && !isGenerating && (
-                <PRDDisplay content={generatedPrd} />
+                <PRDDisplay 
+                  content={generatedPrd} 
+                  productName={prdInput.productName || 'PRD'}
+                />
               )}
               
               {!generatedPrd && !isGenerating && (
                 <>
-                  <PRDDisplay content={livePreviewContent} isLivePreview />
+                  <PRDDisplay 
+                    content={livePreviewContent} 
+                    isLivePreview 
+                    productName={prdInput.productName || 'PRD'}
+                  />
                   
                   <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6 text-center">
                     <div className="text-slate-400 mb-4">

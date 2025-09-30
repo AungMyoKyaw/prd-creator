@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildGenerationPrompt, PrdInput } from "../../../lib/prd";
 import { GoogleGenAI } from "@google/genai";
+import { getContextHeader } from "../_lib/datetime";
 
 function validateInputs(value: unknown): value is PrdInput {
   if (!value || typeof value !== "object") {
@@ -38,10 +39,14 @@ export async function POST(request: NextRequest) {
     }
 
     const client = new GoogleGenAI({ apiKey });
-    const prompt = buildGenerationPrompt(inputs);
+    const basePrompt = buildGenerationPrompt(inputs);
+    
+    // Add current date/time context to the prompt
+    const promptWithContext = getContextHeader() + basePrompt;
+    
     const response = await client.models.generateContent({
-      model: model || "gemini-2.0-flash-exp",
-      contents: prompt,
+      model: model || "gemini-2.5-flash",
+      contents: promptWithContext,
     });
 
     const text = response.text?.trim();

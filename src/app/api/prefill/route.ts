@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Type, GoogleGenAI } from "@google/genai";
 import { DEFAULT_PRD_INPUT, PrdInput } from "../../../lib/prd";
+import { getContextHeader } from "../_lib/datetime";
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,15 +20,18 @@ export async function POST(request: NextRequest) {
     }
 
     const client = new GoogleGenAI({ apiKey });
-    const prompt = `You are a brilliant product strategist. A user has provided a high-level product idea. Your task is to analyze this idea and break it down into the foundational components of a Product Requirements Document. Based on the idea, generate a plausible product name, identify a specific target audience, formulate a clear problem statement and a corresponding solution, brainstorm a few core features for an MVP, and suggest some potential business goals, future features, and a possible tech stack.
+    const basePrompt = `You are a brilliant product strategist. A user has provided a high-level product idea. Your task is to analyze this idea and break it down into the foundational components of a Product Requirements Document. Based on the idea, generate a plausible product name, identify a specific target audience, formulate a clear problem statement and a corresponding solution, brainstorm a few core features for an MVP, and suggest some potential business goals, future features, and a possible tech stack.
 
 User's Idea: "${productIdea}"
 
 Return the response as a JSON object that strictly adheres to the provided schema. For features, use bullet points within the string.`;
 
+    // Add current date/time context to the prompt
+    const promptWithContext = getContextHeader() + basePrompt;
+
     const response = await client.models.generateContent({
-      model: model || "gemini-2.0-flash-exp",
-      contents: prompt,
+      model: model || "gemini-2.5-flash",
+      contents: promptWithContext,
       config: {
         responseMimeType: "application/json",
         responseSchema: {

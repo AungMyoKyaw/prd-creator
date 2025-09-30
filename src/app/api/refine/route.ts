@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Type, GoogleGenAI } from "@google/genai";
 import { PrdInput, SECTION_FIELD_MAPPING } from "../../../lib/prd";
+import { getContextHeader } from "../_lib/datetime";
 
 function isPrdInput(value: unknown): value is PrdInput {
   if (!value || typeof value !== "object") {
@@ -53,7 +54,7 @@ export async function POST(request: NextRequest) {
       currentSectionData[key] = currentInputs[key];
     });
 
-    const prompt = `You are an expert product management assistant. A user wants to refine a specific section of their Product Requirements Document based on their feedback.
+    const basePrompt = `You are an expert product management assistant. A user wants to refine a specific section of their Product Requirements Document based on their feedback.
 
 Current document state (for context only):
 ${JSON.stringify(currentInputs, null, 2)}
@@ -66,6 +67,9 @@ User's Feedback for refinement: "${userFeedback}"
 
 Your task is to update the values for the fields in the "${sectionTitle}" section based on the user's feedback. Maintain the existing tone and style. Return ONLY a JSON object containing the updated key-value pairs for the fields in this section. The keys must be: ${fieldsToRefine.join(", ")}. Do not include any other text or explanations.`;
 
+    // Add current date/time context to the prompt
+    const promptWithContext = getContextHeader() + basePrompt;
+
     const responseSchemaProperties: Record<string, { type: Type.STRING }> = {};
     fieldsToRefine.forEach((field) => {
       responseSchemaProperties[field] = { type: Type.STRING };
@@ -73,8 +77,8 @@ Your task is to update the values for the fields in the "${sectionTitle}" sectio
 
     const client = new GoogleGenAI({ apiKey });
     const response = await client.models.generateContent({
-      model: model || "gemini-2.0-flash-exp",
-      contents: prompt,
+      model: model || "gemini-2.5-flash",
+      contents: promptWithContext,
       config: {
         responseMimeType: "application/json",
         responseSchema: {

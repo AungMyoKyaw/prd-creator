@@ -1,8 +1,10 @@
 interface HeaderProps {
   onSettingsClick: () => void;
+  currentModel?: string;
+  modelDisplayName?: string;
 }
 
-export function Header({ onSettingsClick }: HeaderProps) {
+export function Header({ onSettingsClick, currentModel, modelDisplayName }: HeaderProps) {
   return (
     <header className="py-6">
       <div className="container mx-auto px-4 relative">
@@ -14,11 +16,24 @@ export function Header({ onSettingsClick }: HeaderProps) {
             Turn your ideas into professional Product Requirements Documents
             instantly.
           </p>
+          
+          {/* Model Indicator */}
+          {currentModel && (
+            <div className="mt-4 inline-flex items-center px-4 py-2 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 shadow-lg">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-sm text-slate-300">
+                  Using: <span className="font-medium text-indigo-400">{modelDisplayName || currentModel}</span>
+                </span>
+              </div>
+            </div>
+          )}
         </div>
         <button
           onClick={onSettingsClick}
           className="absolute top-0 right-4 p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
           aria-label="Settings"
+          title="Settings"
         >
           <svg
             className="w-6 h-6"
