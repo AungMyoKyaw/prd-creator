@@ -222,7 +222,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen flex flex-col bg-[#F5F5F5]">
       <Header 
         onSettingsClick={() => setIsSettingsOpen(true)} 
         currentModel={selectedModel}
@@ -233,32 +233,32 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           {/* Setup Prompt Banner */}
           {showSetupPrompt && (
-            <div className="mb-6 bg-indigo-900/50 border border-indigo-700 rounded-lg p-4">
-              <div className="flex items-center justify-between">
+            <div className="mb-6 bg-[#FFEB3B] border-[3px] border-black shadow-[6px_6px_0px_#000] p-6">
+              <div className="flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center">
                   <svg
-                    className="w-6 h-6 text-indigo-400 mr-3"
+                    className="w-8 h-8 text-black mr-4 flex-shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
+                    strokeWidth={3}
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth={2}
                       d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
                   <div>
-                    <h3 className="text-white font-medium">Welcome! Setup Required</h3>
-                    <p className="text-indigo-300 text-sm">
+                    <h3 className="text-black font-bold text-lg uppercase tracking-wide">Welcome! Setup Required</h3>
+                    <p className="text-black text-sm font-medium mt-1">
                       Please configure your Gemini API key to get started.
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsSettingsOpen(true)}
-                  className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                  className="px-6 py-3 bg-[#2196F3] text-white font-bold uppercase tracking-wide border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px]"
                 >
                   Open Settings
                 </button>
@@ -267,9 +267,12 @@ export default function Home() {
           )}
 
           {/* Product Idea Prefill Section */}
-          <div className="mb-8 bg-slate-800/50 rounded-lg border border-slate-700 shadow-lg p-6">
-            <h2 className="text-xl font-semibold mb-4 text-white">
-              ✨ Quick Start: Describe Your Product Idea
+          <div className="mb-8 bg-white border-[3px] border-black shadow-[6px_6px_0px_#000] p-6">
+            <h2 
+              className="text-3xl font-black mb-6 text-black tracking-tight"
+              style={{ fontFamily: "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif" }}
+            >
+              ✨ QUICK START: DESCRIBE YOUR PRODUCT IDEA
             </h2>
             <div className="space-y-4">
               <TextareaField
@@ -281,17 +284,19 @@ export default function Home() {
                 rows={3}
               />
               {prefillError && (
-                <div className="bg-red-900/50 border border-red-700 text-red-300 p-3 rounded-lg text-sm">
+                <div className="bg-[#F44336] border-[3px] border-black text-white p-4 shadow-[4px_4px_0px_#000] font-bold">
                   {prefillError}
                 </div>
               )}
-              <div className="flex gap-4">
+              <div className="flex gap-4 flex-wrap">
                 <Button
                   type="button"
                   onClick={handlePrefillInputs}
                   isLoading={isPrefilling}
                   loadingLabel="Prefilling..."
                   disabled={isPrefilling || !productIdea.trim()}
+                  variant="primary"
+                  className="flex-1 min-w-[200px]"
                 >
                   Auto-fill Form with AI ✨
                 </Button>
@@ -299,7 +304,7 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="px-6 py-3 rounded-md text-base font-medium text-white bg-slate-700 hover:bg-slate-600 transition-colors"
+                    className="px-6 py-3 bg-white text-black font-bold uppercase tracking-wide border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px]"
                   >
                     Reset Form
                   </button>
@@ -325,9 +330,9 @@ export default function Home() {
               />
               
               {generateError && (
-                <div className="bg-red-900/50 border border-red-700 text-red-300 p-4 rounded-lg text-sm">
-                  <p className="font-bold">Error:</p>
-                  <p>{generateError}</p>
+                <div className="bg-[#F44336] border-[3px] border-black text-white p-4 shadow-[4px_4px_0px_#000]">
+                  <p className="font-bold uppercase tracking-wide">Error:</p>
+                  <p className="font-medium mt-2">{generateError}</p>
                 </div>
               )}
             </div>
@@ -351,10 +356,10 @@ export default function Home() {
                     productName={prdInput.productName || 'PRD'}
                   />
                   
-                  <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6 text-center">
-                    <div className="text-slate-400 mb-4">
+                  <div className="bg-[#2196F3] border-[3px] border-black shadow-[6px_6px_0px_#000] p-8 text-center">
+                    <div className="text-white mb-4">
                       <svg
-                        className="mx-auto h-12 w-12"
+                        className="mx-auto h-16 w-16 stroke-[3]"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -362,15 +367,17 @@ export default function Home() {
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          strokeWidth={2}
                           d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                         />
                       </svg>
                     </div>
-                    <h3 className="text-lg font-medium text-white mb-2">
+                    <h3 
+                      className="text-2xl font-black text-white mb-3 uppercase tracking-wide"
+                      style={{ fontFamily: "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif" }}
+                    >
                       Preview Mode
                     </h3>
-                    <p className="text-slate-400">
+                    <p className="text-white font-medium">
                       Fill in the form and click &quot;Generate PRD&quot; to create your complete document.
                     </p>
                   </div>

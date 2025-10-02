@@ -12,7 +12,7 @@ function SparklesIcon({ className }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
+      strokeWidth={2.5}
       stroke="currentColor"
       className={className || "w-5 h-5"}
     >
@@ -27,18 +27,23 @@ function SparklesIcon({ className }: { className?: string }) {
 
 export function Section({ title, children, onRefine }: SectionProps) {
   return (
-    <div className="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
-      <div className="flex justify-between items-center border-b border-slate-600 pb-2 mb-4">
-        <h2 className="text-xl font-semibold text-white">{title}</h2>
+    <div className="bg-white p-6 border-[3px] border-black shadow-[6px_6px_0px_#000]">
+      <div className="flex justify-between items-center border-b-[3px] border-black pb-3 mb-6">
+        <h2 
+          className="text-2xl font-extrabold text-black tracking-tight"
+          style={{ fontFamily: "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif" }}
+        >
+          {title}
+        </h2>
         {onRefine ? (
           <button
             type="button"
             onClick={onRefine}
-            className="flex items-center gap-1.5 px-3 py-1 text-sm font-medium text-indigo-400 hover:text-indigo-300 hover:bg-indigo-900/20 rounded-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-800 focus-visible:ring-indigo-500"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-bold uppercase tracking-wide bg-[#E91E63] text-white border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] focus:outline-none focus:border-[#FFEB3B]"
             aria-label={`Refine ${title} section with AI`}
           >
             <SparklesIcon className="w-4 h-4" />
-            Refine with AI
+            Refine
           </button>
         ) : null}
       </div>

@@ -31,19 +31,19 @@ export function RefineModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
       <div
-        className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative w-full max-w-lg rounded-lg border border-slate-700 bg-slate-800 p-6 shadow-2xl">
-        <div className="flex items-start gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-900/50">
+      <div className="relative w-full max-w-lg bg-white border-[5px] border-black shadow-[12px_12px_0px_#000] p-8">
+        <div className="flex items-start gap-4">
+          <div className="flex h-16 w-16 items-center justify-center bg-[#E91E63] border-[3px] border-black flex-shrink-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth={1.5}
+              strokeWidth={2.5}
               stroke="currentColor"
-              className="w-6 h-6 text-indigo-400"
+              className="w-8 h-8 text-white"
             >
               <path
                 strokeLinecap="round"
@@ -53,8 +53,11 @@ export function RefineModal({
             </svg>
           </div>
           <div className="flex-1">
-            <h3 className="text-base font-semibold text-white">
-              Refine &ldquo;{sectionTitle}&rdquo;
+            <h3 
+              className="text-2xl font-black text-black uppercase tracking-tight mb-4"
+              style={{ fontFamily: "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif" }}
+            >
+              REFINE &ldquo;{sectionTitle}&rdquo;
             </h3>
             <div className="mt-4">
               <TextareaField
@@ -68,20 +71,21 @@ export function RefineModal({
               />
             </div>
             {error ? (
-              <div className="mt-3 bg-red-900/50 border border-red-700 text-red-300 p-3 rounded-lg text-sm">
+              <div className="mt-4 bg-[#F44336] border-[3px] border-black text-white p-4 shadow-[4px_4px_0px_#000]">
                 <p>
-                  <span className="font-bold">Error:</span> {error}
+                  <span className="font-bold uppercase">Error:</span> {error}
                 </p>
               </div>
             ) : null}
           </div>
         </div>
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-end border-t-[3px] border-black pt-6">
           <Button
             type="button"
             onClick={onSubmit}
             isLoading={isLoading}
             disabled={isLoading || !feedback.trim()}
+            variant="primary"
             className="sm:w-auto"
           >
             {isLoading ? "Refining..." : "Refine with AI"}
@@ -90,7 +94,7 @@ export function RefineModal({
             type="button"
             onClick={onClose}
             disabled={isLoading}
-            className="w-full sm:w-auto inline-flex justify-center rounded-md bg-slate-700 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-600 transition-colors disabled:opacity-50"
+            className="w-full sm:w-auto inline-flex justify-center px-6 py-3 bg-white text-black font-bold uppercase tracking-wide border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-50"
           >
             Cancel
           </button>

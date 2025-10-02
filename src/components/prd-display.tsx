@@ -15,7 +15,7 @@ function CopyIcon({ className }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
+      strokeWidth={2.5}
       stroke="currentColor"
       className={className || "w-6 h-6"}
     >
@@ -34,7 +34,7 @@ function CheckIcon({ className }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
+      strokeWidth={2.5}
       stroke="currentColor"
       className={className || "w-6 h-6"}
     >
@@ -53,7 +53,7 @@ function DownloadIcon({ className }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
+      strokeWidth={2.5}
       stroke="currentColor"
       className={className || "w-6 h-6"}
     >
@@ -117,16 +117,19 @@ export function PRDDisplay({
   };
 
   return (
-    <div className="bg-slate-800/50 rounded-lg border border-slate-700 shadow-lg">
-      <div className="flex justify-between items-center p-4 border-b border-slate-600">
-        <h2 className="text-xl font-semibold text-white">
-          {isLivePreview ? "Live Preview" : "Generated PRD"}
+    <div className="bg-white border-[3px] border-black shadow-[6px_6px_0px_#000]">
+      <div className="flex justify-between items-center p-6 border-b-[3px] border-black">
+        <h2 
+          className="text-2xl font-black text-black uppercase tracking-wide"
+          style={{ fontFamily: "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif" }}
+        >
+          {isLivePreview ? "📋 LIVE PREVIEW" : "✅ GENERATED PRD"}
         </h2>
         {!isLivePreview && (
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3 flex-wrap gap-2">
             <button
               onClick={handleDownload}
-              className="flex items-center px-3 py-1.5 text-sm font-medium text-slate-300 bg-slate-700 hover:bg-slate-600 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-indigo-500"
+              className="flex items-center px-4 py-2 text-sm font-bold uppercase tracking-wide bg-[#4CAF50] text-white border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] focus:outline-none"
               title="Download as Markdown"
             >
               <DownloadIcon className="w-4 h-4 mr-2" />
@@ -134,12 +137,12 @@ export function PRDDisplay({
             </button>
             <button
               onClick={handleCopy}
-              className="flex items-center px-3 py-1.5 text-sm font-medium text-slate-300 bg-slate-700 hover:bg-slate-600 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-indigo-500"
+              className="flex items-center px-4 py-2 text-sm font-bold uppercase tracking-wide bg-[#2196F3] text-white border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] focus:outline-none"
               title="Copy to clipboard"
             >
               {isCopied ? (
                 <span className="flex items-center">
-                  <CheckIcon className="w-4 h-4 mr-2 text-green-400" />
+                  <CheckIcon className="w-4 h-4 mr-2" />
                   Copied!
                 </span>
               ) : (
@@ -152,8 +155,8 @@ export function PRDDisplay({
           </div>
         )}
       </div>
-      <div className="p-6">
-        <div className="markdown-content text-slate-300">
+      <div className="p-6 bg-[#FAFAFA]">
+        <div className="markdown-content text-black font-medium leading-relaxed">
           <MarkdownRenderer content={content} />
         </div>
       </div>

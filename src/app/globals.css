@@ -1,96 +1,177 @@
 @import "tailwindcss";
 
 /* ============================================
-   Apple-Inspired Glassmorphism Design System
-   Following Apple Human Interface Guidelines
+   Neo-Brutalism Design System
+   PRD Creator Application
    ============================================ */
 
 :root {
-  /* Apple Color Palette */
-  --apple-blue: #007AFF;
-  --apple-indigo: #5856D6;
-  --apple-purple: #AF52DE;
-  --apple-pink: #FF2D55;
-  --apple-red: #FF3B30;
-  --apple-orange: #FF9500;
-  --apple-yellow: #FFCC00;
-  --apple-green: #34C759;
-  --apple-teal: #5AC8FA;
-  --apple-cyan: #32ADE6;
+  /* Primary Colors */
+  --primary-50: #FFFDE7;
+  --primary-100: #FFF9C4;
+  --primary-200: #FFF59D;
+  --primary-400: #FFEE58;
+  --primary-500: #FFEB3B;
+  --primary-600: #FDD835;
+  --primary-700: #FBC02D;
+  --primary-900: #F57F17;
   
-  /* Glassmorphism Variables */
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-shadow: rgba(0, 0, 0, 0.1);
-  --glass-blur: 40px;
+  /* Secondary Colors */
+  --secondary-50: #E3F2FD;
+  --secondary-100: #BBDEFB;
+  --secondary-300: #64B5F6;
+  --secondary-500: #2196F3;
+  --secondary-700: #1976D2;
+  --secondary-900: #0D47A1;
   
-  /* Apple System Colors - Light Mode */
-  --system-bg: #F2F2F7;
-  --system-bg-secondary: #FFFFFF;
-  --system-bg-tertiary: #F2F2F7;
-  --system-elevated: #FFFFFF;
-  --system-grouped-bg: #F2F2F7;
-  --system-grouped-secondary: #FFFFFF;
+  /* Accent Colors */
+  --accent-100: #FCE4EC;
+  --accent-300: #F06292;
+  --accent-500: #E91E63;
+  --accent-700: #C2185B;
+  --accent-900: #880E4F;
   
-  /* Text Colors */
-  --text-primary: #000000;
-  --text-secondary: rgba(60, 60, 67, 0.6);
-  --text-tertiary: rgba(60, 60, 67, 0.3);
-  --text-quaternary: rgba(60, 60, 67, 0.18);
+  /* Status Colors */
+  --success-300: #81C784;
+  --success-500: #4CAF50;
+  --success-700: #388E3C;
   
-  /* Separators */
-  --separator-opaque: #C6C6C8;
-  --separator: rgba(60, 60, 67, 0.29);
+  --warning-300: #FFB74D;
+  --warning-500: #FF9800;
+  --warning-700: #F57C00;
   
-  /* Apple Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15), 0 8px 10px rgba(0, 0, 0, 0.06);
+  --danger-300: #E57373;
+  --danger-500: #F44336;
+  --danger-700: #D32F2F;
   
-  /* Apple Animations */
-  --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
-  --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
-  --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Glassmorphism - Dark Mode */
-    --glass-bg: rgba(30, 30, 30, 0.72);
-    --glass-border: rgba(255, 255, 255, 0.12);
-    --glass-shadow: rgba(0, 0, 0, 0.3);
-    
-    /* Apple System Colors - Dark Mode */
-    --system-bg: #000000;
-    --system-bg-secondary: #1C1C1E;
-    --system-bg-tertiary: #2C2C2E;
-    --system-elevated: #1C1C1E;
-    --system-grouped-bg: #000000;
-    --system-grouped-secondary: #1C1C1E;
-    
-    /* Text Colors - Dark Mode */
-    --text-primary: #FFFFFF;
-    --text-secondary: rgba(235, 235, 245, 0.6);
-    --text-tertiary: rgba(235, 235, 245, 0.3);
-    --text-quaternary: rgba(235, 235, 245, 0.18);
-    
-    /* Separators - Dark Mode */
-    --separator-opaque: #38383A;
-    --separator: rgba(84, 84, 88, 0.65);
-  }
+  /* Neutral Colors */
+  --black: #000000;
+  --white: #FFFFFF;
+  --gray-50: #FAFAFA;
+  --gray-100: #F5F5F5;
+  --gray-200: #EEEEEE;
+  --gray-300: #E0E0E0;
+  --gray-400: #BDBDBD;
+  --gray-500: #9E9E9E;
+  --gray-600: #757575;
+  --gray-700: #616161;
+  --gray-800: #424242;
+  --gray-900: #212121;
+  
+  /* Typography */
+  --font-display: 'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif;
+  --font-sans: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  
+  /* Spacing Scale - 4px base unit */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  
+  /* Borders */
+  --border-thin: 2px;
+  --border-base: 3px;
+  --border-thick: 4px;
+  --border-heavy: 5px;
+  --border-color: var(--black);
+  --border-radius: 0px;
+  
+  /* Neo-Brutalism Shadows - Hard, Offset */
+  --shadow-sm: 2px 2px 0px var(--black);
+  --shadow-base: 4px 4px 0px var(--black);
+  --shadow-md: 6px 6px 0px var(--black);
+  --shadow-lg: 8px 8px 0px var(--black);
+  --shadow-xl: 12px 12px 0px var(--black);
+  
+  /* Colored Shadows for Accent Elements */
+  --shadow-primary: 6px 6px 0px var(--primary-600);
+  --shadow-secondary: 6px 6px 0px var(--secondary-700);
+  --shadow-accent: 6px 6px 0px var(--accent-700);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
 }
 
 @theme inline {
-  --color-background: var(--system-bg);
-  --color-foreground: var(--text-primary);
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", "Courier New", monospace;
+  --color-background: var(--gray-50);
+  --color-foreground: var(--black);
 }
+
+/* Import Google Fonts for Neo-Brutalism Design */
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--gray-50);
+  color: var(--black);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Utility Classes for Neo-Brutalism */
+.neo-border {
+  border: var(--border-base) solid var(--black);
+}
+
+.neo-border-thick {
+  border: var(--border-thick) solid var(--black);
+}
+
+.neo-shadow {
+  box-shadow: var(--shadow-base);
+}
+
+.neo-shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.neo-hover-lift {
+  transition: all var(--transition-fast);
+}
+
+.neo-hover-lift:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.neo-hover-lift:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-sm);
 }
 
 body {

@@ -1,9 +1,12 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
+import { clsx } from "clsx";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
   loadingLabel?: string;
   children: ReactNode;
+  variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
 }
 
 export function Button({
@@ -12,18 +15,40 @@ export function Button({
   children,
   className = "",
   disabled,
+  variant = 'primary',
+  size = 'md',
   ...props
 }: ButtonProps) {
+  const baseStyles = "relative inline-flex items-center justify-center font-bold uppercase tracking-wider transition-all duration-150 ease-out focus:outline-none border-black disabled:cursor-not-allowed disabled:opacity-50";
+  
+  const variantStyles = {
+    primary: "bg-[#FFEB3B] text-black border-[3px] shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] focus:border-[#2196F3] focus:shadow-[4px_4px_0px_#2196F3]",
+    secondary: "bg-[#2196F3] text-white border-[3px] shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] focus:border-[#FFEB3B] focus:shadow-[4px_4px_0px_#FFEB3B]",
+    danger: "bg-[#F44336] text-white border-[3px] shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px]",
+    ghost: "bg-white text-black border-[3px] shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px]"
+  };
+  
+  const sizeStyles = {
+    sm: "px-4 py-2 text-sm",
+    md: "px-6 py-3 text-base",
+    lg: "px-8 py-4 text-lg"
+  };
+  
   return (
     <button
-      className={`relative w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-base font-medium text-white transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed ${className}`}
+      className={clsx(
+        baseStyles,
+        variantStyles[variant],
+        sizeStyles[size],
+        className
+      )}
       disabled={disabled ?? isLoading}
       {...props}
     >
       {isLoading ? (
         <span className="flex items-center gap-2">
           <svg
-            className="animate-spin -ml-1 h-5 w-5 text-white"
+            className="animate-spin h-5 w-5"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
