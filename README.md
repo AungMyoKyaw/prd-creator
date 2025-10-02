@@ -3,10 +3,10 @@
 [![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge&logo=vercel)](https://ai-prd-creator.vercel.app/)
 [![Next.js](https://img.shields.io/badge/Next.js-15.5.4-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9.2-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.1.14-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](http://buymeacoffee.com/aungmyokyaw)
 
-An intelligent Product Requirements Document (PRD) generator powered by Google's Gemini AI. Transform your product ideas into comprehensive, professional PRDs in minutes with a beautiful glassmorphism UI inspired by Apple's design language.
+An intelligent Product Requirements Document (PRD) generator powered by Google's Gemini AI. Transform your product ideas into comprehensive, professional PRDs in minutes with a beautiful Neo-Brutalism design that features bold borders, dramatic shadows, and playful interactions.
 
 🌐 **Live Demo**: [https://ai-prd-creator.vercel.app/](https://ai-prd-creator.vercel.app/)
 
@@ -21,14 +21,15 @@ An intelligent Product Requirements Document (PRD) generator powered by Google's
 - **🔄 Section Refinement**: Refine specific sections with AI-powered feedback
 - **📥 One-Click Download**: Export PRDs as Markdown files with smart naming
 - **📋 Copy to Clipboard**: Instantly copy generated PRDs
+- **💾 Saved Drafts**: Save and manage up to 12 PRD drafts in browser storage with IndexedDB
 
 ### 🎨 Design & UX
 
-- **💎 Glassmorphism UI**: Beautiful Apple-inspired liquid glass design
-- **🌙 Dark Theme**: Eye-friendly dark mode interface
+- **🎨 Neo-Brutalism Design**: Bold borders, dramatic shadows, and playful interactions
+- **🌞 Bright Interface**: Clean, high-contrast design with vibrant accent colors
 - **📱 Fully Responsive**: Optimized for desktop, tablet, and mobile
 - **📲 PWA Support**: Install as a native app on any device
-- **⚡ Smooth Animations**: Fluid transitions and interactions
+- **⚡ Smooth Animations**: Fluid transitions and interactive hover states
 - **🎯 Model Indicator**: Always know which AI model you're using
 
 ### 🤖 AI Capabilities
@@ -44,9 +45,10 @@ An intelligent Product Requirements Document (PRD) generator powered by Google's
 
 - **Framework**: [Next.js 15.5.4](https://nextjs.org/) with App Router & Turbopack
 - **Language**: [TypeScript 5.9.2](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) with custom glassmorphism
+- **Styling**: [Tailwind CSS 4.1.14](https://tailwindcss.com/) with custom Neo-Brutalism design system
 - **AI**: [Google Gemini API](https://ai.google.dev/) (@google/genai v1.21.0)
 - **UI Components**: [Radix UI](https://www.radix-ui.com/) primitives
+- **Storage**: IndexedDB with idb library for saved drafts
 - **Markdown**: react-markdown with remark-gfm
 - **PWA**: next-pwa for Progressive Web App support
 - **PDF Export**: jsPDF & docx for document generation
@@ -113,9 +115,12 @@ flowchart TD
     H --> G
     G --> I[Click Generate PRD Button]
     I --> J[AI Generates Complete PRD]
-    J --> K{Export or Refine?}
+    J --> K{Export, Save, or Refine?}
     K -->|Export| L[📥 Download as Markdown or 📋 Copy to Clipboard]
+    K -->|Save| N[💾 Save to Drafts with IndexedDB]
     K -->|Refine| M[🔄 Refine Sections with AI Feedback]
+    N --> O[📚 Manage Saved Drafts]
+    O --> G
     M --> G
     style A fill:#4A90E2
     style D fill:#50C878
@@ -123,6 +128,8 @@ flowchart TD
     style J fill:#D6A14D
     style L fill:#FF6B6B
     style M fill:#4ECDC4
+    style N fill:#FF9800
+    style O fill:#795548
 ```
 
 ## 📱 Progressive Web App (PWA)
@@ -157,15 +164,15 @@ AI PRD Creator is a fully installable Progressive Web App!
 - ✅ No app store needed
 - ✅ Auto-updates on launch
 
-## 🎨 Glassmorphism UI
+## 🎨 Neo-Brutalism Design System
 
-Inspired by Apple's design language, featuring:
+Inspired by Brutalist design principles, featuring:
 
-- **Frosted Glass Effects**: Backdrop blur with transparency
-- **Layered Depth**: Multiple levels of glass panels
-- **Smooth Animations**: 60fps transitions and interactions
-- **Adaptive Shadows**: Dynamic depth perception
-- **Vibrant Colors**: Indigo accents with proper contrast
+- **Bold Borders**: Thick 3px black borders for strong visual hierarchy
+- **Dramatic Shadows**: Multi-layered shadows creating depth and playfulness
+- **Bright Colors**: Vibrant primary colors with high contrast
+- **Interactive Elements**: Pressable buttons with transform animations
+- **Typography**: Bold, impactful fonts with strong visual weight
 - **Responsive Design**: Adapts beautifully to all screen sizes
 
 ## 🤖 AI Model Selection
@@ -222,22 +229,27 @@ prd-creator/
 │   │   ├── layout.tsx                   # Root layout with PWA config
 │   │   └── page.tsx                     # Main application page
 │   ├── components/
-│   │   ├── ui/
-│   │   │   ├── macos-window.tsx         # Glassmorphism window
-│   │   │   └── section-card.tsx         # Card with glass effect
 │   │   ├── button.tsx                   # Reusable button component
 │   │   ├── footer.tsx                   # App footer
 │   │   ├── header.tsx                   # Header with model indicator
 │   │   ├── input-field.tsx              # Text input component
 │   │   ├── loader.tsx                   # Loading spinner
 │   │   ├── markdown-renderer.tsx        # Markdown display
-│   │   ├── prd-display.tsx              # PRD viewer with download
+│   │   ├── prd-display.tsx              # PRD viewer with download/save
 │   │   ├── prd-form.tsx                 # Main form component
 │   │   ├── pwa-install-prompt.tsx       # PWA install button
 │   │   ├── refine-modal.tsx             # Section refinement dialog
+│   │   ├── saved-drafts-modal.tsx       # Draft management interface
 │   │   ├── section.tsx                  # Collapsible section
 │   │   ├── settings-modal.tsx           # API key & model settings
 │   │   └── textarea-field.tsx           # Multi-line input
+│   ├── lib/
+│   │   ├── drafts.ts                    # IndexedDB draft management
+│   │   ├── download.ts                  # File download utilities
+│   │   ├── ingest.ts                    # Data ingestion helpers
+│   │   ├── models.ts                    # Gemini model definitions
+│   │   ├── prd.ts                       # PRD type definitions
+│   │   └── prompt.ts                    # AI prompt templates
 │   └── types/
 │       └── next-pwa.d.ts                # PWA type definitions
 ├── public/
@@ -246,8 +258,8 @@ prd-creator/
 │   ├── sw.js                           # Service worker
 │   └── workbox-*.js                    # Workbox cache
 ├── next.config.mjs                      # Next.js + PWA config
-├── tailwind.config.ts                   # Tailwind with glassmorphism
-└── package.json                         # Dependencies
+├── package.json                         # Dependencies
+└── .editorconfig                        # Code style configuration
 ```
 
 ### API Routes
@@ -457,7 +469,15 @@ Inspired by Apple's design language with:
 - **Adaptive shadows** for depth perception
 - **Vibrant gradients** with proper contrast
 
-### 2. 🤖 Smart AI Integration
+### 2. 💾 Smart Draft Management
+
+- **IndexedDB storage** for persistent draft saving
+- **Auto-migration** from localStorage to IndexedDB
+- **12-draft limit** with automatic management
+- **One-click loading** of previous work
+- **Delete functionality** to manage storage space
+
+### 3. 🤖 Smart AI Integration
 
 - **Dynamic model selection** from 40+ Gemini models
 - **Contextual prompts** with date/time
@@ -465,7 +485,7 @@ Inspired by Apple's design language with:
 - **Section-based refinement** for iterative improvements
 - **Fallback models** for offline reliability
 
-### 3. 📱 PWA Capabilities
+### 4. 📱 PWA Capabilities
 
 - **Installable** on any device
 - **Offline support** with service workers
@@ -473,14 +493,14 @@ Inspired by Apple's design language with:
 - **Native app feel** in standalone mode
 - **Auto-updates** on app launch
 
-### 4. 📥 Export Options
+### 5. 📥 Export Options
 
 - **Markdown download** with smart file naming
 - **One-click copy** to clipboard
-- **Future formats**: PDF, DOCX (libraries ready)
-- **Version control friendly** markdown format
+- **Timestamped filenames** for version control
+- **Clean markdown format** compatible with documentation tools
 
-### 5. 🔒 Privacy First
+### 6. 🔒 Privacy First
 
 - **Client-side API key storage** (localStorage)
 - **No server-side key storage**
@@ -488,30 +508,35 @@ Inspired by Apple's design language with:
 - **No tracking or analytics**
 - **Open source** for transparency
 
-## 🎨 Glassmorphism Design System
+## 🎨 Neo-Brutalism Design System
 
 ### Color Palette
 
 ```css
---glass-bg: rgba(15, 23, 42, 0.7) /* Slate 900 with opacity */
-  --glass-border: rgba(148, 163, 184, 0.1) /* Slate 400 with opacity */
-  --accent-primary: #6366f1 /* Indigo 500 */ --accent-secondary: #818cf8
-  /* Indigo 400 */;
+/* Primary Colors */
+--primary-blue: #2196f3 /* Material Blue */ --success-green: #4caf50
+  /* Material Green */ --warning-yellow: #ffeb3b /* Material Yellow */
+  --error-red: #f44336 /* Material Red */ --neutral-white: #ffffff
+  /* Pure White */ --neutral-gray: #f5f5f5 /* Light Gray */
+  /* Design Elements */ --border-black: #000000 /* Black borders */
+  --shadow-black: rgba(0, 0, 0, 1) /* Black shadows */;
 ```
 
-### Glass Effects
+### Design Patterns
 
 ```css
-backdrop-filter: blur(16px) saturate(180%);
-background: linear-gradient(
-  135deg,
-  rgba(255, 255, 255, 0.1),
-  rgba(255, 255, 255, 0.05)
-);
-border: 1px solid rgba(255, 255, 255, 0.1);
-box-shadow:
-  0 8px 32px 0 rgba(0, 0, 0, 0.37),
-  inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+/* Neo-Brutalist Button */
+border: 3px solid var(--border-black);
+box-shadow: 4px 4px 0px var(--shadow-black);
+transition: all 150ms ease;
+
+/* Hover State */
+box-shadow: 6px 6px 0px var(--shadow-black);
+transform: translate(-2px, -2px);
+
+/* Active State */
+box-shadow: 2px 2px 0px var(--shadow-black);
+transform: translate(2px, 2px);
 ```
 
 ## 📊 Component Architecture
@@ -628,9 +653,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 2. 🚀 Use Quick Start to auto-fill a form
 3. 👁️ See live preview as you type
 4. 🤖 Generate comprehensive PRD
-5. 🔄 Refine sections with AI feedback
-6. 📥 Download your PRD as Markdown
-7. 📱 Install as PWA on your device
+5. 💾 Save drafts to browser storage with IndexedDB
+6. 📚 Manage and load saved drafts
+7. 🔄 Refine sections with AI feedback
+8. 📥 Download your PRD as Markdown
+9. 📱 Install as PWA on your device
 
 ---
 
