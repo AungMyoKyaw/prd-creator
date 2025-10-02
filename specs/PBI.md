@@ -74,6 +74,26 @@ This document outlines the Product Backlog Items (PBIs) required to implement th
 **Priority:** High
 **Story Points:** 3
 
+#### PBI-004.1: IndexedDB Storage for Generated PRDs
+**Description:** Implement IndexedDB functionality to save generated PRDs to local browser storage with Neo-Brutalism design.
+- Create IndexedDB database for storing generated PRDs with metadata
+- Store PRD content with associated metadata (product name, date created, status, etc.)
+- Implement functionality to list, retrieve, update, and delete stored PRDs
+- Create UI components for managing saved PRDs with Neo-Brutalism styling
+- Handle IndexedDB operations with proper error handling and fallbacks
+- Implement synchronization with local storage for compatibility
+
+**Acceptance Criteria:**
+- PRDs can be saved to IndexedDB with appropriate metadata
+- Saved PRDs can be listed, viewed, updated, and deleted
+- UI for managing saved PRDs follows Neo-Brutalism design principles
+- Proper error handling for IndexedDB operations
+- Fallback to localStorage when IndexedDB is unavailable
+- Saved PRDs persist between sessions
+
+**Priority:** High
+**Story Points:** 5
+
 ### 2. Configuration PBIs
 
 #### PBI-005: Model Configuration Interface

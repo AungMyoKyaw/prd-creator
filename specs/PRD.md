@@ -70,6 +70,7 @@ The essential features for the Minimum Viable Product are:
 - **AI-Powered PRD Generation**: Integration with Google Gemini AI to generate comprehensive PRDs from user inputs
 - **Live Preview with Neo-Brutalism Styling**: Real-time preview of PRD content as users input information, styled with Neo-Brutalism design principles including bold typography and high contrast
 - **Export Functionality**: Ability to download generated PRDs as Markdown files
+- **Local Storage with IndexedDB**: Robust browser-based storage system using IndexedDB to save and manage generated PRDs with metadata, with fallback to localStorage for compatibility
 - **API Key Configuration with Neo-Brutalism UI**: Secure configuration for Google Gemini API access using bold, accessible Neo-Brutalism interface elements
 - **Responsive Neo-Brutalism Design**: Fully responsive interface that works on desktop, tablet, and mobile devices, maintaining Neo-Brutalism aesthetic principles across all screen sizes
 
@@ -81,6 +82,8 @@ The essential features for the Minimum Viable Product are:
 **As a technical lead**, I want to preview the PRD as I build it with a visually distinct Neo-Brutalism design so that I can ensure it contains all necessary information for my development team.
 
 **As a user**, I want to download the generated PRD as a file through a clearly designed Neo-Brutalism export interface so that I can share it with my team and stakeholders.
+
+**As a user**, I want to save my generated PRDs to my browser's local storage using a reliable IndexedDB system so that I can access and manage my documents across sessions without losing my work.
 
 ### 4.3 Future Features (Post-MVP)
 Potential features for future releases include:
