@@ -16,6 +16,8 @@ import { Button } from '@/components/button';
 import { RefineModal } from '@/components/refine-modal';
 import { SettingsModal } from '@/components/settings-modal';
 import { PWAInstallPrompt } from '@/components/pwa-install-prompt';
+import { SavedDraftsModal } from '@/components/saved-drafts-modal';
+import { StoredDraft } from '@/lib/drafts';
 
 export default function Home() {
   // Settings state
@@ -26,6 +28,7 @@ export default function Home() {
     useState<string>('Gemini 2.5 Flash');
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const [showSetupPrompt, setShowSetupPrompt] = useState<boolean>(false);
+  const [isSavedDraftsOpen, setIsSavedDraftsOpen] = useState<boolean>(false);
 
   const [productIdea, setProductIdea] = useState<string>('');
   const [isPrefilling, setIsPrefilling] = useState<boolean>(false);
@@ -245,12 +248,21 @@ export default function Home() {
     setPrefillError('');
   };
 
+  const handleLoadDraft = (draft: StoredDraft) => {
+    setPrdInput(draft.inputs);
+    setGeneratedPrd(draft.markdown);
+    setSelectedModel(draft.model);
+    setGenerateError('');
+    setPrefillError('');
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#F5F5F5]">
       <Header
         onSettingsClick={() => setIsSettingsOpen(true)}
         currentModel={selectedModel}
         modelDisplayName={modelDisplayName}
+        onSavedDraftsClick={() => setIsSavedDraftsOpen(true)}
       />
 
       <main className="flex-grow container mx-auto px-4 py-8">
@@ -374,6 +386,8 @@ export default function Home() {
                 <PRDDisplay
                   content={generatedPrd}
                   productName={prdInput.productName || 'PRD'}
+                  prdInputs={prdInput}
+                  model={selectedModel}
                 />
               )}
 
@@ -449,6 +463,13 @@ export default function Home() {
         feedback={refineFeedback}
         setFeedback={setRefineFeedback}
         error={refineError}
+      />
+
+      {/* Saved Drafts Modal */}
+      <SavedDraftsModal
+        isOpen={isSavedDraftsOpen}
+        onClose={() => setIsSavedDraftsOpen(false)}
+        onLoadDraft={handleLoadDraft}
       />
     </div>
   );

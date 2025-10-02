@@ -1,3 +1,6 @@
+/* Import Google Fonts for Neo-Brutalism Design */
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
 @import 'tailwindcss';
 
 /* ============================================
@@ -108,9 +111,6 @@
   --color-background: var(--gray-50);
   --color-foreground: var(--black);
 }
-
-/* Import Google Fonts for Neo-Brutalism Design */
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 
 * {
   -webkit-font-smoothing: antialiased;

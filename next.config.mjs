@@ -1,15 +1,3 @@
-import withPWAInit from 'next-pwa';
-
-const withPWA = withPWAInit({
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === 'development',
-  buildExcludes: [/middleware-manifest\.json$/],
-  // Properly handle assets in development
-  publicExcludes: ['!robots.txt', '!sitemap.xml']
-});
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Ensure proper handling of CSS imports
@@ -19,4 +7,4 @@ const nextConfig = {
   }
 };
 
-export default withPWA(nextConfig);
+export default nextConfig;
