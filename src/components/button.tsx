@@ -1,5 +1,5 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
-import { clsx } from "clsx";
+import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { clsx } from 'clsx';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
@@ -11,29 +11,34 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({
   isLoading = false,
-  loadingLabel = "Generating...",
+  loadingLabel = 'Generating...',
   children,
-  className = "",
+  className = '',
   disabled,
   variant = 'primary',
   size = 'md',
   ...props
 }: ButtonProps) {
-  const baseStyles = "relative inline-flex items-center justify-center font-bold uppercase tracking-wider transition-all duration-150 ease-out focus:outline-none border-black disabled:cursor-not-allowed disabled:opacity-50";
-  
+  const baseStyles =
+    'relative inline-flex items-center justify-center font-bold uppercase tracking-wider transition-all duration-150 ease-out focus:outline-none border-black disabled:cursor-not-allowed disabled:opacity-50';
+
   const variantStyles = {
-    primary: "bg-[#FFEB3B] text-black border-[3px] shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] focus:border-[#2196F3] focus:shadow-[4px_4px_0px_#2196F3]",
-    secondary: "bg-[#2196F3] text-white border-[3px] shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] focus:border-[#FFEB3B] focus:shadow-[4px_4px_0px_#FFEB3B]",
-    danger: "bg-[#F44336] text-white border-[3px] shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px]",
-    ghost: "bg-white text-black border-[3px] shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px]"
+    primary:
+      'bg-[#FFEB3B] text-black border-[3px] shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] focus:border-[#2196F3] focus:shadow-[4px_4px_0px_#2196F3]',
+    secondary:
+      'bg-[#2196F3] text-white border-[3px] shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] focus:border-[#FFEB3B] focus:shadow-[4px_4px_0px_#FFEB3B]',
+    danger:
+      'bg-[#F44336] text-white border-[3px] shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px]',
+    ghost:
+      'bg-white text-black border-[3px] shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px]'
   };
-  
+
   const sizeStyles = {
-    sm: "px-4 py-2 text-sm",
-    md: "px-6 py-3 text-base",
-    lg: "px-8 py-4 text-lg"
+    sm: 'px-4 py-2 text-sm',
+    md: 'px-6 py-3 text-base',
+    lg: 'px-8 py-4 text-lg'
   };
-  
+
   return (
     <button
       className={clsx(

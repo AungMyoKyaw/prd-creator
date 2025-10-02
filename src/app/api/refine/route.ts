@@ -1,51 +1,64 @@
-import { NextRequest, NextResponse } from "next/server";
-import { Type, GoogleGenAI } from "@google/genai";
-import { PrdInput, SECTION_FIELD_MAPPING } from "../../../lib/prd";
-import { getContextHeader } from "../_lib/datetime";
+import { NextRequest, NextResponse } from 'next/server';
+import { Type, GoogleGenAI } from '@google/genai';
+import { PrdInput, SECTION_FIELD_MAPPING } from '../../../lib/prd';
+import { getContextHeader } from '../_lib/datetime';
 
 function isPrdInput(value: unknown): value is PrdInput {
-  if (!value || typeof value !== "object") {
+  if (!value || typeof value !== 'object') {
     return false;
   }
   const input = value as Record<keyof PrdInput, unknown>;
   const fields: Array<keyof PrdInput> = [
-    "productName",
-    "targetAudience",
-    "problemStatement",
-    "proposedSolution",
-    "coreFeatures",
-    "businessGoals",
-    "futureFeatures",
-    "techStack",
-    "constraints",
+    'productName',
+    'targetAudience',
+    'problemStatement',
+    'proposedSolution',
+    'coreFeatures',
+    'businessGoals',
+    'futureFeatures',
+    'techStack',
+    'constraints'
   ];
-  return fields.every((field) => typeof input[field] === "string");
+  return fields.every((field) => typeof input[field] === 'string');
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const { currentInputs, sectionTitle, userFeedback, apiKey, model } = (await request.json()) as {
-      currentInputs?: unknown;
-      sectionTitle?: string;
-      userFeedback?: string;
-      apiKey?: string;
-      model?: string;
-    };
+    const { currentInputs, sectionTitle, userFeedback, apiKey, model } =
+      (await request.json()) as {
+        currentInputs?: unknown;
+        sectionTitle?: string;
+        userFeedback?: string;
+        apiKey?: string;
+        model?: string;
+      };
 
     if (!apiKey || typeof apiKey !== 'string') {
-      return NextResponse.json({ error: "API key is required." }, { status: 400 });
+      return NextResponse.json(
+        { error: 'API key is required.' },
+        { status: 400 }
+      );
     }
 
     if (!sectionTitle || !SECTION_FIELD_MAPPING[sectionTitle]) {
-      return NextResponse.json({ error: "Invalid section title provided." }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Invalid section title provided.' },
+        { status: 400 }
+      );
     }
 
     if (!userFeedback || !userFeedback.trim()) {
-      return NextResponse.json({ error: "Feedback is required to refine a section." }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Feedback is required to refine a section.' },
+        { status: 400 }
+      );
     }
 
     if (!isPrdInput(currentInputs)) {
-      return NextResponse.json({ error: "Invalid PRD inputs provided." }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Invalid PRD inputs provided.' },
+        { status: 400 }
+      );
     }
 
     const fieldsToRefine = SECTION_FIELD_MAPPING[sectionTitle];
@@ -65,7 +78,7 @@ ${JSON.stringify(currentSectionData, null, 2)}
 
 User's Feedback for refinement: "${userFeedback}"
 
-Your task is to update the values for the fields in the "${sectionTitle}" section based on the user's feedback. Maintain the existing tone and style. Return ONLY a JSON object containing the updated key-value pairs for the fields in this section. The keys must be: ${fieldsToRefine.join(", ")}. Do not include any other text or explanations.`;
+Your task is to update the values for the fields in the "${sectionTitle}" section based on the user's feedback. Maintain the existing tone and style. Return ONLY a JSON object containing the updated key-value pairs for the fields in this section. The keys must be: ${fieldsToRefine.join(', ')}. Do not include any other text or explanations.`;
 
     // Add current date/time context to the prompt
     const promptWithContext = getContextHeader() + basePrompt;
@@ -77,37 +90,42 @@ Your task is to update the values for the fields in the "${sectionTitle}" sectio
 
     const client = new GoogleGenAI({ apiKey });
     const response = await client.models.generateContent({
-      model: model || "gemini-2.5-flash",
+      model: model || 'gemini-2.5-flash',
       contents: promptWithContext,
       config: {
-        responseMimeType: "application/json",
+        responseMimeType: 'application/json',
         responseSchema: {
           type: Type.OBJECT,
-          properties: responseSchemaProperties,
-        },
-      },
+          properties: responseSchemaProperties
+        }
+      }
     });
 
     const jsonString = response.text?.trim();
     if (!jsonString) {
-      throw new Error("Gemini returned an empty response while refining the section.");
+      throw new Error(
+        'Gemini returned an empty response while refining the section.'
+      );
     }
 
     const parsed = JSON.parse(jsonString);
     const validatedResult: Partial<PrdInput> = {};
     fieldsToRefine.forEach((field) => {
-      if (Object.prototype.hasOwnProperty.call(parsed, field) && typeof parsed[field] === "string") {
+      if (
+        Object.prototype.hasOwnProperty.call(parsed, field) &&
+        typeof parsed[field] === 'string'
+      ) {
         validatedResult[field] = parsed[field];
       }
     });
 
     return NextResponse.json({ data: validatedResult });
   } catch (error) {
-    console.error("Error refining PRD section:", error);
+    console.error('Error refining PRD section:', error);
     const message =
       error instanceof Error
         ? error.message
-        : "An unknown error occurred while refining the section.";
+        : 'An unknown error occurred while refining the section.';
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

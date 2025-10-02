@@ -1,6 +1,6 @@
-import { ChangeEvent } from "react";
-import { Button } from "./button";
-import { TextareaField } from "./textarea-field";
+import { ChangeEvent } from 'react';
+import { Button } from './button';
+import { TextareaField } from './textarea-field';
 
 interface RefineModalProps {
   isOpen: boolean;
@@ -53,9 +53,12 @@ export function RefineModal({
             </svg>
           </div>
           <div className="flex-1">
-            <h3 
+            <h3
               className="text-2xl font-black text-black uppercase tracking-tight mb-4"
-              style={{ fontFamily: "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif" }}
+              style={{
+                fontFamily:
+                  "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
+              }}
             >
               REFINE &ldquo;{sectionTitle}&rdquo;
             </h3>
@@ -88,7 +91,7 @@ export function RefineModal({
             variant="primary"
             className="sm:w-auto"
           >
-            {isLoading ? "Refining..." : "Refine with AI"}
+            {isLoading ? 'Refining...' : 'Refine with AI'}
           </Button>
           <button
             type="button"

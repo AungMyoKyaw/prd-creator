@@ -1,22 +1,28 @@
-import { NextRequest, NextResponse } from "next/server";
-import { Type, GoogleGenAI } from "@google/genai";
-import { DEFAULT_PRD_INPUT, PrdInput } from "../../../lib/prd";
-import { getContextHeader } from "../_lib/datetime";
+import { NextRequest, NextResponse } from 'next/server';
+import { Type, GoogleGenAI } from '@google/genai';
+import { DEFAULT_PRD_INPUT, PrdInput } from '../../../lib/prd';
+import { getContextHeader } from '../_lib/datetime';
 
 export async function POST(request: NextRequest) {
   try {
-    const { productIdea, apiKey, model } = (await request.json()) as { 
+    const { productIdea, apiKey, model } = (await request.json()) as {
       productIdea?: string;
       apiKey?: string;
       model?: string;
     };
 
     if (!apiKey || typeof apiKey !== 'string') {
-      return NextResponse.json({ error: "API key is required." }, { status: 400 });
+      return NextResponse.json(
+        { error: 'API key is required.' },
+        { status: 400 }
+      );
     }
 
     if (!productIdea || !productIdea.trim()) {
-      return NextResponse.json({ error: "Product idea is required." }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Product idea is required.' },
+        { status: 400 }
+      );
     }
 
     const client = new GoogleGenAI({ apiKey });
@@ -30,10 +36,10 @@ Return the response as a JSON object that strictly adheres to the provided schem
     const promptWithContext = getContextHeader() + basePrompt;
 
     const response = await client.models.generateContent({
-      model: model || "gemini-2.5-flash",
+      model: model || 'gemini-2.5-flash',
       contents: promptWithContext,
       config: {
-        responseMimeType: "application/json",
+        responseMimeType: 'application/json',
         responseSchema: {
           type: Type.OBJECT,
           properties: {
@@ -45,44 +51,48 @@ Return the response as a JSON object that strictly adheres to the provided schem
             businessGoals: { type: Type.STRING },
             futureFeatures: { type: Type.STRING },
             techStack: { type: Type.STRING },
-            constraints: { type: Type.STRING },
+            constraints: { type: Type.STRING }
           },
           required: [
-            "productName",
-            "targetAudience",
-            "problemStatement",
-            "proposedSolution",
-            "coreFeatures",
-          ],
-        },
-      },
+            'productName',
+            'targetAudience',
+            'problemStatement',
+            'proposedSolution',
+            'coreFeatures'
+          ]
+        }
+      }
     });
 
     const jsonString = response.text?.trim();
     if (!jsonString) {
-      throw new Error("Gemini returned an empty response while prefilling inputs.");
+      throw new Error(
+        'Gemini returned an empty response while prefilling inputs.'
+      );
     }
 
     const parsed = JSON.parse(jsonString);
     const result: PrdInput = {
       productName: parsed.productName || DEFAULT_PRD_INPUT.productName,
       targetAudience: parsed.targetAudience || DEFAULT_PRD_INPUT.targetAudience,
-      problemStatement: parsed.problemStatement || DEFAULT_PRD_INPUT.problemStatement,
-      proposedSolution: parsed.proposedSolution || DEFAULT_PRD_INPUT.proposedSolution,
+      problemStatement:
+        parsed.problemStatement || DEFAULT_PRD_INPUT.problemStatement,
+      proposedSolution:
+        parsed.proposedSolution || DEFAULT_PRD_INPUT.proposedSolution,
       coreFeatures: parsed.coreFeatures || DEFAULT_PRD_INPUT.coreFeatures,
       businessGoals: parsed.businessGoals || DEFAULT_PRD_INPUT.businessGoals,
       futureFeatures: parsed.futureFeatures || DEFAULT_PRD_INPUT.futureFeatures,
       techStack: parsed.techStack || DEFAULT_PRD_INPUT.techStack,
-      constraints: parsed.constraints || DEFAULT_PRD_INPUT.constraints,
+      constraints: parsed.constraints || DEFAULT_PRD_INPUT.constraints
     };
 
     return NextResponse.json({ data: result });
   } catch (error) {
-    console.error("Error generating PRD inputs:", error);
+    console.error('Error generating PRD inputs:', error);
     const message =
       error instanceof Error
         ? error.message
-        : "An unknown error occurred while generating PRD inputs.";
+        : 'An unknown error occurred while generating PRD inputs.';
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

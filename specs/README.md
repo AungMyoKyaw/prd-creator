@@ -19,6 +19,7 @@ These documents provide comprehensive documentation for the PRD Creator applicat
 ## Usage
 
 These specifications serve as a reference for:
+
 - Developers working on the application
 - Product managers defining features
 - Quality assurance teams testing functionality

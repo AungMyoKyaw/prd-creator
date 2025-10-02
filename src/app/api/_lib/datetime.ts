@@ -4,7 +4,7 @@
  */
 export function getCurrentDateTime(): string {
   const now = new Date();
-  
+
   // Format: "Tuesday, January 21, 2025 at 3:45 PM PST"
   const options: Intl.DateTimeFormatOptions = {
     weekday: 'long',
@@ -13,9 +13,9 @@ export function getCurrentDateTime(): string {
     day: 'numeric',
     hour: 'numeric',
     minute: '2-digit',
-    timeZoneName: 'short',
+    timeZoneName: 'short'
   };
-  
+
   return now.toLocaleString('en-US', options);
 }
 

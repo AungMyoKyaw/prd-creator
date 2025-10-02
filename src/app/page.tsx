@@ -1,7 +1,11 @@
 'use client';
 
 import React, { useState, FormEvent, useEffect } from 'react';
-import { PrdInput, DEFAULT_PRD_INPUT, generatePreviewMarkdown } from '@/lib/prd';
+import {
+  PrdInput,
+  DEFAULT_PRD_INPUT,
+  generatePreviewMarkdown
+} from '@/lib/prd';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { PRDForm } from '@/components/prd-form';
@@ -16,8 +20,10 @@ import { PWAInstallPrompt } from '@/components/pwa-install-prompt';
 export default function Home() {
   // Settings state
   const [apiKey, setApiKey] = useState<string>('');
-  const [selectedModel, setSelectedModel] = useState<string>('gemini-2.5-flash');
-  const [modelDisplayName, setModelDisplayName] = useState<string>('Gemini 2.5 Flash');
+  const [selectedModel, setSelectedModel] =
+    useState<string>('gemini-2.5-flash');
+  const [modelDisplayName, setModelDisplayName] =
+    useState<string>('Gemini 2.5 Flash');
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const [showSetupPrompt, setShowSetupPrompt] = useState<boolean>(false);
 
@@ -42,21 +48,23 @@ export default function Home() {
   useEffect(() => {
     const storedApiKey = localStorage.getItem('gemini_api_key');
     const storedModel = localStorage.getItem('gemini_model');
-    const storedModelDisplayName = localStorage.getItem('gemini_model_display_name');
-    
+    const storedModelDisplayName = localStorage.getItem(
+      'gemini_model_display_name'
+    );
+
     if (storedApiKey) {
       setApiKey(storedApiKey);
     } else {
       setShowSetupPrompt(true);
     }
-    
+
     if (storedModel) {
       setSelectedModel(storedModel);
     } else {
       // Set default to gemini-2.5-flash
       setSelectedModel('gemini-2.5-flash');
     }
-    
+
     if (storedModelDisplayName) {
       setModelDisplayName(storedModelDisplayName);
     }
@@ -66,7 +74,11 @@ export default function Home() {
     setLivePreviewContent(generatePreviewMarkdown(prdInput));
   }, [prdInput]);
 
-  const handleSaveSettings = (newApiKey: string, newModel: string, newModelDisplayName?: string) => {
+  const handleSaveSettings = (
+    newApiKey: string,
+    newModel: string,
+    newModelDisplayName?: string
+  ) => {
     setApiKey(newApiKey);
     setSelectedModel(newModel);
     if (newModelDisplayName) {
@@ -99,13 +111,13 @@ export default function Home() {
       const response = await fetch('/api/prefill', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           productIdea,
           apiKey,
-          model: selectedModel,
-        }),
+          model: selectedModel
+        })
       });
 
       if (!response.ok) {
@@ -118,7 +130,11 @@ export default function Home() {
       setPrefillError('');
     } catch (err) {
       console.error('Error prefilling inputs:', err);
-      setPrefillError(err instanceof Error ? err.message : 'An error occurred while prefilling inputs.');
+      setPrefillError(
+        err instanceof Error
+          ? err.message
+          : 'An error occurred while prefilling inputs.'
+      );
     } finally {
       setIsPrefilling(false);
     }
@@ -141,13 +157,13 @@ export default function Home() {
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           inputs: prdInput,
           apiKey,
-          model: selectedModel,
-        }),
+          model: selectedModel
+        })
       });
 
       if (!response.ok) {
@@ -159,7 +175,11 @@ export default function Home() {
       setGeneratedPrd(data);
     } catch (err) {
       console.error('Error generating PRD:', err);
-      setGenerateError(err instanceof Error ? err.message : 'An error occurred while generating the PRD.');
+      setGenerateError(
+        err instanceof Error
+          ? err.message
+          : 'An error occurred while generating the PRD.'
+      );
     } finally {
       setIsGenerating(false);
     }
@@ -184,15 +204,15 @@ export default function Home() {
       const response = await fetch('/api/refine', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           currentInputs: prdInput,
           sectionTitle: refiningSection,
           userFeedback: refineFeedback,
           apiKey,
-          model: selectedModel,
-        }),
+          model: selectedModel
+        })
       });
 
       if (!response.ok) {
@@ -207,7 +227,11 @@ export default function Home() {
       setRefineError('');
     } catch (err) {
       console.error('Error refining section:', err);
-      setRefineError(err instanceof Error ? err.message : 'An error occurred while refining the section.');
+      setRefineError(
+        err instanceof Error
+          ? err.message
+          : 'An error occurred while refining the section.'
+      );
     } finally {
       setIsRefining(false);
     }
@@ -223,12 +247,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F5F5F5]">
-      <Header 
-        onSettingsClick={() => setIsSettingsOpen(true)} 
+      <Header
+        onSettingsClick={() => setIsSettingsOpen(true)}
         currentModel={selectedModel}
         modelDisplayName={modelDisplayName}
       />
-      
+
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="max-w-7xl mx-auto">
           {/* Setup Prompt Banner */}
@@ -250,7 +274,9 @@ export default function Home() {
                     />
                   </svg>
                   <div>
-                    <h3 className="text-black font-bold text-lg uppercase tracking-wide">Welcome! Setup Required</h3>
+                    <h3 className="text-black font-bold text-lg uppercase tracking-wide">
+                      Welcome! Setup Required
+                    </h3>
                     <p className="text-black text-sm font-medium mt-1">
                       Please configure your Gemini API key to get started.
                     </p>
@@ -268,9 +294,12 @@ export default function Home() {
 
           {/* Product Idea Prefill Section */}
           <div className="mb-8 bg-white border-[3px] border-black shadow-[6px_6px_0px_#000] p-6">
-            <h2 
+            <h2
               className="text-3xl font-black mb-6 text-black tracking-tight"
-              style={{ fontFamily: "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif" }}
+              style={{
+                fontFamily:
+                  "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
+              }}
             >
               ✨ QUICK START: DESCRIBE YOUR PRODUCT IDEA
             </h2>
@@ -328,7 +357,7 @@ export default function Home() {
                   setRefineError('');
                 }}
               />
-              
+
               {generateError && (
                 <div className="bg-[#F44336] border-[3px] border-black text-white p-4 shadow-[4px_4px_0px_#000]">
                   <p className="font-bold uppercase tracking-wide">Error:</p>
@@ -340,22 +369,22 @@ export default function Home() {
             {/* Right Column - Output */}
             <div className="space-y-6">
               {isGenerating && <Loader />}
-              
+
               {generatedPrd && !isGenerating && (
-                <PRDDisplay 
-                  content={generatedPrd} 
+                <PRDDisplay
+                  content={generatedPrd}
                   productName={prdInput.productName || 'PRD'}
                 />
               )}
-              
+
               {!generatedPrd && !isGenerating && (
                 <>
-                  <PRDDisplay 
-                    content={livePreviewContent} 
-                    isLivePreview 
+                  <PRDDisplay
+                    content={livePreviewContent}
+                    isLivePreview
                     productName={prdInput.productName || 'PRD'}
                   />
-                  
+
                   <div className="bg-[#2196F3] border-[3px] border-black shadow-[6px_6px_0px_#000] p-8 text-center">
                     <div className="text-white mb-4">
                       <svg
@@ -371,14 +400,18 @@ export default function Home() {
                         />
                       </svg>
                     </div>
-                    <h3 
+                    <h3
                       className="text-2xl font-black text-white mb-3 uppercase tracking-wide"
-                      style={{ fontFamily: "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif" }}
+                      style={{
+                        fontFamily:
+                          "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
+                      }}
                     >
                       Preview Mode
                     </h3>
                     <p className="text-white font-medium">
-                      Fill in the form and click &quot;Generate PRD&quot; to create your complete document.
+                      Fill in the form and click &quot;Generate PRD&quot; to
+                      create your complete document.
                     </p>
                   </div>
                 </>

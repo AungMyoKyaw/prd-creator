@@ -19,9 +19,7 @@ export default function GlassDemo() {
             <button className="glass-button-primary px-6 py-3">
               Primary Action
             </button>
-            <button className="glass-button px-6 py-3">
-              Secondary Action
-            </button>
+            <button className="glass-button px-6 py-3">Secondary Action</button>
             <button className="glass-button px-6 py-3" disabled>
               Disabled
             </button>
@@ -37,14 +35,14 @@ export default function GlassDemo() {
               Elevated surface with shadow and hover effect
             </p>
           </div>
-          
+
           <div className="glass-card p-6">
             <h3 className="text-title-3 mb-2">Glass Effect</h3>
             <p className="text-body text-secondary">
               Translucent background with blur
             </p>
           </div>
-          
+
           <div className="apple-card">
             <h3 className="text-title-3 mb-2">Apple Card</h3>
             <p className="text-body text-secondary">
@@ -59,16 +57,16 @@ export default function GlassDemo() {
           <div className="space-y-4">
             <div>
               <label className="text-headline block mb-2">Text Input</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 className="glass-input w-full"
                 placeholder="Enter your text..."
               />
             </div>
-            
+
             <div>
               <label className="text-headline block mb-2">Textarea</label>
-              <textarea 
+              <textarea
                 className="glass-input w-full"
                 rows={4}
                 placeholder="Enter description..."
@@ -85,27 +83,33 @@ export default function GlassDemo() {
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-headline">First Item</h4>
-                  <p className="text-footnote text-secondary">With hover effect</p>
+                  <p className="text-footnote text-secondary">
+                    With hover effect
+                  </p>
                 </div>
                 <span className="apple-badge">Active</span>
               </div>
             </div>
-            
+
             <div className="apple-list-item">
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-headline">Second Item</h4>
-                  <p className="text-footnote text-secondary">Interactive element</p>
+                  <p className="text-footnote text-secondary">
+                    Interactive element
+                  </p>
                 </div>
                 <span className="apple-badge">New</span>
               </div>
             </div>
-            
+
             <div className="apple-list-item">
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-headline">Third Item</h4>
-                  <p className="text-footnote text-secondary">Smooth transition</p>
+                  <p className="text-footnote text-secondary">
+                    Smooth transition
+                  </p>
                 </div>
               </div>
             </div>
@@ -122,7 +126,10 @@ export default function GlassDemo() {
                 <span>75%</span>
               </div>
               <div className="apple-progress">
-                <div className="apple-progress-bar" style={{width: '75%'}}></div>
+                <div
+                  className="apple-progress-bar"
+                  style={{ width: '75%' }}
+                ></div>
               </div>
             </div>
           </div>
@@ -164,24 +171,49 @@ export default function GlassDemo() {
           <h2 className="text-title-2 mb-6">Apple Colors</h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             <div>
-              <div className="h-20 rounded-xl" style={{background: '#007AFF'}}></div>
-              <p className="text-caption-1 text-secondary mt-2 text-center">Blue</p>
+              <div
+                className="h-20 rounded-xl"
+                style={{ background: '#007AFF' }}
+              ></div>
+              <p className="text-caption-1 text-secondary mt-2 text-center">
+                Blue
+              </p>
             </div>
             <div>
-              <div className="h-20 rounded-xl" style={{background: '#5856D6'}}></div>
-              <p className="text-caption-1 text-secondary mt-2 text-center">Indigo</p>
+              <div
+                className="h-20 rounded-xl"
+                style={{ background: '#5856D6' }}
+              ></div>
+              <p className="text-caption-1 text-secondary mt-2 text-center">
+                Indigo
+              </p>
             </div>
             <div>
-              <div className="h-20 rounded-xl" style={{background: '#AF52DE'}}></div>
-              <p className="text-caption-1 text-secondary mt-2 text-center">Purple</p>
+              <div
+                className="h-20 rounded-xl"
+                style={{ background: '#AF52DE' }}
+              ></div>
+              <p className="text-caption-1 text-secondary mt-2 text-center">
+                Purple
+              </p>
             </div>
             <div>
-              <div className="h-20 rounded-xl" style={{background: '#34C759'}}></div>
-              <p className="text-caption-1 text-secondary mt-2 text-center">Green</p>
+              <div
+                className="h-20 rounded-xl"
+                style={{ background: '#34C759' }}
+              ></div>
+              <p className="text-caption-1 text-secondary mt-2 text-center">
+                Green
+              </p>
             </div>
             <div>
-              <div className="h-20 rounded-xl" style={{background: '#FF3B30'}}></div>
-              <p className="text-caption-1 text-secondary mt-2 text-center">Red</p>
+              <div
+                className="h-20 rounded-xl"
+                style={{ background: '#FF3B30' }}
+              ></div>
+              <p className="text-caption-1 text-secondary mt-2 text-center">
+                Red
+              </p>
             </div>
           </div>
         </div>

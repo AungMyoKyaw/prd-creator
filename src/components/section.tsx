@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 interface SectionProps {
   title: string;
@@ -14,7 +14,7 @@ function SparklesIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       strokeWidth={2.5}
       stroke="currentColor"
-      className={className || "w-5 h-5"}
+      className={className || 'w-5 h-5'}
     >
       <path
         strokeLinecap="round"
@@ -29,9 +29,12 @@ export function Section({ title, children, onRefine }: SectionProps) {
   return (
     <div className="bg-white p-6 border-[3px] border-black shadow-[6px_6px_0px_#000]">
       <div className="flex justify-between items-center border-b-[3px] border-black pb-3 mb-6">
-        <h2 
+        <h2
           className="text-2xl font-extrabold text-black tracking-tight"
-          style={{ fontFamily: "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif" }}
+          style={{
+            fontFamily:
+              "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
+          }}
         >
           {title}
         </h2>

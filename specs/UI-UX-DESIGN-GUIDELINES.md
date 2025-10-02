@@ -7,6 +7,7 @@
 PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspiration from the Neo-Brutalism UI Library (https://neo-brutalism-ui-library.vercel.app/). This design approach creates a bold, memorable, and highly functional user interface that stands out from traditional LLM tools.
 
 **Core Philosophy:**
+
 > "Transform the prompt engineering experience with eye-catching, bold design elements that command attention while maintaining exceptional usability. Create a visually captivating interface that makes advanced AI tools feel accessible and empowering."
 
 ### 1.2. Design Principles
@@ -22,59 +23,61 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 2.1. Color Palette
 
 #### Primary Colors
+
 ```css
 /* Primary - Energetic Yellow */
---primary-50: #FFFDE7;
---primary-100: #FFF9C4;
---primary-200: #FFF59D;
---primary-400: #FFEE58;
---primary-500: #FFEB3B;  /* Main primary */
---primary-600: #FDD835;
---primary-700: #FBC02D;
---primary-900: #F57F17;
+--primary-50: #fffde7;
+--primary-100: #fff9c4;
+--primary-200: #fff59d;
+--primary-400: #ffee58;
+--primary-500: #ffeb3b; /* Main primary */
+--primary-600: #fdd835;
+--primary-700: #fbc02d;
+--primary-900: #f57f17;
 
 /* Secondary - Bold Blue */
---secondary-50: #E3F2FD;
---secondary-100: #BBDEFB;
---secondary-300: #64B5F6;
---secondary-500: #2196F3;  /* Main secondary */
---secondary-700: #1976D2;
---secondary-900: #0D47A1;
+--secondary-50: #e3f2fd;
+--secondary-100: #bbdefb;
+--secondary-300: #64b5f6;
+--secondary-500: #2196f3; /* Main secondary */
+--secondary-700: #1976d2;
+--secondary-900: #0d47a1;
 
 /* Accent - Vibrant Pink */
---accent-100: #FCE4EC;
---accent-300: #F06292;
---accent-500: #E91E63;  /* Main accent */
---accent-700: #C2185B;
---accent-900: #880E4F;
+--accent-100: #fce4ec;
+--accent-300: #f06292;
+--accent-500: #e91e63; /* Main accent */
+--accent-700: #c2185b;
+--accent-900: #880e4f;
 
 /* Success - Bright Green */
---success-300: #81C784;
---success-500: #4CAF50;  /* Main success */
---success-700: #388E3C;
+--success-300: #81c784;
+--success-500: #4caf50; /* Main success */
+--success-700: #388e3c;
 
 /* Warning - Bold Orange */
---warning-300: #FFB74D;
---warning-500: #FF9800;  /* Main warning */
---warning-700: #F57C00;
+--warning-300: #ffb74d;
+--warning-500: #ff9800; /* Main warning */
+--warning-700: #f57c00;
 
 /* Danger - Strong Red */
---danger-300: #E57373;
---danger-500: #F44336;  /* Main danger */
---danger-700: #D32F2F;
+--danger-300: #e57373;
+--danger-500: #f44336; /* Main danger */
+--danger-700: #d32f2f;
 ```
 
 #### Neutral Colors
+
 ```css
 /* Neutrals */
---black: #000000;       /* Borders and text */
---white: #FFFFFF;       /* Backgrounds */
---gray-50: #FAFAFA;
---gray-100: #F5F5F5;
---gray-200: #EEEEEE;
---gray-300: #E0E0E0;
---gray-400: #BDBDBD;
---gray-500: #9E9E9E;
+--black: #000000; /* Borders and text */
+--white: #ffffff; /* Backgrounds */
+--gray-50: #fafafa;
+--gray-100: #f5f5f5;
+--gray-200: #eeeeee;
+--gray-300: #e0e0e0;
+--gray-400: #bdbdbd;
+--gray-500: #9e9e9e;
 --gray-600: #757575;
 --gray-700: #616161;
 --gray-800: #424242;
@@ -84,22 +87,26 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 #### Color Usage Guidelines
 
 **Backgrounds:**
+
 - Primary cards/sections: White (#FFFFFF) or Light Gray (#F5F5F5)
 - Accent sections: Primary yellow (#FFEB3B), Secondary blue (#2196F3)
 - Interactive hover states: Slightly darker variants (-100/-200)
 
 **Text:**
+
 - Primary text: Black (#000000)
 - Secondary text: Gray-700 (#616161)
 - On colored backgrounds: White (#FFFFFF)
 - Links: Secondary blue (#2196F3)
 
 **Borders:**
+
 - All borders: Pure black (#000000)
 - Border width: 3px (standard), 4px (emphasis), 2px (subtle)
 - No rounded corners or minimal (2px max)
 
 **Status Colors:**
+
 - Excellent/Success: Green (#4CAF50)
 - Good/Info: Blue (#2196F3)
 - Warning/Fair: Orange (#FF9800)
@@ -108,6 +115,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 2.2. Typography
 
 #### Font Families
+
 ```css
 /* Primary Display Font */
 --font-display: 'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif;
@@ -120,35 +128,38 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```
 
 #### Type Scale
+
 ```css
 /* Headings - Bold and Commanding */
---text-6xl: 3.75rem;    /* 60px - Hero titles */
---text-5xl: 3rem;       /* 48px - Page titles */
---text-4xl: 2.25rem;    /* 36px - Section headers */
---text-3xl: 1.875rem;   /* 30px - Card titles */
---text-2xl: 1.5rem;     /* 24px - Subsections */
---text-xl: 1.25rem;     /* 20px - Large body */
+--text-6xl: 3.75rem; /* 60px - Hero titles */
+--text-5xl: 3rem; /* 48px - Page titles */
+--text-4xl: 2.25rem; /* 36px - Section headers */
+--text-3xl: 1.875rem; /* 30px - Card titles */
+--text-2xl: 1.5rem; /* 24px - Subsections */
+--text-xl: 1.25rem; /* 20px - Large body */
 
 /* Body Text */
---text-lg: 1.125rem;    /* 18px - Lead text */
---text-base: 1rem;      /* 16px - Body text */
---text-sm: 0.875rem;    /* 14px - Small text */
---text-xs: 0.75rem;     /* 12px - Captions */
+--text-lg: 1.125rem; /* 18px - Lead text */
+--text-base: 1rem; /* 16px - Body text */
+--text-sm: 0.875rem; /* 14px - Small text */
+--text-xs: 0.75rem; /* 12px - Captions */
 ```
 
 #### Font Weights
+
 ```css
---font-black: 900;      /* Display headings */
---font-extrabold: 800;  /* Emphasis headings */
---font-bold: 700;       /* Headings, buttons */
---font-semibold: 600;   /* Subheadings, labels */
---font-medium: 500;     /* Body emphasis */
---font-normal: 400;     /* Body text */
+--font-black: 900; /* Display headings */
+--font-extrabold: 800; /* Emphasis headings */
+--font-bold: 700; /* Headings, buttons */
+--font-semibold: 600; /* Subheadings, labels */
+--font-medium: 500; /* Body emphasis */
+--font-normal: 400; /* Body text */
 ```
 
 #### Typography Guidelines
 
 **Headings:**
+
 - Use Big Shoulders Display for main headings (H1-H3)
 - Font weight: 800-900 for primary headings
 - Font weight: 700 for subheadings
@@ -157,6 +168,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 - Text transform: uppercase for emphasis (sparingly)
 
 **Body Text:**
+
 - Use Inter or system sans-serif for body content
 - Font weight: 400 (normal), 500 (emphasis)
 - Line height: 1.6 for optimal readability
@@ -164,6 +176,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 - Max width: 65-75 characters per line
 
 **Interactive Text:**
+
 - Buttons: Bold (700), uppercase, letter-spacing: 0.05em
 - Links: Semibold (600), underline on hover
 - Labels: Semibold (600), small caps option
@@ -173,23 +186,24 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```css
 /* Spacing Scale - 4px base unit */
 --space-0: 0;
---space-1: 0.25rem;   /* 4px */
---space-2: 0.5rem;    /* 8px */
---space-3: 0.75rem;   /* 12px */
---space-4: 1rem;      /* 16px */
---space-5: 1.25rem;   /* 20px */
---space-6: 1.5rem;    /* 24px */
---space-8: 2rem;      /* 32px */
---space-10: 2.5rem;   /* 40px */
---space-12: 3rem;     /* 48px */
---space-16: 4rem;     /* 64px */
---space-20: 5rem;     /* 80px */
---space-24: 6rem;     /* 96px */
+--space-1: 0.25rem; /* 4px */
+--space-2: 0.5rem; /* 8px */
+--space-3: 0.75rem; /* 12px */
+--space-4: 1rem; /* 16px */
+--space-5: 1.25rem; /* 20px */
+--space-6: 1.5rem; /* 24px */
+--space-8: 2rem; /* 32px */
+--space-10: 2.5rem; /* 40px */
+--space-12: 3rem; /* 48px */
+--space-16: 4rem; /* 64px */
+--space-20: 5rem; /* 80px */
+--space-24: 6rem; /* 96px */
 ```
 
 #### Spacing Guidelines
 
 **Component Padding:**
+
 - Small buttons/inputs: 8px × 16px (space-2 × space-4)
 - Medium buttons/inputs: 12px × 24px (space-3 × space-6)
 - Large buttons/CTAs: 16px × 32px (space-4 × space-8)
@@ -197,12 +211,14 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 - Page sections: 48px (space-12) to 64px (space-16)
 
 **Component Margins:**
+
 - Between small elements: 8px (space-2)
 - Between related elements: 16px (space-4)
 - Between sections: 32px (space-8) to 48px (space-12)
 - Between major sections: 64px (space-16) to 80px (space-20)
 
 **Grid Gaps:**
+
 - Tight grids: 12px (space-3)
 - Standard grids: 24px (space-6)
 - Loose grids: 32px (space-8)
@@ -210,6 +226,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 2.4. Shadows and Depth
 
 #### Shadow System
+
 ```css
 /* Hard, Offset Shadows - Neo-Brutalism Style */
 --shadow-sm: 2px 2px 0px #000;
@@ -219,29 +236,33 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 --shadow-xl: 12px 12px 0px #000;
 
 /* Colored Shadows for Accent Elements */
---shadow-primary: 6px 6px 0px #FDD835;
---shadow-secondary: 6px 6px 0px #1976D2;
---shadow-accent: 6px 6px 0px #C2185B;
+--shadow-primary: 6px 6px 0px #fdd835;
+--shadow-secondary: 6px 6px 0px #1976d2;
+--shadow-accent: 6px 6px 0px #c2185b;
 ```
 
 #### Shadow Usage
 
 **Cards:**
+
 - Default state: `shadow-base` (4px offset)
 - Hover state: `shadow-lg` (8px offset) with slight transform
 - Active state: `shadow-sm` (2px offset)
 
 **Buttons:**
+
 - Default: `shadow-base` (4px offset)
 - Hover: Lift slightly with increased shadow
 - Active: `shadow-sm` to create "pressed" effect
 
 **Floating Elements:**
+
 - Modals: `shadow-xl` (12px offset)
 - Tooltips: `shadow-md` (6px offset)
 - Dropdowns: `shadow-lg` (8px offset)
 
 **Colored Shadows:**
+
 - Use for primary CTAs and featured content
 - Matches or complements element background color
 - Creates extra visual "pop"
@@ -257,27 +278,30 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 /* Border Styles */
 --border-solid: solid;
---border-dashed: dashed;  /* For secondary/disabled states */
+--border-dashed: dashed; /* For secondary/disabled states */
 
 /* Border Radius - Minimal or None */
 --radius-none: 0;
---radius-sm: 2px;   /* Barely perceptible */
+--radius-sm: 2px; /* Barely perceptible */
 --radius-base: 4px; /* Maximum for neo-brutalism */
 ```
 
 #### Border Guidelines
 
 **Standard Components:**
+
 - All cards, buttons, inputs: 3px solid black border
 - Focus states: 4px solid with accent color
 - Disabled states: 2px dashed gray border
 
 **Emphasis:**
+
 - Featured elements: 4px solid black border
 - Critical CTAs: 5px solid black border
 - Separators: 2-3px solid black
 
 **Border Radius:**
+
 - Prefer sharp corners (0px radius)
 - Use minimal radius (2-4px) only for inputs/buttons if needed
 - Never exceed 4px radius for neo-brutalism authenticity
@@ -287,9 +311,10 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 3.1. Buttons
 
 #### Primary Button
+
 ```css
 .btn-primary {
-  background: #FFEB3B;
+  background: #ffeb3b;
   border: 3px solid #000;
   box-shadow: 4px 4px 0px #000;
   padding: 12px 24px;
@@ -314,17 +339,19 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```
 
 #### Secondary Button
+
 ```css
 .btn-secondary {
-  background: #2196F3;
+  background: #2196f3;
   border: 3px solid #000;
   box-shadow: 4px 4px 0px #000;
-  color: #FFF;
+  color: #fff;
   /* ... same padding, font properties as primary */
 }
 ```
 
 #### Button States
+
 - **Default:** Bold border, offset shadow
 - **Hover:** Transform up-left, increase shadow
 - **Active:** Transform down-right, reduce shadow
@@ -332,6 +359,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 - **Focus:** Double border or colored border ring
 
 #### Button Sizes
+
 - **Small:** 8px × 16px padding, 0.875rem font
 - **Medium:** 12px × 24px padding, 1rem font (default)
 - **Large:** 16px × 32px padding, 1.125rem font
@@ -339,9 +367,10 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 3.2. Cards
 
 #### Standard Card
+
 ```css
 .card {
-  background: #FFF;
+  background: #fff;
   border: 3px solid #000;
   box-shadow: 6px 6px 0px #000;
   padding: 24px;
@@ -357,16 +386,19 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 #### Card Variants
 
 **Accent Card:**
+
 - Background: Primary yellow or secondary blue
 - Border: 3px solid black
 - Text: Black (on light) or white (on dark)
 
 **Info Card:**
+
 - Background: Light gray (#F5F5F5)
 - Colored left border: 5px solid accent color
 - Shadow: Standard black
 
 **Interactive Card:**
+
 - Hover: Lift effect with increased shadow
 - Click: Compress effect with reduced shadow
 - Selected: Colored border or colored shadow
@@ -374,9 +406,10 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 3.3. Forms and Inputs
 
 #### Text Input
+
 ```css
 .input {
-  background: #FFF;
+  background: #fff;
   border: 3px solid #000;
   box-shadow: 4px 4px 0px #000;
   padding: 12px 16px;
@@ -387,19 +420,21 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 .input:focus {
   outline: none;
-  border-color: #2196F3;
-  box-shadow: 4px 4px 0px #2196F3;
+  border-color: #2196f3;
+  box-shadow: 4px 4px 0px #2196f3;
   transform: translate(-1px, -1px);
 }
 ```
 
 #### Textarea
+
 - Same styling as text input
 - Min height: 120px
 - Resize: vertical only
 - Generous padding: 16px
 
 #### Labels
+
 ```css
 .label {
   font-weight: 600;
@@ -412,6 +447,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```
 
 #### Form States
+
 - **Error:** Red border (3px), red shadow
 - **Success:** Green border, green shadow
 - **Disabled:** Dashed gray border, gray background
@@ -420,9 +456,10 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 3.4. Navigation
 
 #### Top Navigation Bar
+
 ```css
 .navbar {
-  background: #FFF;
+  background: #fff;
   border-bottom: 4px solid #000;
   padding: 16px 24px;
   box-shadow: 0 4px 0px #000;
@@ -430,12 +467,14 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```
 
 #### Navigation Items
+
 - Bold text (600-700 weight)
 - Black borders separate items
 - Hover: Background color change
 - Active: Bold accent background
 
 #### Settings Icon/Button
+
 - Prominent position (top-right)
 - Icon with thick strokes
 - Clear click/tap target (44×44px minimum)
@@ -443,9 +482,10 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 3.5. Modals and Dialogs
 
 #### Modal Container
+
 ```css
 .modal {
-  background: #FFF;
+  background: #fff;
   border: 5px solid #000;
   box-shadow: 12px 12px 0px #000;
   padding: 32px;
@@ -454,11 +494,13 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```
 
 #### Modal Overlay
+
 - Semi-transparent black: rgba(0, 0, 0, 0.7)
 - Backdrop blur: 4px (optional)
 - Center modal in viewport
 
 #### Modal Header
+
 - Large bold heading (text-3xl, weight 800)
 - Close button: Bold X with thick strokes
 - Bottom border: 3px solid black
@@ -466,16 +508,17 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 3.6. Progress Indicators
 
 #### Progress Bar
+
 ```css
 .progress-bar {
-  background: #E0E0E0;
+  background: #e0e0e0;
   border: 3px solid #000;
   height: 24px;
   position: relative;
 }
 
 .progress-fill {
-  background: #FFEB3B;
+  background: #ffeb3b;
   border-right: 3px solid #000;
   height: 100%;
   transition: width 0.3s ease;
@@ -483,11 +526,13 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```
 
 #### Progress States
+
 - Use vibrant colors for fill
 - Show percentage in bold text
 - Animate with smooth transitions
 
 #### Loading Spinner
+
 - Thick borders (4-5px)
 - Black and accent color rotation
 - Minimal or no border radius
@@ -496,21 +541,23 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 3.7. Badges and Chips
 
 #### Badge/Chip
+
 ```css
 .badge {
-  background: #E91E63;
+  background: #e91e63;
   border: 2px solid #000;
   box-shadow: 2px 2px 0px #000;
   padding: 4px 12px;
   font-weight: 700;
   font-size: 0.75rem;
   text-transform: uppercase;
-  color: #FFF;
+  color: #fff;
   display: inline-block;
 }
 ```
 
 #### Badge Colors
+
 - Use semantic colors for status
 - High contrast text
 - Small but readable
@@ -520,10 +567,10 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```css
 .tooltip {
   background: #000;
-  border: 3px solid #FFEB3B;
-  box-shadow: 4px 4px 0px #FFEB3B;
+  border: 3px solid #ffeb3b;
+  box-shadow: 4px 4px 0px #ffeb3b;
   padding: 8px 12px;
-  color: #FFF;
+  color: #fff;
   font-weight: 600;
   font-size: 0.875rem;
 }
@@ -543,7 +590,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 }
 
 .table th {
-  background: #FFEB3B;
+  background: #ffeb3b;
   border-bottom: 3px solid #000;
   font-weight: 700;
   text-transform: uppercase;
@@ -551,7 +598,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 }
 
 .table td {
-  border-bottom: 2px solid #E0E0E0;
+  border-bottom: 2px solid #e0e0e0;
   padding: 12px;
 }
 ```
@@ -566,28 +613,31 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 --grid-gap: 24px;
 
 /* Responsive breakpoints */
---breakpoint-sm: 640px;   /* Mobile landscape */
---breakpoint-md: 768px;   /* Tablet */
---breakpoint-lg: 1024px;  /* Desktop */
---breakpoint-xl: 1280px;  /* Large desktop */
+--breakpoint-sm: 640px; /* Mobile landscape */
+--breakpoint-md: 768px; /* Tablet */
+--breakpoint-lg: 1024px; /* Desktop */
+--breakpoint-xl: 1280px; /* Large desktop */
 --breakpoint-2xl: 1536px; /* Extra large */
 ```
 
 #### Layout Patterns
 
 **Two-Column Split (Desktop):**
+
 - Left panel: 50% width (input area)
 - Right panel: 50% width (results)
 - Vertical separator: 4px solid black
 - Stacked on mobile
 
 **Card Grid:**
+
 - 3-column on large screens
 - 2-column on tablet
 - 1-column on mobile
 - Consistent gaps: 24px
 
 **Section Spacing:**
+
 - Page margins: 24px (mobile) to 48px (desktop)
 - Section padding: 32px to 64px
 - Max content width: 1440px
@@ -596,29 +646,41 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 4.2. Responsive Design
 
 #### Mobile-First Approach
+
 1. Design for mobile (320px+)
 2. Scale up to tablet (768px+)
 3. Optimize for desktop (1024px+)
 4. Enhance for large screens (1440px+)
 
 #### Breakpoint Strategy
+
 ```css
 /* Mobile (default) */
-.container { padding: 16px; }
+.container {
+  padding: 16px;
+}
 
 /* Tablet */
- @media (min-width: 768px) {
-  .container { padding: 24px; }
+@media (min-width: 768px) {
+  .container {
+    padding: 24px;
+  }
 }
 
 /* Desktop */
- @media (min-width: 1024px) {
-  .container { padding: 32px; }
-  .two-column { display: grid; grid-template-columns: 1fr 1fr; }
+@media (min-width: 1024px) {
+  .container {
+    padding: 32px;
+  }
+  .two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 ```
 
 #### Touch Targets
+
 - Minimum size: 44×44px
 - Generous spacing: 8px minimum between targets
 - Clear visual feedback on tap
@@ -627,6 +689,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 4.3. Page Templates
 
 #### Main Application Layout
+
 ```
 ┌─────────────────────────────────────────────┐
 │  HEADER (Logo, Settings)                    │
@@ -641,6 +704,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```
 
 #### Mobile Layout
+
 ```
 ┌─────────────┐
 │  HEADER     │
@@ -661,12 +725,14 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 5.1. Animation and Motion
 
 #### Animation Principles
+
 1. **Quick and Snappy:** 150-250ms for most transitions
 2. **Purpose-Driven:** Every animation serves a function
 3. **Consistent Easing:** ease-out for entrances, ease-in for exits
 4. **Reduced Motion:** Respect user preferences
 
 #### Common Animations
+
 ```css
 /* Hover lift */
 .element:hover {
@@ -685,13 +751,20 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
   animation: fadeIn 0.3s ease-out;
 }
 
- @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 ```
 
 #### Animation Do's and Don'ts
+
 - ✅ Use for feedback and state changes
 - ✅ Keep durations short (< 300ms)
 - ✅ Provide reduced motion alternatives
@@ -702,24 +775,28 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 5.2. Micro-interactions
 
 #### Hover Effects
+
 - Scale slightly (1.02-1.05)
 - Lift with increased shadow
 - Color brighten or darken
 - Border color change
 
 #### Click/Tap Effects
+
 - Compress with reduced shadow
 - Brief color flash
 - Subtle scale down (0.95-0.98)
 - Haptic feedback on mobile
 
 #### Focus States
+
 - Thick colored border or outline
 - Increased shadow
 - Background color shift
 - Clear visual differentiation
 
 #### Loading States
+
 - Skeleton screens with pulsing animation
 - Progress bars with smooth fills
 - Spinner with rotating animation
@@ -728,18 +805,21 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 5.3. Feedback Mechanisms
 
 #### Success Feedback
+
 - Green checkmark icon
 - Success color border/background
 - Brief animation (scale/fade)
 - Toast notification (3-5 seconds)
 
 #### Error Feedback
+
 - Red X icon or error symbol
 - Red border and shadow
 - Shake animation
 - Error message with guidance
 
 #### Info/Warning
+
 - Orange/blue accent colors
 - Icon with appropriate semantic meaning
 - Persistent until dismissed
@@ -750,12 +830,14 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 6.1. WCAG 2.1 AA Compliance
 
 #### Color Contrast
+
 - Text on background: 4.5:1 minimum
 - Large text (18pt+): 3:1 minimum
 - UI components: 3:1 minimum
 - Test with tools: Stark, Contrast Checker
 
 #### Keyboard Navigation
+
 - All interactive elements focusable
 - Logical tab order
 - Visible focus indicators
@@ -763,6 +845,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 - Keyboard shortcuts documented
 
 #### Screen Reader Support
+
 - Semantic HTML structure
 - ARIA labels for icons
 - ARIA live regions for updates
@@ -770,6 +853,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 - Form labels properly associated
 
 #### Focus Management
+
 - Focus visible: 3px outline or border
 - Focus trap in modals
 - Return focus on close
@@ -778,6 +862,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 6.2. Inclusive Design
 
 #### Text Accessibility
+
 - Minimum font size: 16px (1rem)
 - Line height: 1.5-1.6 for body
 - Max line length: 65-75 characters
@@ -785,8 +870,9 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 - No justified text
 
 #### Motion and Animation
+
 ```css
- @media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
@@ -796,12 +882,14 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```
 
 #### Color Independence
+
 - Never rely on color alone
 - Use icons, text, patterns
 - Multiple visual cues
 - High contrast mode support
 
 #### Touch and Click Targets
+
 - Minimum 44×44px
 - Adequate spacing (8px+)
 - Clear clickable areas
@@ -812,6 +900,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 7.1. Voice and Tone
 
 **Brand Voice:**
+
 - Bold and confident
 - Empowering and encouraging
 - Clear and direct
@@ -819,6 +908,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 - Slightly irreverent but professional
 
 **Tone Variations:**
+
 - **Success messages:** Enthusiastic and celebratory
 - **Error messages:** Helpful and constructive
 - **Instructions:** Clear and actionable
@@ -827,12 +917,14 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 7.2. Writing Style
 
 #### Headings
+
 - Active, action-oriented
 - Front-load important words
 - Use sentence case
 - Keep under 60 characters
 
 #### Body Copy
+
 - Short sentences (15-20 words)
 - One idea per paragraph
 - Active voice preferred
@@ -840,12 +932,14 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 - Explain technical terms
 
 #### Buttons and CTAs
+
 - Start with verbs
 - Be specific: "Optimize Prompt" vs "Submit"
 - Use sentence case or uppercase consistently
 - Keep under 3 words when possible
 
 #### Error Messages
+
 - Explain what happened
 - Why it happened
 - How to fix it
@@ -858,19 +952,23 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ### 7.3. Microcopy
 
 #### Empty States
+
 "No saved prompts yet. Optimize your first prompt to get started!"
 
 #### Loading States
+
 "Optimizing your prompt..."
 "Analyzing effectiveness..."
 "Generating recommendations..."
 
 #### Success Messages
+
 "Prompt optimized! 🚀"
 "Saved successfully!"
 "Copied to clipboard!"
 
 #### Helpful Hints
+
 "Pro tip: Use Cmd+Enter to optimize quickly"
 "Try including specific context for better results"
 
@@ -889,35 +987,36 @@ module.exports = {
           100: '#FFF9C4',
           500: '#FFEB3B',
           700: '#FBC02D',
-          900: '#F57F17',
-        },
+          900: '#F57F17'
+        }
         // ... more colors
       },
       fontFamily: {
         display: ['Big Shoulders Display', 'Impact', 'sans-serif'],
         sans: ['Inter', 'Helvetica Neue', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        mono: ['JetBrains Mono', 'monospace']
       },
       boxShadow: {
         'neo-sm': '2px 2px 0px #000',
-        'neo': '4px 4px 0px #000',
+        neo: '4px 4px 0px #000',
         'neo-md': '6px 6px 0px #000',
         'neo-lg': '8px 8px 0px #000',
-        'neo-xl': '12px 12px 0px #000',
+        'neo-xl': '12px 12px 0px #000'
       },
       borderWidth: {
-        '3': '3px',
-        '5': '5px',
-      },
-    },
+        3: '3px',
+        5: '5px'
+      }
+    }
   },
-  plugins: [],
-}
+  plugins: []
+};
 ```
 
 ### 8.2. Component Architecture
 
 #### Reusable Components
+
 - Button (Primary, Secondary, Danger, Ghost)
 - Card (Default, Accent, Interactive)
 - Input (Text, Textarea, Select)
@@ -928,6 +1027,7 @@ module.exports = {
 - Loading Spinner
 
 #### Component Props Pattern
+
 ```typescript
 interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
@@ -945,17 +1045,17 @@ interface ButtonProps {
 ```css
 :root {
   /* Colors */
-  --color-primary: #FFEB3B;
-  --color-secondary: #2196F3;
-  --color-accent: #E91E63;
+  --color-primary: #ffeb3b;
+  --color-secondary: #2196f3;
+  --color-accent: #e91e63;
   --color-black: #000000;
-  --color-white: #FFFFFF;
-  
+  --color-white: #ffffff;
+
   /* Typography */
   --font-display: 'Big Shoulders Display', sans-serif;
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  
+
   /* Spacing */
   --space-unit: 4px;
   --space-xs: calc(var(--space-unit) * 2);
@@ -963,17 +1063,17 @@ interface ButtonProps {
   --space-md: calc(var(--space-unit) * 4);
   --space-lg: calc(var(--space-unit) * 6);
   --space-xl: calc(var(--space-unit) * 8);
-  
+
   /* Borders */
   --border-width: 3px;
   --border-color: var(--color-black);
   --border-radius: 0px;
-  
+
   /* Shadows */
   --shadow-sm: 2px 2px 0px var(--color-black);
   --shadow-base: 4px 4px 0px var(--color-black);
   --shadow-lg: 8px 8px 0px var(--color-black);
-  
+
   /* Transitions */
   --transition-fast: 150ms ease;
   --transition-base: 200ms ease;
@@ -986,19 +1086,20 @@ interface ButtonProps {
 While Neo-Brutalism typically uses light backgrounds, a dark mode variation:
 
 ```css
-[data-theme="dark"] {
-  --color-background: #1A1A1A;
-  --color-surface: #2D2D2D;
-  --color-text: #FFFFFF;
-  --border-color: #FFFFFF;
-  
+[data-theme='dark'] {
+  --color-background: #1a1a1a;
+  --color-surface: #2d2d2d;
+  --color-text: #ffffff;
+  --border-color: #ffffff;
+
   /* Soften bright accent colors slightly */
-  --color-primary: #FFD700;
-  --color-secondary: #42A5F5;
+  --color-primary: #ffd700;
+  --color-secondary: #42a5f5;
 }
 ```
 
 **Dark Mode Guidelines:**
+
 - Invert black/white for borders and text
 - Slightly muted accent colors
 - Maintain high contrast
@@ -1036,12 +1137,14 @@ While Neo-Brutalism typically uses light backgrounds, a dark mode variation:
 ### 10.1. Logo and Identity
 
 **Logo Design:**
+
 - Bold, geometric typography
 - Thick black outline
 - Primary yellow or secondary blue accent
 - Works in monochrome (black on white)
 
 **Logo Usage:**
+
 - Minimum size: 120px width
 - Clear space: Equal to logo height
 - Do not stretch or distort
@@ -1050,6 +1153,7 @@ While Neo-Brutalism typically uses light backgrounds, a dark mode variation:
 ### 10.2. Iconography
 
 **Icon Style:**
+
 - Thick strokes (3px minimum)
 - Geometric shapes
 - Clear, simple forms
@@ -1057,6 +1161,7 @@ While Neo-Brutalism typically uses light backgrounds, a dark mode variation:
 - Black fill or outline
 
 **Icon Set:**
+
 - Use consistent icon library (Heroicons Bold, Feather)
 - Or create custom icons matching style
 - Size multiples of 8px (16, 24, 32, 48)
@@ -1064,6 +1169,7 @@ While Neo-Brutalism typically uses light backgrounds, a dark mode variation:
 ### 10.3. Illustrations
 
 **Illustration Style:**
+
 - Flat, geometric shapes
 - Bold outlines (3-5px)
 - Limited color palette

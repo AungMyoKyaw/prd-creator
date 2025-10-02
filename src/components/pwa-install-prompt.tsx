@@ -8,7 +8,8 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 export function PWAInstallPrompt() {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallButton, setShowInstallButton] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
 
@@ -35,7 +36,10 @@ export function PWAInstallPrompt() {
     window.addEventListener('appinstalled', handleAppInstalled);
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener(
+        'beforeinstallprompt',
+        handleBeforeInstallPrompt
+      );
       window.removeEventListener('appinstalled', handleAppInstalled);
     };
   }, []);
@@ -64,7 +68,8 @@ export function PWAInstallPrompt() {
     const dismissed = localStorage.getItem('pwa_install_dismissed');
     if (dismissed) {
       const dismissedDate = new Date(dismissed);
-      const daysSinceDismissed = (Date.now() - dismissedDate.getTime()) / (1000 * 60 * 60 * 24);
+      const daysSinceDismissed =
+        (Date.now() - dismissedDate.getTime()) / (1000 * 60 * 60 * 24);
       if (daysSinceDismissed < 7) {
         setShowInstallButton(false);
       }
@@ -85,7 +90,8 @@ export function PWAInstallPrompt() {
               Install AI PRD Creator
             </h3>
             <p className="text-indigo-100 text-xs mb-3">
-              Install this app on your device for quick access and offline support
+              Install this app on your device for quick access and offline
+              support
             </p>
             <div className="flex gap-2">
               <button

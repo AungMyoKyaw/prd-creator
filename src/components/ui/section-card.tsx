@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { clsx } from "clsx";
+import { ReactNode } from 'react';
+import { clsx } from 'clsx';
 
 interface SectionCardProps {
   title: string;
@@ -19,8 +19,8 @@ export function SectionCard({
   return (
     <article
       className={clsx(
-        "flex flex-col gap-4 rounded-[18px] border border-white/70 bg-white/70 p-5 shadow-[0_20px_45px_rgba(15,27,55,0.12)] transition hover:border-white/90 dark:border-slate-800/70 dark:bg-slate-900/60",
-        "backdrop-blur-[18px]",
+        'flex flex-col gap-4 rounded-[18px] border border-white/70 bg-white/70 p-5 shadow-[0_20px_45px_rgba(15,27,55,0.12)] transition hover:border-white/90 dark:border-slate-800/70 dark:bg-slate-900/60',
+        'backdrop-blur-[18px]',
         className
       )}
     >

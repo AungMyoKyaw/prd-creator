@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { clsx } from "clsx";
+import { ReactNode } from 'react';
+import { clsx } from 'clsx';
 
 interface MacOSWindowProps {
   title: string;
@@ -21,8 +21,8 @@ export function MacOSWindow({
   return (
     <section
       className={clsx(
-        "relative flex w-full max-w-[1200px] flex-col overflow-hidden rounded-[22px] border border-white/70 bg-white/70 text-slate-900 shadow-[0_30px_80px_rgba(15,27,55,0.25)] backdrop-blur-[22px] transition-all dark:border-slate-800/70 dark:bg-slate-900/60 dark:text-slate-100",
-        "ring-1 ring-black/5",
+        'relative flex w-full max-w-[1200px] flex-col overflow-hidden rounded-[22px] border border-white/70 bg-white/70 text-slate-900 shadow-[0_30px_80px_rgba(15,27,55,0.25)] backdrop-blur-[22px] transition-all dark:border-slate-800/70 dark:bg-slate-900/60 dark:text-slate-100',
+        'ring-1 ring-black/5',
         className
       )}
     >

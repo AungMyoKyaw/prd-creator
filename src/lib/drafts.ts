@@ -1,7 +1,7 @@
-import { PrdInputs } from "./prompt";
-import { IngestInsight } from "./ingest";
+import { PrdInputs } from './prompt';
+import { IngestInsight } from './ingest';
 
-const STORAGE_KEY = "prd-studio-drafts/v1";
+const STORAGE_KEY = 'prd-studio-drafts/v1';
 const MAX_DRAFTS = 12;
 
 export interface StoredDraft {
@@ -19,7 +19,7 @@ export interface StoredDraft {
 }
 
 function getStorage(): Storage | null {
-  if (typeof window === "undefined") {
+  if (typeof window === 'undefined') {
     return null;
   }
   try {
@@ -70,7 +70,10 @@ export function deleteDraft(id: string): StoredDraft[] {
   return next;
 }
 
-export function sanitizeIngestForStorage(ingest: IngestInsight | null, limit = 20_000): IngestInsight | null {
+export function sanitizeIngestForStorage(
+  ingest: IngestInsight | null,
+  limit = 20_000
+): IngestInsight | null {
   if (!ingest) {
     return null;
   }
@@ -83,6 +86,6 @@ export function sanitizeIngestForStorage(ingest: IngestInsight | null, limit = 2
   return {
     ...ingest,
     rawText: safeRawText,
-    json: null,
+    json: null
   };
 }

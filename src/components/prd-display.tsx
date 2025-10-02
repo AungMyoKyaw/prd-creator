@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { MarkdownRenderer } from "./markdown-renderer";
+import { useEffect, useState } from 'react';
+import { MarkdownRenderer } from './markdown-renderer';
 
 interface PRDDisplayProps {
   content: string;
@@ -17,7 +17,7 @@ function CopyIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       strokeWidth={2.5}
       stroke="currentColor"
-      className={className || "w-6 h-6"}
+      className={className || 'w-6 h-6'}
     >
       <path
         strokeLinecap="round"
@@ -36,7 +36,7 @@ function CheckIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       strokeWidth={2.5}
       stroke="currentColor"
-      className={className || "w-6 h-6"}
+      className={className || 'w-6 h-6'}
     >
       <path
         strokeLinecap="round"
@@ -55,7 +55,7 @@ function DownloadIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       strokeWidth={2.5}
       stroke="currentColor"
-      className={className || "w-6 h-6"}
+      className={className || 'w-6 h-6'}
     >
       <path
         strokeLinecap="round"
@@ -81,13 +81,13 @@ export function PRDDisplay({
 
   const handleCopy = async () => {
     const plainText = content
-      .replace(/###\s/g, "")
-      .replace(/##\s/g, "")
-      .replace(/#\s/g, "")
-      .replace(/\*\*/g, "")
-      .replace(/\*/g, "")
-      .replace(/---\s/g, "\n")
-      .replace(/-\s/g, "");
+      .replace(/###\s/g, '')
+      .replace(/##\s/g, '')
+      .replace(/#\s/g, '')
+      .replace(/\*\*/g, '')
+      .replace(/\*/g, '')
+      .replace(/---\s/g, '\n')
+      .replace(/-\s/g, '');
 
     try {
       await navigator.clipboard.writeText(plainText);
@@ -99,11 +99,9 @@ export function PRDDisplay({
 
   const handleDownload = () => {
     // Create a sanitized filename
-    const sanitizedName = productName
-      .replace(/[^a-z0-9]/gi, '_')
-      .toLowerCase();
+    const sanitizedName = productName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
     const fileName = `${sanitizedName}_prd_${new Date().toISOString().split('T')[0]}.md`;
-    
+
     // Create blob and download
     const blob = new Blob([content], { type: 'text/markdown' });
     const url = URL.createObjectURL(blob);
@@ -119,11 +117,14 @@ export function PRDDisplay({
   return (
     <div className="bg-white border-[3px] border-black shadow-[6px_6px_0px_#000]">
       <div className="flex justify-between items-center p-6 border-b-[3px] border-black">
-        <h2 
+        <h2
           className="text-2xl font-black text-black uppercase tracking-wide"
-          style={{ fontFamily: "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif" }}
+          style={{
+            fontFamily:
+              "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
+          }}
         >
-          {isLivePreview ? "📋 LIVE PREVIEW" : "✅ GENERATED PRD"}
+          {isLivePreview ? '📋 LIVE PREVIEW' : '✅ GENERATED PRD'}
         </h2>
         {!isLivePreview && (
           <div className="flex items-center space-x-3 flex-wrap gap-2">

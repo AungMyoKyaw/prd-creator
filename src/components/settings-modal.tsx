@@ -25,7 +25,7 @@ export function SettingsModal({
   onClose,
   onSave,
   currentApiKey,
-  currentModel,
+  currentModel
 }: SettingsModalProps) {
   const [apiKey, setApiKey] = useState(currentApiKey);
   const [model, setModel] = useState(currentModel);
@@ -55,9 +55,9 @@ export function SettingsModal({
       const response = await fetch('/api/models', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ apiKey: key }),
+        body: JSON.stringify({ apiKey: key })
       });
 
       if (!response.ok) {
@@ -65,7 +65,7 @@ export function SettingsModal({
       }
 
       const data = await response.json();
-      
+
       if (data.models && data.models.length > 0) {
         setModels(data.models);
         // If current model is not in the list, select the first one
@@ -85,8 +85,9 @@ export function SettingsModal({
 
   const handleSave = () => {
     if (apiKey.trim()) {
-      const selectedModelData = models.find(m => m.value === model);
-      const displayName = selectedModelData?.displayName || selectedModelData?.label || model;
+      const selectedModelData = models.find((m) => m.value === model);
+      const displayName =
+        selectedModelData?.displayName || selectedModelData?.label || model;
       onSave(apiKey.trim(), model, displayName);
       onClose();
     }
@@ -95,7 +96,7 @@ export function SettingsModal({
   const handleApiKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newKey = e.target.value;
     setApiKey(newKey);
-    
+
     // Auto-fetch models when API key looks valid (basic length check)
     if (newKey.trim().length > 20) {
       // Debounce the fetch
@@ -114,9 +115,12 @@ export function SettingsModal({
         <div className="p-8">
           {/* Header */}
           <div className="flex items-center justify-between mb-8 border-b-[3px] border-black pb-4">
-            <h2 
+            <h2
               className="text-3xl font-black text-black uppercase tracking-tight"
-              style={{ fontFamily: "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif" }}
+              style={{
+                fontFamily:
+                  "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
+              }}
             >
               ⚙️ SETTINGS
             </h2>
@@ -144,7 +148,10 @@ export function SettingsModal({
           {/* API Key Section */}
           <div className="space-y-6 mb-8">
             <div>
-              <label htmlFor="apiKey" className="block text-sm font-bold uppercase tracking-wide text-black mb-3">
+              <label
+                htmlFor="apiKey"
+                className="block text-sm font-bold uppercase tracking-wide text-black mb-3"
+              >
                 Gemini API Key <span className="text-[#E91E63]">*</span>
               </label>
               <div className="relative">
@@ -180,29 +187,50 @@ export function SettingsModal({
             {/* Model Selection */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <label htmlFor="model" className="block text-sm font-bold uppercase tracking-wide text-black">
+                <label
+                  htmlFor="model"
+                  className="block text-sm font-bold uppercase tracking-wide text-black"
+                >
                   Model Selection
                 </label>
                 {loadingModels && (
                   <span className="text-xs font-bold text-[#2196F3] flex items-center uppercase">
-                    <svg className="animate-spin h-4 w-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <svg
+                      className="animate-spin h-4 w-4 mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
                     </svg>
                     Fetching...
                   </span>
                 )}
                 {!loadingModels && models.length > GEMINI_MODELS.length && (
-                  <span className="text-xs font-bold text-[#4CAF50] uppercase">✓ {models.length} LOADED</span>
+                  <span className="text-xs font-bold text-[#4CAF50] uppercase">
+                    ✓ {models.length} LOADED
+                  </span>
                 )}
               </div>
-              
+
               {modelsError && (
                 <div className="mb-3 text-sm font-bold text-black bg-[#FF9800] border-[3px] border-black px-4 py-2">
                   {modelsError}
                 </div>
               )}
-              
+
               <select
                 id="model"
                 value={model}
@@ -222,10 +250,13 @@ export function SettingsModal({
                 </p>
                 {models.find((m) => m.value === model)?.inputTokenLimit && (
                   <p className="text-xs font-medium text-gray-600">
-                    Input limit: {models.find((m) => m.value === model)?.inputTokenLimit?.toLocaleString()} tokens
-                    {models.find((m) => m.value === model)?.outputTokenLimit && 
-                      ` • Output limit: ${models.find((m) => m.value === model)?.outputTokenLimit?.toLocaleString()} tokens`
-                    }
+                    Input limit:{' '}
+                    {models
+                      .find((m) => m.value === model)
+                      ?.inputTokenLimit?.toLocaleString()}{' '}
+                    tokens
+                    {models.find((m) => m.value === model)?.outputTokenLimit &&
+                      ` • Output limit: ${models.find((m) => m.value === model)?.outputTokenLimit?.toLocaleString()} tokens`}
                   </p>
                 )}
               </div>
@@ -252,7 +283,9 @@ export function SettingsModal({
                     Unlimited Token Generation
                   </h4>
                   <p className="text-sm font-medium text-white">
-                    Token limits are removed for maximum flexibility. The API will generate as much content as needed for comprehensive PRDs.
+                    Token limits are removed for maximum flexibility. The API
+                    will generate as much content as needed for comprehensive
+                    PRDs.
                   </p>
                 </div>
               </div>

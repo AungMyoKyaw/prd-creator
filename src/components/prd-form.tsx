@@ -1,9 +1,9 @@
-import { FormEvent, Dispatch, SetStateAction } from "react";
-import { PrdInput } from "../lib/prd";
-import { Button } from "./button";
-import { InputField } from "./input-field";
-import { Section } from "./section";
-import { TextareaField } from "./textarea-field";
+import { FormEvent, Dispatch, SetStateAction } from 'react';
+import { PrdInput } from '../lib/prd';
+import { Button } from './button';
+import { InputField } from './input-field';
+import { Section } from './section';
+import { TextareaField } from './textarea-field';
 
 interface PRDFormProps {
   prdInput: PrdInput;
@@ -31,7 +31,7 @@ export function PRDForm({
     <form onSubmit={onSubmit} className="space-y-6">
       <Section
         title="1. Core Product Idea"
-        onRefine={() => onRefineSection("1. Core Product Idea")}
+        onRefine={() => onRefineSection('1. Core Product Idea')}
       >
         <InputField
           label="Product Name"
@@ -66,7 +66,7 @@ export function PRDForm({
 
       <Section
         title="2. Audience & Market"
-        onRefine={() => onRefineSection("2. Audience & Market")}
+        onRefine={() => onRefineSection('2. Audience & Market')}
       >
         <TextareaField
           label="Target Audience"
@@ -91,7 +91,7 @@ export function PRDForm({
 
       <Section
         title="3. Features & Scope"
-        onRefine={() => onRefineSection("3. Features & Scope")}
+        onRefine={() => onRefineSection('3. Features & Scope')}
       >
         <TextareaField
           label="Core Features (MVP)"
@@ -116,7 +116,7 @@ export function PRDForm({
 
       <Section
         title="4. Technical Details (Optional)"
-        onRefine={() => onRefineSection("4. Technical Details (Optional)")}
+        onRefine={() => onRefineSection('4. Technical Details (Optional)')}
       >
         <InputField
           label="Technology Stack"

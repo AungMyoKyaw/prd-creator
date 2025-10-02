@@ -1,0 +1,16 @@
+node_modules
+build
+dist
+.next
+out
+coverage
+public
+*.log
+debug.log
+yarn.lock
+package-lock.json
+.pnp.*
+.DS_Store
+.env*
+*.snap
+*.tsbuildinfo

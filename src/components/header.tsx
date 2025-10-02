@@ -4,14 +4,21 @@ interface HeaderProps {
   modelDisplayName?: string;
 }
 
-export function Header({ onSettingsClick, currentModel, modelDisplayName }: HeaderProps) {
+export function Header({
+  onSettingsClick,
+  currentModel,
+  modelDisplayName
+}: HeaderProps) {
   return (
     <header className="bg-white border-b-[4px] border-black shadow-[0_4px_0px_#000] sticky top-0 z-50">
       <div className="container mx-auto px-4 py-6 relative">
         <div className="text-center">
-          <h1 
+          <h1
             className="text-5xl md:text-6xl font-black text-black tracking-tight"
-            style={{ fontFamily: "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif" }}
+            style={{
+              fontFamily:
+                "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
+            }}
           >
             <span className="text-[#2196F3]">PRD</span> CREATOR 📝
           </h1>
@@ -19,20 +26,23 @@ export function Header({ onSettingsClick, currentModel, modelDisplayName }: Head
             Turn your ideas into professional Product Requirements Documents
             instantly.
           </p>
-          
+
           {/* Model Indicator */}
           {currentModel && (
             <div className="mt-4 inline-flex items-center px-4 py-2 bg-[#FFEB3B] border-[3px] border-black shadow-[4px_4px_0px_#000]">
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-[#4CAF50] rounded-full animate-pulse"></div>
                 <span className="text-sm font-bold text-black uppercase">
-                  Using: <span className="text-[#2196F3]">{modelDisplayName || currentModel}</span>
+                  Using:{' '}
+                  <span className="text-[#2196F3]">
+                    {modelDisplayName || currentModel}
+                  </span>
                 </span>
               </div>
             </div>
           )}
         </div>
-        
+
         {/* Settings Button */}
         <button
           onClick={onSettingsClick}
