@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export function Footer() {
   return (
     <footer className="py-8 border-t-[4px] border-black bg-white shadow-[0_-4px_0px_#000]">
@@ -9,10 +11,13 @@ export function Footer() {
             rel="noopener noreferrer"
             className="inline-block transition-all duration-150 hover:translate-x-[-2px] hover:translate-y-[-2px]"
           >
-            <img
+            <Image
               src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black"
               alt="Buy Me A Coffee"
+              width={200}
+              height={50}
               className="border-[3px] border-black shadow-[4px_4px_0px_#000]"
+              priority
             />
           </a>
         </div>
