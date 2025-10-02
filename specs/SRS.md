@@ -73,11 +73,14 @@ The application runs in modern web browsers supporting:
 ## 3. External Interface Requirements
 
 ### 3.1 User Interfaces
-The application provides a clean, modern user interface with:
-- Dark theme design with glassmorphism effects
-- Responsive layout for all device sizes
-- Intuitive form controls with proper labeling
-- Real-time preview of PRD content
+The application provides a bold, modern Neo-Brutalism user interface with:
+- Neo-Brutalism design aesthetic featuring thick black borders (3px), offset shadows, and high contrast elements
+- Responsive layout for all device sizes implementing Neo-Brutalism principles
+- Intuitive form controls with proper labeling, styled with Neo-Brutalism design patterns
+- Real-time preview of PRD content with Neo-Brutalism styling
+- Implementation of the specified color palette (primary yellow #FFEB3B, secondary blue #2196F3, accent pink #E91E63)
+- Bold typography using Big Shoulders Display for headings and Inter for body text
+- Interactive elements with distinct hover, focus, and active states following Neo-Brutalism design patterns
 
 ### 3.2 Hardware Interfaces
 No specific hardware interfaces required beyond standard computing devices with web browsers.
@@ -110,6 +113,12 @@ No specific hardware interfaces required beyond standard computing devices with 
 *REQ-002:* The system MUST provide a text area for detailed input of each required field.
 
 *REQ-003:* The system SHOULD provide placeholder text to guide users in each input field.
+
+*REQ-004:* The system MUST implement Neo-Brutalism design principles for all form elements, including thick 3px black borders and offset shadows.
+
+*REQ-005:* The system MUST ensure all form inputs meet WCAG 2.1 Level AA contrast requirements with a minimum ratio of 4.5:1.
+
+*REQ-006:* The system MUST provide clear visual feedback for form states (default, hover, focus, active, error) following Neo-Brutalism design patterns.
 
 ### 4.2 AI-Powered PRD Generation
 **Description:** Uses AI to generate a comprehensive PRD based on user inputs.
@@ -161,6 +170,24 @@ No specific hardware interfaces required beyond standard computing devices with 
 
 *REQ-018:* The system MUST process refinement requests through the AI API.
 
+### 4.7 Neo-Brutalism UI/UX Requirements
+**Description:** Requirements for implementing the Neo-Brutalism design system.
+**Priority:** High
+
+*REQ-019:* The system MUST implement the specified color palette including primary yellow (#FFEB3B), secondary blue (#2196F3), and accent pink (#E91E63).
+
+*REQ-020:* The system MUST use the specified typography system with Big Shoulders Display for headings and Inter for body text.
+
+*REQ-021:* The system MUST apply thick 3px black borders to all UI components as specified in the Neo-Brutalism guidelines.
+
+*REQ-022:* The system MUST implement offset shadows (4px 4px 0px black) for depth and visual hierarchy.
+
+*REQ-023:* The system MUST ensure all interactive elements have distinct hover, focus, and active states following Neo-Brutalism design patterns.
+
+*REQ-024:* The system MUST meet WCAG 2.1 Level AA accessibility standards with appropriate color contrast ratios.
+
+*REQ-025:* The system MUST implement responsive design maintaining Neo-Brutalism principles across all device sizes.
+
 ---
 
 ## 5. Other Non-Functional Requirements
@@ -192,6 +219,12 @@ No specific hardware interfaces required beyond standard computing devices with 
 *REQ-029:* The application MUST be responsive and work on screen sizes from 320px to 1920px.
 
 *REQ-030:* The UI MUST meet WCAG 2.1 Level AA accessibility standards.
+
+*REQ-031:* The UI MUST implement Neo-Brutalism design principles consistently across all components and views.
+
+*REQ-032:* The UI MUST maintain visual hierarchy and readability on all screen sizes while preserving Neo-Brutalism design elements.
+
+*REQ-033:* The application MUST provide consistent user experience following the Neo-Brutalism design language.
 
 ### 5.5 Business Rules
 *REQ-031:* The system MUST not impose any usage limitations on the end user beyond those of the AI API.
