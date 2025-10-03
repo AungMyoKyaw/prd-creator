@@ -8,6 +8,7 @@ import {
   StoredDraft,
   migrateLocalStorageToIndexedDB
 } from '@/lib/drafts';
+import { Save, Calendar, Bot } from 'lucide-react';
 
 interface SavedDraftsModalProps {
   isOpen: boolean;
@@ -93,7 +94,10 @@ export function SavedDraftsModal({
                       "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
                   }}
                 >
-                  💾 Saved PRDs
+                  <span className="flex items-center gap-2">
+                    <Save className="w-5 h-5" />
+                    Saved PRDs
+                  </span>
                 </Dialog.Title>
                 <Dialog.Close className="text-black hover:text-gray-700 transition-colors">
                   <svg
@@ -160,8 +164,14 @@ export function SavedDraftsModal({
                             {draft.title}
                           </h3>
                           <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-600 font-medium">
-                            <span>📅 {formatDate(draft.createdAt)}</span>
-                            <span>🤖 {draft.model}</span>
+                            <span className="flex items-center gap-1">
+                              <Calendar className="w-3 h-3" />
+                              {formatDate(draft.createdAt)}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <Bot className="w-3 h-3" />
+                              {draft.model}
+                            </span>
                           </div>
                           {draft.inputs.problemStatement && (
                             <p className="text-sm text-gray-700 font-medium mt-2 line-clamp-2">

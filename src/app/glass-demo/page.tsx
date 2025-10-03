@@ -1,4 +1,5 @@
 import React from 'react';
+import { Apple } from 'lucide-react';
 
 export default function GlassDemo() {
   return (
@@ -6,7 +7,9 @@ export default function GlassDemo() {
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Header */}
         <div className="glass-card p-8 animate-scale-in">
-          <h1 className="text-large-title mb-2">🍎 Glassmorphism UI</h1>
+          <h1 className="text-large-title mb-2 flex items-center gap-2">
+            <Apple className="w-8 h-8" /> Glassmorphism UI
+          </h1>
           <p className="text-body text-secondary">
             Apple-inspired liquid glass design system
           </p>

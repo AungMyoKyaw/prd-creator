@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { GEMINI_MODELS } from '@/lib/models';
+import { Settings, Check } from 'lucide-react';
 
 interface Model {
   value: string;
@@ -122,7 +123,10 @@ export function SettingsModal({
                   "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
               }}
             >
-              ⚙️ SETTINGS
+              <span className="flex items-center gap-2">
+                <Settings className="w-6 h-6" />
+                SETTINGS
+              </span>
             </h2>
             <button
               onClick={onClose}
@@ -220,7 +224,10 @@ export function SettingsModal({
                 )}
                 {!loadingModels && models.length > GEMINI_MODELS.length && (
                   <span className="text-xs font-bold text-[#4CAF50] uppercase">
-                    ✓ {models.length} LOADED
+                    <span className="flex items-center gap-1">
+                      <Check className="w-3 h-3" />
+                      {models.length} LOADED
+                    </span>
                   </span>
                 )}
               </div>
