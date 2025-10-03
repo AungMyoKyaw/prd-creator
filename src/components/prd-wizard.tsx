@@ -1,12 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ArrowLeft, ArrowRight, Sparkles, Edit3, FileText } from 'lucide-react';
-import {
-  PrdInput,
-  DEFAULT_PRD_INPUT,
-  generatePreviewMarkdown
-} from '@/lib/prd';
+import { PrdInput, DEFAULT_PRD_INPUT } from '@/lib/prd';
 import { Button } from './button';
 import { Loader } from './loader';
 import { TextareaField } from './textarea-field';
@@ -46,11 +42,7 @@ export function PRDWizard({
   const currentStep = externalCurrentStep ?? internalCurrentStep;
   const setCurrentStep = externalSetCurrentStep ?? setInternalCurrentStep;
   const prdInput = externalPrdInput ?? internalPrdInput;
-  const setPrdInput = externalPrdInput ? () => {} : setInternalPrdInput;
   const generatedPrd = externalGeneratedPrd ?? internalGeneratedPrd;
-  const setGeneratedPrd = externalGeneratedPrd
-    ? () => {}
-    : setInternalGeneratedPrd;
 
   const [productIdea, setProductIdea] = useState<string>('');
   const [isPrefilling, setIsPrefilling] = useState<boolean>(false);
@@ -253,7 +245,7 @@ export function PRDWizard({
 
           {/* Step Indicators */}
           <div className="flex items-center justify-between relative">
-            {steps.map((step, index) => {
+            {steps.map((step) => {
               const Icon = step.icon;
               const isActive = currentStep === step.id;
               const isCompleted = step.id < currentStep;

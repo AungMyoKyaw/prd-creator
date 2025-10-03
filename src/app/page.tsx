@@ -1,17 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Sparkles } from 'lucide-react';
-import {
-  PrdInput,
-  DEFAULT_PRD_INPUT,
-  generatePreviewMarkdown
-} from '@/lib/prd';
+import { PrdInput, DEFAULT_PRD_INPUT } from '@/lib/prd';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { PRDWizard } from '@/components/prd-wizard';
 import { FullPagePRDViewer } from '@/components/full-page-prd-viewer';
-import { Button } from '@/components/button';
 import { SettingsModal } from '@/components/settings-modal';
 import { PWAInstallPrompt } from '@/components/pwa-install-prompt';
 import { SavedDraftsModal } from '@/components/saved-drafts-modal';

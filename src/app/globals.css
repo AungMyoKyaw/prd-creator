@@ -734,11 +734,11 @@ body {
 }
 
 /* Hover overlay styling for full page view */
-.group:hover .group-hover\\:opacity-100 {
+.group:hover .group-hover\:opacity-100 {
   opacity: 1;
 }
 
-.group-hover\\:scale-100:hover {
+.group:hover .group-hover\:scale-100 {
   transform: scale(1);
 }
 

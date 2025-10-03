@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { MarkdownRenderer } from './markdown-renderer';
-import { X, Download, Copy, CheckCircle } from 'lucide-react';
+import { X } from 'lucide-react';
 
 interface FullPagePRDViewerProps {
   isOpen: boolean;
