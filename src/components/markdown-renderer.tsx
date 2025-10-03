@@ -66,39 +66,45 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
           const isInline = !match;
           return isInline ? (
             <code
-              className="bg-gray-100 px-1 py-0.5 text-sm font-mono rounded"
+              className="bg-[#F5F5F5] px-2 py-1 text-sm font-mono border-[2px] border-black"
               {...props}
             >
               {children}
             </code>
           ) : (
-            <code
-              className="block bg-gray-100 p-4 text-sm font-mono rounded overflow-x-auto"
-              {...props}
-            >
-              {children}
-            </code>
+            <div className="neo-overflow-x-auto neo-scrollbar mb-4">
+              <code
+                className="block bg-[#F5F5F5] p-4 text-sm font-mono border-[2px] border-black"
+                {...props}
+              >
+                {children}
+              </code>
+            </div>
           );
         },
         pre: ({ children }) => (
-          <pre className="bg-gray-100 p-4 rounded overflow-x-auto mb-4">
-            {children}
-          </pre>
+          <div className="neo-overflow-x-auto neo-scrollbar mb-4">
+            <pre className="bg-[#F5F5F5] p-4 border-[2px] border-black font-mono">
+              {children}
+            </pre>
+          </div>
         ),
         table: ({ children }) => (
-          <div className="overflow-x-auto mb-4">
-            <table className="min-w-full border-collapse border border-black">
+          <div className="neo-overflow-x-auto neo-scrollbar mb-4">
+            <table className="min-w-full border-collapse border-[2px] border-black bg-white">
               {children}
             </table>
           </div>
         ),
         th: ({ children }) => (
-          <th className="border border-black px-4 py-2 bg-gray-200 font-bold">
+          <th className="border-[2px] border-black px-4 py-3 bg-[#FFEB3B] font-bold text-black">
             {children}
           </th>
         ),
         td: ({ children }) => (
-          <td className="border border-black px-4 py-2">{children}</td>
+          <td className="border-[2px] border-black px-4 py-3 bg-white">
+            {children}
+          </td>
         ),
         a: ({ href, children }) => (
           <a

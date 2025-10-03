@@ -118,13 +118,14 @@ export function PRDForm({
         title="4. Technical Details (Optional)"
         onRefine={() => onRefineSection('4. Technical Details (Optional)')}
       >
-        <InputField
+        <TextareaField
           label="Technology Stack"
           id="techStack"
           name="techStack"
           value={prdInput.techStack}
           onChange={handleChange}
           placeholder="e.g., React Native, Firebase, Node.js"
+          rows={3}
         />
         <TextareaField
           label="Constraints & Dependencies"

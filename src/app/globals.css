@@ -101,6 +101,11 @@
   --shadow-secondary: 6px 6px 0px var(--secondary-700);
   --shadow-accent: 6px 6px 0px var(--accent-700);
 
+  /* Text Colors */
+  --text-primary: var(--black);
+  --text-secondary: var(--gray-600);
+  --text-inverse: var(--white);
+
   /* Transitions */
   --transition-fast: 150ms ease;
   --transition-base: 200ms ease;
@@ -537,9 +542,10 @@ body {
 }
 
 /* ============================================
-   Scrollbar Styling (macOS-like)
+   Scrollbar Styling (Neo-Brutalism Style)
    ============================================ */
 
+/* Standard scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -557,6 +563,340 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--separator-opaque);
+}
+
+/* Neo-Brutalism horizontal scroll containers */
+.neo-overflow-x-auto {
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0px #000;
+  background-color: #fafafa;
+  border-radius: 0;
+}
+
+.neo-scrollbar {
+  /* Custom scrollbar styling for Neo-Brutalism */
+  scrollbar-width: thin;
+  scrollbar-color: #000 #fafafa;
+}
+
+.neo-scrollbar::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+
+.neo-scrollbar::-webkit-scrollbar-track {
+  background: #fafafa;
+  border: 1px solid #000;
+  border-radius: 0;
+}
+
+.neo-scrollbar::-webkit-scrollbar-thumb {
+  background: #000;
+  border: 2px solid #000;
+  border-radius: 0;
+  transition: all var(--transition-fast);
+}
+
+.neo-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #333;
+  transform: translateY(-1px);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Neo-Brutalism vertical scroll containers */
+.neo-content-scrollable {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(
+    100vh - 200px
+  ); /* Leave less space for header for more content */
+}
+
+/* Live preview scrollable container - smaller height */
+.neo-content-scrollable.live-preview {
+  max-height: 300px; /* Fixed reasonable height for live preview */
+}
+
+/* Responsive live preview height */
+@media (max-width: 768px) {
+  .neo-content-scrollable.live-preview {
+    max-height: 250px; /* Smaller height on mobile */
+  }
+}
+
+/* Custom scrollbar for vertical content scrolling */
+.neo-content-scrollable::-webkit-scrollbar {
+  width: 12px;
+}
+
+.neo-content-scrollable::-webkit-scrollbar-track {
+  background: #fafafa;
+  border: 1px solid #000;
+  border-radius: 0;
+}
+
+.neo-content-scrollable::-webkit-scrollbar-thumb {
+  background: #000;
+  border: 2px solid #000;
+  border-radius: 0;
+  transition: all var(--transition-fast);
+}
+
+.neo-content-scrollable::-webkit-scrollbar-thumb:hover {
+  background: #333;
+  transform: translateX(-1px);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive overflow handling */
+@media (max-width: 768px) {
+  .neo-overflow-x-auto {
+    /* More prominent scrolling on mobile */
+    border-width: 3px;
+    box-shadow: 3px 3px 0px #000;
+  }
+
+  .neo-scrollbar::-webkit-scrollbar {
+    height: 16px;
+  }
+
+  .neo-content-scrollable {
+    max-height: calc(100vh - 150px); /* More space on mobile for reading */
+  }
+
+  .neo-content-scrollable::-webkit-scrollbar {
+    width: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .neo-content-scrollable {
+    max-height: calc(100vh - 180px); /* Good balance for desktop */
+  }
+
+  /* Grid layout adjustments for proper height */
+  .grid.min-h-0 {
+    min-height: 0;
+  }
+
+  .grid.flex-1 {
+    flex: 1;
+    min-height: 0;
+  }
+}
+
+@media (min-width: 1440px) {
+  .neo-content-scrollable {
+    max-height: calc(100vh - 160px); /* Even more space on large screens */
+  }
+}
+
+/* Generated PRD special styling */
+.generated-prd {
+  border-width: 4px;
+  box-shadow: 6px 6px 0px #000;
+}
+
+.generated-prd:hover {
+  box-shadow: 8px 8px 0px #000;
+  transform: translate(-1px, -1px);
+  transition: all 0.2s ease;
+}
+
+/* Full page PRD viewer styling */
+.neo-full-page-content {
+  background-color: #fafafa;
+}
+
+.neo-full-page-content::-webkit-scrollbar {
+  width: 12px;
+}
+
+.neo-full-page-content::-webkit-scrollbar-track {
+  background: #fafafa;
+  border: 1px solid #000;
+  border-radius: 0;
+}
+
+.neo-full-page-content::-webkit-scrollbar-thumb {
+  background: #000;
+  border: 2px solid #000;
+  border-radius: 0;
+  transition: all var(--transition-fast);
+}
+
+.neo-full-page-content::-webkit-scrollbar-thumb:hover {
+  background: #333;
+  transform: translateX(-1px);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover overlay styling for full page view */
+.group:hover .group-hover\\:opacity-100 {
+  opacity: 1;
+}
+
+.group-hover\\:scale-100:hover {
+  transform: scale(1);
+}
+
+/* Enhanced hover effects for Neo-Brutalism */
+.hover-overlay-trigger {
+  position: relative;
+}
+
+.hover-overlay-trigger .hover-content {
+  transition: all 0.3s ease;
+}
+
+.hover-overlay-trigger:hover .hover-content {
+  transform: translateY(-2px);
+  box-shadow: 10px 10px 0px #000;
+}
+
+/* Wizard Progress Steps Styling */
+.wizard-step-button {
+  transition: all 0.2s ease;
+}
+
+.wizard-step-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+.wizard-step-button:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 2px 2px 0px #000;
+}
+
+.wizard-progress-line {
+  transition: all 0.3s ease;
+}
+
+/* Wizard Step Animations */
+.wizard-step-enter {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.wizard-step-exit {
+  animation: slideOutLeft 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+
+/* Wizard Content Styling */
+.wizard-content {
+  background: #fafafa;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #000;
+}
+
+.wizard-form-field {
+  background: white;
+  border: 3px solid #000;
+  box-shadow: 2px 2px 0px #000;
+  transition: all 0.2s ease;
+}
+
+.wizard-form-field:focus {
+  border-color: #2196f3;
+  box-shadow: 2px 2px 0px #2196f3;
+  transform: translate(-1px, -1px);
+}
+
+/* Model Info Styling */
+.model-info-badge {
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Wizard */
+@media (max-width: 768px) {
+  .wizard-content {
+    min-height: 400px !important;
+    padding: 24px !important;
+    padding-bottom: 32px !important; /* Extra padding for sticky nav */
+  }
+
+  .wizard-content h2 {
+    font-size: 28px !important;
+  }
+
+  .wizard-content p {
+    font-size: 16px !important;
+  }
+
+  .model-info-badge {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 12px 16px !important;
+  }
+
+  .model-info-badge .text-left {
+    text-align: center !important;
+  }
+
+  .wizard-navigation {
+    padding: 20px 16px !important;
+    box-shadow: 0_-4px_0px_#000 !important;
+  }
+
+  .wizard-navigation .text-lg {
+    font-size: 16px !important;
+  }
+
+  .wizard-button {
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* Sticky Navigation Bar */
+@media (max-width: 640px) {
+  .wizard-navigation {
+    padding: 16px 12px !important;
+  }
+
+  .wizard-navigation .text-lg {
+    font-size: 14px !important;
+  }
+
+  .wizard-button {
+    padding: 10px 14px !important;
+    font-size: 13px !important;
+  }
 }
 
 /* ============================================

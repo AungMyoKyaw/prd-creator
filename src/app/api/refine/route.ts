@@ -90,7 +90,7 @@ Your task is to update the values for the fields in the "${sectionTitle}" sectio
 
     const client = new GoogleGenAI({ apiKey });
     const response = await client.models.generateContent({
-      model: model || 'gemini-2.5-flash',
+      model: model || 'gemini-flash-latest',
       contents: promptWithContext,
       config: {
         responseMimeType: 'application/json',

@@ -14,7 +14,9 @@ function validateInputs(value: unknown): value is PrdInput {
     'problemStatement',
     'proposedSolution',
     'coreFeatures',
+    'keyFeatures',
     'businessGoals',
+    'successMetrics',
     'futureFeatures',
     'techStack',
     'constraints'
@@ -51,7 +53,7 @@ export async function POST(request: NextRequest) {
     const promptWithContext = getContextHeader() + basePrompt;
 
     const response = await client.models.generateContent({
-      model: model || 'gemini-2.5-flash',
+      model: model || 'gemini-flash-latest',
       contents: promptWithContext
     });
 
@@ -62,7 +64,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({ data: text });
+    return NextResponse.json({ data: { prd: text } });
   } catch (error) {
     console.error('Error generating PRD:', error);
     const message =

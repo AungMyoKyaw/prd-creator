@@ -26,17 +26,17 @@ export async function POST(request: NextRequest) {
     }
 
     const client = new GoogleGenAI({ apiKey });
-    const basePrompt = `You are a brilliant product strategist. A user has provided a high-level product idea. Your task is to analyze this idea and break it down into the foundational components of a Product Requirements Document. Based on the idea, generate a plausible product name, identify a specific target audience, formulate a clear problem statement and a corresponding solution, brainstorm a few core features for an MVP, and suggest some potential business goals, future features, and a possible tech stack.
+    const basePrompt = `You are a brilliant product strategist. A user has provided a high-level product idea. Your task is to analyze this idea and break it down into the foundational components of a Product Requirements Document. Based on the idea, generate a plausible product name, identify a specific target audience, formulate a clear problem statement and a corresponding solution, brainstorm core features for an MVP, identify key differentiating features, suggest business goals and specific success metrics (KPIs), and recommend future features and tech stack.
 
 User's Idea: "${productIdea}"
 
-Return the response as a JSON object that strictly adheres to the provided schema. For features, use bullet points within the string.`;
+Return the response as a JSON object that strictly adheres to the provided schema. For features, use bullet points within the string. For success metrics, include specific, measurable KPIs with targets where appropriate.`;
 
     // Add current date/time context to the prompt
     const promptWithContext = getContextHeader() + basePrompt;
 
     const response = await client.models.generateContent({
-      model: model || 'gemini-2.5-flash',
+      model: model || 'gemini-flash-latest',
       contents: promptWithContext,
       config: {
         responseMimeType: 'application/json',
@@ -48,7 +48,9 @@ Return the response as a JSON object that strictly adheres to the provided schem
             problemStatement: { type: Type.STRING },
             proposedSolution: { type: Type.STRING },
             coreFeatures: { type: Type.STRING },
+            keyFeatures: { type: Type.STRING },
             businessGoals: { type: Type.STRING },
+            successMetrics: { type: Type.STRING },
             futureFeatures: { type: Type.STRING },
             techStack: { type: Type.STRING },
             constraints: { type: Type.STRING }
@@ -58,7 +60,10 @@ Return the response as a JSON object that strictly adheres to the provided schem
             'targetAudience',
             'problemStatement',
             'proposedSolution',
-            'coreFeatures'
+            'coreFeatures',
+            'keyFeatures',
+            'businessGoals',
+            'successMetrics'
           ]
         }
       }
@@ -80,7 +85,9 @@ Return the response as a JSON object that strictly adheres to the provided schem
       proposedSolution:
         parsed.proposedSolution || DEFAULT_PRD_INPUT.proposedSolution,
       coreFeatures: parsed.coreFeatures || DEFAULT_PRD_INPUT.coreFeatures,
+      keyFeatures: parsed.keyFeatures || DEFAULT_PRD_INPUT.keyFeatures,
       businessGoals: parsed.businessGoals || DEFAULT_PRD_INPUT.businessGoals,
+      successMetrics: parsed.successMetrics || DEFAULT_PRD_INPUT.successMetrics,
       futureFeatures: parsed.futureFeatures || DEFAULT_PRD_INPUT.futureFeatures,
       techStack: parsed.techStack || DEFAULT_PRD_INPUT.techStack,
       constraints: parsed.constraints || DEFAULT_PRD_INPUT.constraints

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { MarkdownRenderer } from './markdown-renderer';
 import { saveDraft, StoredDraft } from '@/lib/drafts';
 import { PrdInput } from '@/lib/prd';
-import { Clipboard, CheckCircle } from 'lucide-react';
+import { Clipboard, CheckCircle, Eye } from 'lucide-react';
 
 interface PRDDisplayProps {
   content: string;
@@ -13,6 +13,7 @@ interface PRDDisplayProps {
   prdInputs?: PrdInput;
   model?: string;
   onSaved?: () => void;
+  onFullPageView?: () => void;
 }
 
 function CopyIcon({ className }: { className?: string }) {
@@ -96,8 +97,9 @@ export function PRDDisplay({
   isLivePreview = false,
   productName = 'PRD',
   prdInputs,
-  model = 'gemini-2.5-flash',
-  onSaved
+  model = 'gemini-flash-latest',
+  onSaved,
+  onFullPageView
 }: PRDDisplayProps) {
   const [isCopied, setIsCopied] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
@@ -180,8 +182,10 @@ export function PRDDisplay({
   };
 
   return (
-    <div className="bg-white border-[3px] border-black shadow-[4px_4px_0px_#000]">
-      <div className="flex justify-between items-center p-4 border-b-[2px] border-black">
+    <div
+      className={`bg-white border-[3px] border-black shadow-[4px_4px_0px_#000] flex flex-col min-h-0 ${!isLivePreview ? 'generated-prd' : ''} relative group hover-overlay-trigger`}
+    >
+      <div className="flex justify-between items-center p-4 border-b-[2px] border-black flex-shrink-0">
         <h2
           className="text-xl font-black text-black uppercase tracking-wide"
           style={{
@@ -271,11 +275,38 @@ export function PRDDisplay({
           </div>
         )}
       </div>
-      <div className="p-4 bg-[#FAFAFA]">
-        <div className="markdown-content text-black font-medium leading-relaxed">
-          <MarkdownRenderer content={content} />
+      <div
+        className={`neo-content-scrollable ${isLivePreview ? 'live-preview' : ''} ${isLivePreview ? 'flex-none' : 'flex-1'} min-h-0`}
+      >
+        <div className="p-4 bg-[#FAFAFA] h-full">
+          <div className="markdown-content text-black font-medium leading-relaxed h-full">
+            <MarkdownRenderer content={content} />
+          </div>
         </div>
       </div>
+
+      {!isLivePreview && onFullPageView && (
+        <div
+          className="absolute top-[72px] bottom-0 left-0 right-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer pointer-events-none group-hover:pointer-events-auto"
+          onClick={onFullPageView}
+        >
+          <div className="bg-white border-[4px] border-black shadow-[8px_8px_0px_#000] p-8 transform scale-95 group-hover:scale-100 transition-all duration-300 hover-content">
+            <Eye className="w-16 h-16 text-black mb-4 mx-auto group-hover:scale-110 transition-transform duration-300" />
+            <h3
+              className="text-2xl font-black text-black uppercase tracking-wide mb-3 text-center group-hover:scale-105 transition-transform duration-300"
+              style={{
+                fontFamily:
+                  "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
+              }}
+            >
+              Click to Read Full Document
+            </h3>
+            <p className="text-black font-medium text-center text-sm group-hover:scale-105 transition-transform duration-300">
+              Open in full page view for better reading experience
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

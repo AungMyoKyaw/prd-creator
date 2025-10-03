@@ -4,7 +4,9 @@ export interface PrdInput {
   problemStatement: string;
   proposedSolution: string;
   coreFeatures: string;
+  keyFeatures: string;
   businessGoals: string;
+  successMetrics: string;
   futureFeatures: string;
   techStack: string;
   constraints: string;
@@ -16,7 +18,9 @@ export const DEFAULT_PRD_INPUT: PrdInput = {
   problemStatement: '',
   proposedSolution: '',
   coreFeatures: '',
+  keyFeatures: '',
   businessGoals: '',
+  successMetrics: '',
   futureFeatures: '',
   techStack: '',
   constraints: ''
