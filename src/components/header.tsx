@@ -1,3 +1,5 @@
+import { FileText } from 'lucide-react';
+
 interface HeaderProps {
   onSettingsClick: () => void;
   currentModel?: string;
@@ -22,7 +24,8 @@ export function Header({
                 "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
             }}
           >
-            <span className="text-[#2196F3]">PRD</span> CREATOR 📝
+            <span className="text-[#2196F3]">PRD</span> CREATOR{' '}
+            <FileText className="inline w-8 h-8 text-black" />
           </h1>
           <p className="mt-1 max-w-xl mx-auto text-sm text-gray-700 font-medium">
             Create professional PRDs instantly

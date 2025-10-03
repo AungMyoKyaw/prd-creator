@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { MarkdownRenderer } from './markdown-renderer';
 import { saveDraft, StoredDraft } from '@/lib/drafts';
 import { PrdInput } from '@/lib/prd';
+import { Clipboard, CheckCircle } from 'lucide-react';
 
 interface PRDDisplayProps {
   content: string;
@@ -188,7 +189,15 @@ export function PRDDisplay({
               "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
           }}
         >
-          {isLivePreview ? '📋 LIVE PREVIEW' : '✅ GENERATED PRD'}
+          {isLivePreview ? (
+            <span className="flex items-center gap-2">
+              <Clipboard className="w-6 h-6" /> LIVE PREVIEW
+            </span>
+          ) : (
+            <span className="flex items-center gap-2">
+              <CheckCircle className="w-6 h-6" /> GENERATED PRD
+            </span>
+          )}
         </h2>
         {!isLivePreview && (
           <div className="flex items-center space-x-2 flex-wrap gap-2">

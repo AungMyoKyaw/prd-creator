@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Smartphone } from 'lucide-react';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -83,7 +84,7 @@ export function PWAInstallPrompt() {
       <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg shadow-2xl p-4 border border-indigo-500">
         <div className="flex items-start gap-3">
           <div className="flex-shrink-0 w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-            <span className="text-2xl">📱</span>
+            <Smartphone className="w-8 h-8 text-indigo-600" />
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="text-white font-semibold text-sm mb-1">

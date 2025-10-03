@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, FormEvent, useEffect } from 'react';
+import { Sparkles } from 'lucide-react';
 import {
   PrdInput,
   DEFAULT_PRD_INPUT,
@@ -313,7 +314,10 @@ export default function Home() {
                   "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
               }}
             >
-              ✨ QUICK START: DESCRIBE YOUR PRODUCT IDEA
+              <span className="flex items-center gap-2">
+                <Sparkles className="w-8 h-8 text-yellow-500" />
+                QUICK START: DESCRIBE YOUR PRODUCT IDEA
+              </span>
             </h2>
             <div className="space-y-4">
               <TextareaField
@@ -339,7 +343,10 @@ export default function Home() {
                   variant="primary"
                   className="flex-1 min-w-[200px]"
                 >
-                  Auto-fill Form with AI ✨
+                  <span className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4" />
+                    Auto-fill Form with AI
+                  </span>
                 </Button>
                 {(prdInput.productName || generatedPrd) && (
                   <button
