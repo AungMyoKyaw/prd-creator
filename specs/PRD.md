@@ -81,13 +81,17 @@ We will measure success through the following Key Performance Indicators:
 
 The essential features for the Minimum Viable Product are:
 
-- **Neo-Brutalism Interactive Form Interface**: Structured form with key PRD sections (product name, problem statement, solution, target audience, core features, business goals) designed with bold, high-contrast Neo-Brutalism aesthetics including thick black borders, offset shadows, and vibrant color accents
-- **AI-Powered PRD Generation**: Integration with Google Gemini AI to generate comprehensive PRDs from user inputs
-- **Live Preview with Neo-Brutalism Styling**: Real-time preview of PRD content as users input information, styled with Neo-Brutalism design principles including bold typography and high contrast
-- **Export Functionality**: Ability to download generated PRDs as Markdown files
-- **Local Storage with IndexedDB**: Robust browser-based storage system using IndexedDB to save and manage generated PRDs with metadata, with fallback to localStorage for compatibility
-- **API Key Configuration with Neo-Brutalism UI**: Secure configuration for Google Gemini API access using bold, accessible Neo-Brutalism interface elements
-- **Responsive Neo-Brutalism Design**: Fully responsive interface that works on desktop, tablet, and mobile devices, maintaining Neo-Brutalism aesthetic principles across all screen sizes
+- **Compact Neo-Brutalism Interactive Form Interface**: Structured form with key PRD sections (product name, problem statement, solution, target audience, core features, business goals, future features, tech stack, constraints) designed with updated compact Neo-Brutalism aesthetics featuring refined 2px borders, optimized spacing, and efficient use of screen real estate
+- **AI-Powered PRD Generation**: Integration with Google Gemini AI (including gemini-2.5-flash model) to generate comprehensive PRDs from user inputs with real-time model selection
+- **Live Preview with Compact Neo-Brutalism Styling**: Real-time preview of PRD content as users input information, styled with updated compact Neo-Brutalism design principles for better content density
+- **Multi-format Export Functionality**: Ability to download generated PRDs as Markdown files with automatic filename generation and copy-to-clipboard functionality
+- **Advanced Local Storage with IndexedDB**: Robust browser-based storage system using IndexedDB to save and manage up to 12 PRDs with full metadata, including migration support and localStorage fallback
+- **Git Repository Ingestion**: Advanced feature to ingest and analyze Git repositories for enhanced context, including language detection, file analysis, and repository insights
+- **API Key Configuration with Compact Neo-Brutalism UI**: Secure configuration for Google Gemini API access using updated compact Neo-Brutalism interface elements with improved usability
+- **Responsive Compact Neo-Brutalism Design**: Fully responsive interface optimized for all device sizes with improved content density and mobile experience
+- **Section Refinement**: AI-powered refinement of specific PRD sections based on user feedback for iterative improvement
+- **Form Prefill with AI**: Quick start feature that uses AI to automatically populate form fields from a simple product idea description
+- **PWA Capabilities**: Full Progressive Web App implementation with install prompts, offline support, and cross-platform compatibility
 
 ### 4.2 User Stories
 
@@ -105,7 +109,7 @@ The essential features for the Minimum Viable Product are:
 
 Potential features for future releases include:
 
-- Export to PDF and DOCX formats
+- Export to PDF and DOCX formats (libraries already integrated: jsPDF, docx)
 - Template customization options for different industries
 - Collaboration features for team-based PRD creation
 - Integration with project management tools (Jira, Trello, etc.)
@@ -114,6 +118,9 @@ Potential features for future releases include:
 - Integration with design tools for attaching mockups
 - Multi-language support for global teams
 - AI-powered suggestions for improving PRD quality
+- Advanced analytics and usage insights
+- Team workspaces and sharing capabilities
+- Custom AI model fine-tuning for specific domains
 
 ### 4.4 Technical Requirements
 
@@ -136,16 +143,19 @@ Potential features for future releases include:
 
 ### 5.1 Technology Stack
 
-The proposed technology stack is:
+The current technology stack is:
 
 - Frontend: Next.js 15.5.4 with React 19.1.1
-- Styling: Tailwind CSS 4 with Neo-Brutalism design implementation
+- Styling: Tailwind CSS 4.1.14 with compact Neo-Brutalism design implementation
 - Client-side: TypeScript 5.9.2 for type safety
-- UI Components: Radix UI primitives for accessibility, extended with Neo-Brutalism styling
+- UI Components: Radix UI primitives for accessibility, extended with compact Neo-Brutalism styling
 - AI Integration: Google Gemini API (@google/genai v1.21.0)
-- Markdown Rendering: react-markdown with remark-gfm
-- PDF/Document Export: jsPDF and docx
-- PWA Functionality: next-pwa
+- Storage: IndexedDB with idb library v8.0.3 and localStorage fallback
+- Markdown Rendering: react-markdown v10.1.0 with remark-gfm v4.0.0
+- Document Export: jsPDF v3.0.3 and docx v9.2.2 (integrated but not yet implemented in UI)
+- Icons: Lucide React v0.544.0
+- PWA Functionality: next-pwa v5.6.0
+- Development: ESLint, Prettier, and TypeScript tooling
 - Deployment: Vercel platform
 
 ### 5.2 Constraints & Dependencies
@@ -155,9 +165,11 @@ Known limitations and dependencies are:
 - Requires a Google Gemini API key for full functionality
 - Dependent on Google's AI service availability and performance
 - May have usage limitations based on Google's API terms
-- Requires modern browser for PWA features
-- Initial version only supports Markdown export (PDF/DOCX as future enhancement)
-- Internet connection required for AI generation (though PWA provides offline caching)
+- Requires modern browser for PWA features and IndexedDB support
+- Current implementation supports Markdown export (PDF/DOCX libraries integrated but UI not yet implemented)
+- Internet connection required for AI generation (PWA provides offline UI caching)
+- Maximum of 12 PRDs can be stored locally due to browser storage constraints
+- Git repository ingestion requires structured JSON input format
 
 ---
 

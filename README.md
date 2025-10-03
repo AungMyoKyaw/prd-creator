@@ -15,22 +15,24 @@ An intelligent Product Requirements Document (PRD) generator powered by Google's
 ### 🎯 Core Functionality
 
 - **🚀 Quick Start with AI**: Describe your product idea in plain text and let AI auto-fill the entire form
-- **📋 Structured Form Input**: Organized sections for all essential PRD components
-- **👁️ Live Preview**: See your PRD preview as you type
-- **🤖 AI-Powered Generation**: Generate complete, professional PRDs using Gemini AI
-- **🔄 Section Refinement**: Refine specific sections with AI-powered feedback
-- **📥 One-Click Download**: Export PRDs as Markdown files with smart naming
-- **📋 Copy to Clipboard**: Instantly copy generated PRDs
-- **💾 Saved Drafts**: Save and manage up to 12 PRD drafts in browser storage with IndexedDB
+- **📋 Structured Form Input**: Organized sections for all essential PRD components (9 sections including tech stack and constraints)
+- **👁️ Live Preview**: See your PRD preview as you type with real-time markdown rendering
+- **🤖 AI-Powered Generation**: Generate complete, professional PRDs using Gemini AI (40+ models available)
+- **🔄 Section Refinement**: Refine specific sections with AI-powered feedback for iterative improvement
+- **📥 One-Click Download**: Export PRDs as Markdown files with smart naming (productname_prd_date.md)
+- **📋 Copy to Clipboard**: Instantly copy generated PRDs with plain text formatting
+- **💾 Advanced Draft Management**: Save and manage up to 12 PRD drafts with IndexedDB, localStorage fallback, and migration support
+- **📂 Git Repository Ingestion**: Analyze and ingest Git repositories for enhanced context and language detection
+- **📱 Enhanced PWA**: Full Progressive Web App support with install prompts and offline capabilities
 
 ### 🎨 Design & UX
 
-- **🎨 Neo-Brutalism Design**: Bold borders, dramatic shadows, and playful interactions
-- **🌞 Bright Interface**: Clean, high-contrast design with vibrant accent colors
-- **📱 Fully Responsive**: Optimized for desktop, tablet, and mobile
-- **📲 PWA Support**: Install as a native app on any device
-- **⚡ Smooth Animations**: Fluid transitions and interactive hover states
-- **🎯 Model Indicator**: Always know which AI model you're using
+- **🎨 Compact Neo-Brutalism Design**: Updated 2025 design system with refined borders (2px standard, 3px emphasis) and optimized spacing
+- **🌞 High-Contrast Interface**: Clean, accessible design with vibrant accent colors (yellow #FFEB3B, blue #2196F3, pink #E91E63)
+- **📱 Fully Responsive**: Optimized for desktop, tablet, and mobile with improved content density
+- **📲 Enhanced PWA Support**: Install as a native app with smart install prompts and dismissal tracking
+- **⚡ Smooth Animations**: Fluid transitions (150-250ms) and interactive hover states with reduced motion support
+- **🎯 Advanced Model Indicator**: Always know which AI model you're using with display names and descriptions
 
 ### 🤖 AI Capabilities
 
@@ -43,15 +45,16 @@ An intelligent Product Requirements Document (PRD) generator powered by Google's
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Next.js 15.5.4](https://nextjs.org/) with App Router & Turbopack
+- **Framework**: [Next.js 15.5.4](https://nextjs.org/) with App Router
 - **Language**: [TypeScript 5.9.2](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS 4.1.14](https://tailwindcss.com/) with custom Neo-Brutalism design system
+- **Styling**: [Tailwind CSS 4.1.14](https://tailwindcss.com/) with compact Neo-Brutalism design system
 - **AI**: [Google Gemini API](https://ai.google.dev/) (@google/genai v1.21.0)
-- **UI Components**: [Radix UI](https://www.radix-ui.com/) primitives
-- **Storage**: IndexedDB with idb library for saved drafts
-- **Markdown**: react-markdown with remark-gfm
-- **PWA**: next-pwa for Progressive Web App support
-- **PDF Export**: jsPDF & docx for document generation
+- **UI Components**: [Radix UI](https://www.radix-ui.com/) primitives for accessibility
+- **Storage**: IndexedDB with idb library v8.0.3 for saved drafts (12-draft limit)
+- **Icons**: [Lucide React](https://lucide.dev/) v0.544.0 for consistent iconography
+- **Markdown**: react-markdown v10.1.0 with remark-gfm v4.0.0
+- **PWA**: next-pwa v5.6.0 for Progressive Web App support
+- **Document Export**: jsPDF v3.0.3 and docx v9.2.2 (integrated, UI implementation planned)
 
 ## 🚀 Quick Start
 
@@ -164,16 +167,17 @@ AI PRD Creator is a fully installable Progressive Web App!
 - ✅ No app store needed
 - ✅ Auto-updates on launch
 
-## 🎨 Neo-Brutalism Design System
+## 🎨 Compact Neo-Brutalism Design System (2025 Update)
 
-Inspired by Brutalist design principles, featuring:
+Inspired by Brutalist design principles, optimized for modern interfaces:
 
-- **Bold Borders**: Thick 3px black borders for strong visual hierarchy
-- **Dramatic Shadows**: Multi-layered shadows creating depth and playfulness
-- **Bright Colors**: Vibrant primary colors with high contrast
-- **Interactive Elements**: Pressable buttons with transform animations
-- **Typography**: Bold, impactful fonts with strong visual weight
-- **Responsive Design**: Adapts beautifully to all screen sizes
+- **Refined Borders**: Compact 2px black borders (3px for emphasis) for efficient visual hierarchy
+- **Optimized Shadows**: Refined offset shadows (2px 2px 0px standard, 4px 4px 0px emphasis) for depth
+- **High-Contrast Colors**: Vibrant palette with primary yellow (#FFEB3B), secondary blue (#2196F3), accent pink (#E91E63)
+- **Interactive Elements**: Pressable buttons with smooth transform animations (150-250ms)
+- **Typography**: Big Shoulders Display for headings, Inter for body text with optimized sizing
+- **Responsive Design**: Improved content density and mobile experience with compact layout
+- **Accessibility**: WCAG 2.1 Level AA compliant with 4.5:1 contrast ratios
 
 ## 🤖 AI Model Selection
 
@@ -469,13 +473,15 @@ Inspired by Apple's design language with:
 - **Adaptive shadows** for depth perception
 - **Vibrant gradients** with proper contrast
 
-### 2. 💾 Smart Draft Management
+### 2. 💾 Advanced Draft Management
 
-- **IndexedDB storage** for persistent draft saving
-- **Auto-migration** from localStorage to IndexedDB
-- **12-draft limit** with automatic management
-- **One-click loading** of previous work
-- **Delete functionality** to manage storage space
+- **IndexedDB storage** with idb library for persistent draft saving
+- **Auto-migration** from localStorage to IndexedDB with error handling
+- **12-draft limit** with automatic cleanup and storage management
+- **One-click loading** of previous work with full state restoration
+- **Delete functionality** with confirmation dialogs
+- **Metadata storage** including creation date, model used, and content preview
+- **Git ingestion data** stored alongside drafts for context preservation
 
 ### 3. 🤖 Smart AI Integration
 
@@ -502,11 +508,13 @@ Inspired by Apple's design language with:
 
 ### 6. 🔒 Privacy First
 
-- **Client-side API key storage** (localStorage)
-- **No server-side key storage**
-- **Direct API calls** to Google only
-- **No tracking or analytics**
-- **Open source** for transparency
+- **Client-side API key storage** (localStorage only)
+- **No server-side key storage** or logging
+- **Direct API calls** to Google Gemini only
+- **No tracking or analytics** or user data collection
+- **Open source** for full transparency
+- **Local data processing** with optional Git repository ingestion
+- **Browser-only storage** with user control over data deletion
 
 ## 🎨 Neo-Brutalism Design System
 

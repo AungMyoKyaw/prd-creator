@@ -90,15 +90,17 @@ The application runs in modern web browsers supporting:
 
 ### 3.1 User Interfaces
 
-The application provides a bold, modern Neo-Brutalism user interface with:
+The application provides a bold, modern compact Neo-Brutalism user interface with:
 
-- Neo-Brutalism design aesthetic featuring compact black borders (2px standard, 3px emphasis), refined offset shadows, and high contrast elements
-- Responsive layout for all device sizes implementing Neo-Brutalism principles
-- Intuitive form controls with proper labeling, styled with Neo-Brutalism design patterns
-- Real-time preview of PRD content with Neo-Brutalism styling
+- Updated 2025 compact Neo-Brutalism design aesthetic featuring refined borders (2px standard, 3px emphasis), optimized offset shadows (2px 2px 0px standard, 4px 4px 0px emphasis), and high contrast elements
+- Responsive layout for all device sizes implementing compact Neo-Brutalism principles with improved content density
+- Intuitive form controls with proper labeling, styled with compact Neo-Brutalism design patterns
+- Real-time preview of PRD content with compact Neo-Brutalism styling
 - Implementation of the specified color palette (primary yellow #FFEB3B, secondary blue #2196F3, accent pink #E91E63)
-- Bold typography using Big Shoulders Display for headings and Inter for body text
-- Interactive elements with distinct hover, focus, and active states following Neo-Brutalism design patterns
+- Bold typography using Big Shoulders Display for headings and Inter for body text with optimized sizing
+- Interactive elements with distinct hover, focus, and active states following compact Neo-Brutalism design patterns
+- PWA install prompts and offline capabilities with consistent styling
+- Git repository ingestion interface for enhanced context input
 
 ### 3.2 Hardware Interfaces
 
@@ -114,10 +116,11 @@ No specific hardware interfaces required beyond standard computing devices with 
 
 **Browser APIs:**
 
-- LocalStorage for configuration storage
-- IndexedDB for PRD document storage with metadata
-- Service Workers for PWA functionality
+- LocalStorage for configuration storage and fallback
+- IndexedDB for PRD document storage with metadata (using idb library v8.0.3)
+- Service Workers for PWA functionality and offline caching
 - Clipboard API for content copying
+- File System Access API for potential future file operations
 
 ### 3.4 Communications Interfaces
 
@@ -139,7 +142,7 @@ _REQ-002:_ The system MUST provide a text area for detailed input of each requir
 
 _REQ-003:_ The system SHOULD provide placeholder text to guide users in each input field.
 
-_REQ-004:_ The system MUST implement Neo-Brutalism design principles for all form elements, including compact 2px black borders (3px for emphasis) and refined offset shadows.
+_REQ-004:_ The system MUST implement updated compact Neo-Brutalism design principles for all form elements, including 2px black borders (3px for emphasis) and refined offset shadows (2px 2px 0px standard, 4px 4px 0px emphasis).
 
 _REQ-005:_ The system MUST ensure all form inputs meet WCAG 2.1 Level AA contrast requirements with a minimum ratio of 4.5:1.
 
@@ -219,24 +222,39 @@ _REQ-017:_ The system MUST allow users to provide feedback for section refinemen
 
 _REQ-018:_ The system MUST process refinement requests through the AI API.
 
-### 4.7 Neo-Brutalism UI/UX Requirements
+### 4.7 Compact Neo-Brutalism UI/UX Requirements
 
-**Description:** Requirements for implementing the Neo-Brutalism design system.
+**Description:** Requirements for implementing the updated 2025 compact Neo-Brutalism design system.
 **Priority:** High
 
 _REQ-019:_ The system MUST implement the specified color palette including primary yellow (#FFEB3B), secondary blue (#2196F3), and accent pink (#E91E63).
 
-_REQ-020:_ The system MUST use the specified typography system with Big Shoulders Display for headings and Inter for body text.
+_REQ-020:_ The system MUST use the specified typography system with Big Shoulders Display for headings and Inter for body text, with optimized sizing for compact layout.
 
-_REQ-021:_ The system MUST apply compact 2px black borders to all UI components (3px for emphasis) as specified in the updated Neo-Brutalism guidelines.
+_REQ-021:_ The system MUST apply compact 2px black borders to all UI components (3px for emphasis) as specified in the updated 2025 Neo-Brutalism guidelines.
 
 _REQ-022:_ The system MUST implement compact offset shadows (2px 2px 0px black standard, 4px 4px 0px for emphasis) for depth and visual hierarchy.
 
-_REQ-023:_ The system MUST ensure all interactive elements have distinct hover, focus, and active states following Neo-Brutalism design patterns.
+_REQ-023:_ The system MUST ensure all interactive elements have distinct hover, focus, and active states following compact Neo-Brutalism design patterns.
 
 _REQ-024:_ The system MUST meet WCAG 2.1 Level AA accessibility standards with appropriate color contrast ratios.
 
-_REQ-025:_ The system MUST implement responsive design maintaining Neo-Brutalism principles across all device sizes.
+_REQ-025:_ The system MUST implement responsive design maintaining compact Neo-Brutalism principles across all device sizes with improved content density.
+
+### 4.8 Git Repository Ingestion Requirements
+
+**Description:** Requirements for ingesting and analyzing Git repository data.
+**Priority:** Medium
+
+_REQ-026:_ The system MUST support ingestion of Git repository data in structured JSON format.
+
+_REQ-027:_ The system MUST analyze repository structure and detect programming languages used.
+
+_REQ-028:_ The system MUST extract key insights including file counts, module names, and repository metadata.
+
+_REQ-029:_ The system MUST store ingestion data alongside PRD drafts for context preservation.
+
+_REQ-030:_ The system MUST provide repository analysis summaries for AI-powered PRD enhancement.
 
 ---
 
@@ -285,6 +303,10 @@ _REQ-033:_ The application MUST provide consistent user experience following the
 _REQ-031:_ The system MUST not impose any usage limitations on the end user beyond those of the AI API.
 
 _REQ-032:_ Generated content MUST be owned by the user who created it.
+
+_REQ-033:_ The system MUST limit local storage to a maximum of 12 PRDs to ensure browser performance.
+
+_REQ-034:_ The system MUST provide migration capabilities for localStorage to IndexedDB data transfer.
 
 ---
 

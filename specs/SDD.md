@@ -223,21 +223,39 @@ The system consists of the following major components:
 - Handle change events
 - Display labels and descriptions
 
-#### 4.1.6 SavedPRDsManager Component (src/components/saved-prds-manager.tsx)
+#### 4.1.6 SavedDraftsModal Component (src/components/saved-drafts-modal.tsx)
 
 **Responsibilities:**
 
-- Display list of saved PRDs from IndexedDB
-- Provide UI controls for managing saved PRDs (view, edit, delete)
-- Handle user interactions with saved PRDs
-- Apply Neo-Brutalism design to management interface
-- Coordinate with IndexedDB manager for data operations
+- Display list of saved PRDs from IndexedDB in a modal interface
+- Provide UI controls for managing saved PRDs (view, delete)
+- Handle user interactions with saved PRDs including loading drafts back into form
+- Apply compact Neo-Brutalism design to management interface
+- Coordinate with drafts manager for data operations
+- Show draft metadata including creation date, model used, and content preview
 
 **Dependencies:**
 
-- IndexedDB manager from src/lib/indexed-db.ts
-- UI styling libraries for Neo-Brutalism design
-- PRD display component for previewing saved PRDs
+- Drafts manager from src/lib/drafts.ts
+- Radix UI Dialog primitives for modal functionality
+- UI styling libraries for compact Neo-Brutalism design
+- Lucide React icons for interface elements
+
+#### 4.1.7 PWAInstallPrompt Component (src/components/pwa-install-prompt.tsx)
+
+**Responsibilities:**
+
+- Detect PWA installation eligibility and display install prompt
+- Handle PWA installation flow and user choice tracking
+- Manage install prompt dismissal and localStorage persistence
+- Provide install instructions and benefits communication
+- Apply compact Neo-Brutalism styling to install prompt
+
+**Dependencies:**
+
+- Browser PWA APIs (beforeinstallprompt, appinstalled events)
+- Lucide React icons for interface elements
+- LocalStorage for dismissal tracking
 
 ### 4.2 API Components
 
@@ -294,21 +312,41 @@ The system consists of the following major components:
 
 - TypeScript type system
 
-#### 4.3.2 IndexedDB Manager (src/lib/indexed-db.ts)
+#### 4.3.2 Drafts Manager (src/lib/drafts.ts)
 
 **Responsibilities:**
 
-- Initialize and manage IndexedDB database connection
-- Create and maintain database schema for PRD storage
-- Implement CRUD operations for PRD records
-- Handle database version upgrades
+- Initialize and manage IndexedDB database connection using idb library
+- Create and maintain database schema for PRD storage with metadata
+- Implement CRUD operations for PRD records with 12-draft limit
+- Handle database version upgrades and migration from localStorage
 - Provide fallback to localStorage when IndexedDB is unavailable
 - Implement proper error handling for database operations
+- Sanitize ingestion data for storage to prevent storage quota issues
 
 **Dependencies:**
 
+- idb library v8.0.3 for IndexedDB operations
 - TypeScript type system
 - PRD interfaces for data validation
+- Ingest interfaces for repository data handling
+
+#### 4.3.3 Git Ingestion Analyzer (src/lib/ingest.ts)
+
+**Responsibilities:**
+
+- Analyze Git repository data in JSON format
+- Detect programming languages from file extensions
+- Extract repository metadata including name and last updated date
+- Generate key insights about repository structure and composition
+- Provide language statistics and module analysis
+- Sanitize and prepare ingestion data for storage
+
+**Dependencies:**
+
+- TypeScript type system for data structure validation
+- File extension mapping for language detection
+- JSON parsing utilities for data extraction
 
 #### 4.3.3 Date/Time Context Helper (src/app/api/\_lib/datetime.ts)
 
@@ -316,6 +354,19 @@ The system consists of the following major components:
 
 - Generate current date/time context for AI prompts
 - Format date/time strings consistently
+
+#### 4.3.5 Download Utilities (src/lib/download.ts)
+
+**Responsibilities:**
+
+- Generate sanitized filenames for downloaded PRDs
+- Handle blob creation and download triggering
+- Provide file naming conventions with date stamps
+
+**Dependencies:**
+
+- Browser File API for blob operations
+- URL API for download handling
 
 ---
 
@@ -341,14 +392,55 @@ interface PrdInput {
 
 **Description:** Represents the structured input data for PRD generation.
 
-#### 5.1.2 Form State Structure
+#### 5.1.2 StoredDraft Interface
+
+```typescript
+interface StoredDraft {
+  id: string;
+  title: string;
+  createdAt: string;
+  model: string;
+  inputs: PrdInput;
+  markdown: string;
+  ingest?: {
+    insight: IngestInsight | null;
+    fileName?: string;
+    fileSize?: number;
+  };
+}
+```
+
+**Description:** Represents a stored PRD draft with metadata and optional ingestion data.
+
+#### 5.1.3 IngestInsight Interface
+
+```typescript
+interface IngestInsight {
+  rawText: string;
+  json: UnknownRecord | UnknownRecord[] | null;
+  fileCount: number;
+  moduleNames: string[];
+  languageStats: Array<{ language: string; count: number }>;
+  keyInsights: string[];
+  repoName?: string;
+  lastUpdated?: string;
+}
+```
+
+**Description:** Represents analysis results from Git repository ingestion.
+
+#### 5.1.4 Form State Structure
 
 The application maintains a structured state object containing:
 
 - User input data (PrdInput object)
 - UI state (loading indicators, error messages)
-- Configuration (API key, selected model)
+- Configuration (API key, selected model, model display name)
 - Generated content (PRD text)
+- Product idea for prefill functionality
+- Refinement state (section being refined, feedback)
+- Modal states (settings, saved drafts, refine)
+- PWA installation state
 
 ### 5.2 Data Flow
 
@@ -373,9 +465,12 @@ The application maintains a structured state object containing:
 - API key and model preferences stored in browser localStorage
 - No server-side storage of user data
 - Form data exists only in browser memory during session
-- Generated PRDs stored in IndexedDB with fallback to localStorage
-- PRD metadata (product name, creation date, status) stored alongside content
-- IndexedDB implementation with proper error handling and transaction management
+- Generated PRDs stored in IndexedDB (max 12 drafts) with fallback to localStorage
+- PRD metadata (product name, creation date, model used) stored alongside content
+- IndexedDB implementation using idb library with proper error handling and transaction management
+- Automatic migration from localStorage to IndexedDB on first load
+- Git ingestion data stored alongside PRD drafts for context preservation
+- PWA install prompt dismissal tracking in localStorage
 
 ---
 
