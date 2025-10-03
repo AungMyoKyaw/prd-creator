@@ -480,27 +480,27 @@ The application maintains a structured state object containing:
 
 #### 6.1.1 Main Layout
 
-The application follows a responsive Neo-Brutalism layout with:
+The application follows a responsive compact Neo-Brutalism layout with:
 
-- Header with settings and model indicator, styled with thick black borders and offset shadows
-- Main content area split into form and preview, with clear visual separation using Neo-Brutalism design elements
-- Footer with additional information, maintaining consistent styling with the Neo-Brutalism aesthetic
+- Header with settings and model indicator, styled with refined 2px black borders and compact offset shadows (2px 2px 0px)
+- Main content area split into form and preview, with clear visual separation using compact Neo-Brutalism design elements
+- Footer with additional information, maintaining consistent compact styling with the Neo-Brutalism aesthetic
 - Primary yellow (#FFEB3B), secondary blue (#2196F3), and accent pink (#E91E63) color accents as specified in the design guidelines
-- Bold typography using Big Shoulders Display for headings and Inter for body text
+- Bold typography using Big Shoulders Display for headings and Inter for body text with optimized sizing
 
 #### 6.1.2 Form Interface
 
-- Structured sections with expandable/collapsible behavior, styled with Neo-Brutalism design principles
-- Input fields with thick 3px black borders, offset shadows, and appropriate labels and descriptions
-- Real-time validation feedback with distinct error and success states following Neo-Brutalism patterns
-- Section-specific refine buttons implemented with Neo-Brutalism styling
+- Structured sections with expandable/collapsible behavior, styled with compact Neo-Brutalism design principles
+- Input fields with refined 2px black borders, compact offset shadows (2px 2px 0px), and appropriate labels and descriptions
+- Real-time validation feedback with distinct error and success states following compact Neo-Brutalism patterns
+- Section-specific refine buttons implemented with compact Neo-Brutalism styling
 - All interactive elements have clear hover, focus, and active states with visual feedback
 
 #### 6.1.3 Display Interface
 
-- Markdown-formatted preview of PRD content with Neo-Brutalism styling applied
-- Download and copy buttons implemented with primary yellow background and black borders
-- Responsive formatting for all content types maintaining Neo-Brutalism design principles across devices
+- Markdown-formatted preview of PRD content with compact Neo-Brutalism styling applied
+- Download and copy buttons implemented with primary yellow background and refined 2px black borders
+- Responsive formatting for all content types maintaining compact Neo-Brutalism principles across devices
 - High contrast readability meeting WCAG 2.1 Level AA standards
 
 #### 6.1.4 Neo-Brutalism Component Specifications
@@ -509,24 +509,24 @@ All UI components must implement the following Neo-Brutalism design standards:
 
 **Buttons:**
 
-- Primary buttons: Background #FFEB3B, border 3px solid #000, shadow 4px 4px 0px #000
-- Secondary buttons: Background #2196F3, border 3px solid #000, shadow 4px 4px 0px #000
-- Hover state: Transform (-2px, -2px) with increased shadow
-- Active state: Transform (2px, 2px) with reduced shadow
+- Primary buttons: Background #FFEB3B, border 2px solid #000, shadow 2px 2px 0px #000
+- Secondary buttons: Background #2196F3, border 2px solid #000, shadow 2px 2px 0px #000
+- Hover state: Transform (-2px, -2px) with increased shadow to 3px 3px 0px
+- Active state: Transform (2px, 2px) with reduced shadow to 1px 1px 0px
 - Focus state: 4px solid accent color border
 
 **Cards:**
 
-- Background #FFF, border 3px solid #000, shadow 6px 6px 0px #000
-- Hover state: Transform (-2px, -2px) with increased shadow
-- Padding: 24px with consistent spacing
+- Background #FFF, border 2px solid #000, shadow 2px 2px 0px #000
+- Hover state: Transform (-2px, -2px) with increased shadow to 4px 4px 0px
+- Padding: 16px with consistent spacing (reduced for compact design)
 
 **Inputs:**
 
-- Background #FFF, border 3px solid #000, shadow 4px 4px 0px #000
-- Focus state: Border color #2196F3, shadow 4px 4px 0px #2196F3
-- Padding: 12px 16px for text inputs
-- Min height: 120px for textareas
+- Background #FFF, border 2px solid #000, shadow 2px 2px 0px #000
+- Focus state: Border color #2196F3, shadow 2px 2px 0px #2196F3
+- Padding: 8px 12px for text inputs (reduced for compact design)
+- Min height: 100px for textareas
 
 ### 6.2 API Interfaces
 

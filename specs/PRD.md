@@ -129,13 +129,13 @@ Potential features for future releases include:
 - Secure handling of API keys and user data
 - Offline capabilities for core functionality
 - Responsive design for all device sizes
-- Implementation of Neo-Brutalism design system with:
+- Implementation of Compact Neo-Brutalism design system with:
   - Bold typography using Big Shoulders Display and Inter fonts
   - Color palette featuring primary yellow (#FFEB3B), secondary blue (#2196F3), and accent pink (#E91E63)
-  - Thick 3px black borders on all UI elements
-  - Offset shadows (4px 4px 0px #000) for depth and visual interest
+  - Compact 2px black borders (3px for emphasis) for space-efficient design
+  - Refined offset shadows (2px 2px 0px #000 standard, 4px 4px 0px #000 for emphasis) for visual depth
   - High contrast ratios meeting WCAG 2.1 Level AA standards
-  - Neo-Brutalism styled components (buttons, cards, inputs) with interactive states
+  - Compact Neo-Brutalism styled components with optimized spacing
 
 ---
 
