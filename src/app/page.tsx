@@ -265,7 +265,7 @@ export default function Home() {
         onSavedDraftsClick={() => setIsSavedDraftsOpen(true)}
       />
 
-      <main className="flex-grow container mx-auto px-4 py-8">
+      <main className="flex-grow container mx-auto px-4 py-6">
         <div className="max-w-7xl mx-auto">
           {/* Setup Prompt Banner */}
           {showSetupPrompt && (
@@ -355,9 +355,9 @@ export default function Home() {
           </div>
 
           {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Left Column - Form */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               <PRDForm
                 prdInput={prdInput}
                 setPrdInput={setPrdInput}

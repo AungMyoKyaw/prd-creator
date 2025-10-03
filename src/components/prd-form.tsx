@@ -28,7 +28,7 @@ export function PRDForm({
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6">
+    <form onSubmit={onSubmit} className="space-y-4">
       <Section
         title="1. Core Product Idea"
         onRefine={() => onRefineSection('1. Core Product Idea')}
@@ -137,8 +137,8 @@ export function PRDForm({
         />
       </Section>
 
-      <div className="pt-4">
-        <Button type="submit" isLoading={isLoading}>
+      <div className="pt-2">
+        <Button type="submit" isLoading={isLoading} size="lg">
           Generate PRD
         </Button>
       </div>

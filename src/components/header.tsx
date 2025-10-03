@@ -13,10 +13,10 @@ export function Header({
 }: HeaderProps) {
   return (
     <header className="bg-white border-b-[4px] border-black shadow-[0_4px_0px_#000] sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-6 relative">
+      <div className="container mx-auto px-4 py-3 relative">
         <div className="text-center">
           <h1
-            className="text-5xl md:text-6xl font-black text-black tracking-tight"
+            className="text-3xl md:text-4xl font-black text-black tracking-tight"
             style={{
               fontFamily:
                 "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
@@ -24,17 +24,16 @@ export function Header({
           >
             <span className="text-[#2196F3]">PRD</span> CREATOR 📝
           </h1>
-          <p className="mt-3 max-w-2xl mx-auto text-base text-gray-700 font-medium sm:text-lg">
-            Turn your ideas into professional Product Requirements Documents
-            instantly.
+          <p className="mt-1 max-w-xl mx-auto text-sm text-gray-700 font-medium">
+            Create professional PRDs instantly
           </p>
 
           {/* Model Indicator */}
           {currentModel && (
-            <div className="mt-4 inline-flex items-center px-4 py-2 bg-[#FFEB3B] border-[3px] border-black shadow-[4px_4px_0px_#000]">
+            <div className="mt-2 inline-flex items-center px-3 py-1 bg-[#FFEB3B] border-[2px] border-black shadow-[2px_2px_0px_#000]">
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-[#4CAF50] rounded-full animate-pulse"></div>
-                <span className="text-sm font-bold text-black uppercase">
+                <span className="text-xs font-bold text-black uppercase">
                   Using:{' '}
                   <span className="text-[#2196F3]">
                     {modelDisplayName || currentModel}
@@ -46,16 +45,16 @@ export function Header({
         </div>
 
         {/* Action Buttons */}
-        <div className="absolute top-4 right-4 flex gap-2">
+        <div className="absolute top-2 right-4 flex gap-2">
           {onSavedDraftsClick && (
             <button
               onClick={onSavedDraftsClick}
-              className="p-3 bg-[#FFEB3B] text-black border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px]"
+              className="p-2 bg-[#FFEB3B] text-black border-[2px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px]"
               aria-label="Saved PRDs"
               title="Saved PRDs"
             >
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -71,12 +70,12 @@ export function Header({
           )}
           <button
             onClick={onSettingsClick}
-            className="p-3 bg-white text-black border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px]"
+            className="p-2 bg-white text-black border-[2px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px]"
             aria-label="Settings"
             title="Settings"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

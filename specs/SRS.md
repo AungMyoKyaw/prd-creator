@@ -32,6 +32,7 @@ PRD Creator is a web-based application that uses AI to generate comprehensive Pr
 - Next.js 15.5.4 Documentation
 - TypeScript 5.9.2 Specification
 - W3C Web Accessibility Guidelines (WCAG 2.1)
+- PRD Creator UI/UX Design Guidelines (2025 Update - Compact Neo-Brutalism)
 
 ---
 
@@ -91,7 +92,7 @@ The application runs in modern web browsers supporting:
 
 The application provides a bold, modern Neo-Brutalism user interface with:
 
-- Neo-Brutalism design aesthetic featuring thick black borders (3px), offset shadows, and high contrast elements
+- Neo-Brutalism design aesthetic featuring compact black borders (2px standard, 3px emphasis), refined offset shadows, and high contrast elements
 - Responsive layout for all device sizes implementing Neo-Brutalism principles
 - Intuitive form controls with proper labeling, styled with Neo-Brutalism design patterns
 - Real-time preview of PRD content with Neo-Brutalism styling
@@ -138,7 +139,7 @@ _REQ-002:_ The system MUST provide a text area for detailed input of each requir
 
 _REQ-003:_ The system SHOULD provide placeholder text to guide users in each input field.
 
-_REQ-004:_ The system MUST implement Neo-Brutalism design principles for all form elements, including thick 3px black borders and offset shadows.
+_REQ-004:_ The system MUST implement Neo-Brutalism design principles for all form elements, including compact 2px black borders (3px for emphasis) and refined offset shadows.
 
 _REQ-005:_ The system MUST ensure all form inputs meet WCAG 2.1 Level AA contrast requirements with a minimum ratio of 4.5:1.
 
@@ -227,9 +228,9 @@ _REQ-019:_ The system MUST implement the specified color palette including prima
 
 _REQ-020:_ The system MUST use the specified typography system with Big Shoulders Display for headings and Inter for body text.
 
-_REQ-021:_ The system MUST apply thick 3px black borders to all UI components as specified in the Neo-Brutalism guidelines.
+_REQ-021:_ The system MUST apply compact 2px black borders to all UI components (3px for emphasis) as specified in the updated Neo-Brutalism guidelines.
 
-_REQ-022:_ The system MUST implement offset shadows (4px 4px 0px black) for depth and visual hierarchy.
+_REQ-022:_ The system MUST implement compact offset shadows (2px 2px 0px black standard, 4px 4px 0px for emphasis) for depth and visual hierarchy.
 
 _REQ-023:_ The system MUST ensure all interactive elements have distinct hover, focus, and active states following Neo-Brutalism design patterns.
 

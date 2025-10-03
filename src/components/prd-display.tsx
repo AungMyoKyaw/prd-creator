@@ -179,10 +179,10 @@ export function PRDDisplay({
   };
 
   return (
-    <div className="bg-white border-[3px] border-black shadow-[6px_6px_0px_#000]">
-      <div className="flex justify-between items-center p-6 border-b-[3px] border-black">
+    <div className="bg-white border-[3px] border-black shadow-[4px_4px_0px_#000]">
+      <div className="flex justify-between items-center p-4 border-b-[2px] border-black">
         <h2
-          className="text-2xl font-black text-black uppercase tracking-wide"
+          className="text-xl font-black text-black uppercase tracking-wide"
           style={{
             fontFamily:
               "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
@@ -191,17 +191,17 @@ export function PRDDisplay({
           {isLivePreview ? '📋 LIVE PREVIEW' : '✅ GENERATED PRD'}
         </h2>
         {!isLivePreview && (
-          <div className="flex items-center space-x-3 flex-wrap gap-2">
+          <div className="flex items-center space-x-2 flex-wrap gap-2">
             <button
               onClick={handleSave}
               disabled={isSaving || !prdInputs}
-              className="flex items-center px-4 py-2 text-sm font-bold uppercase tracking-wide bg-[#FFEB3B] text-black border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center px-3 py-1 text-xs font-bold uppercase tracking-wide bg-[#FFEB3B] text-black border-[2px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
               title="Save to browser storage"
             >
               {isSaving ? (
                 <span className="flex items-center">
                   <svg
-                    className="animate-spin -ml-1 mr-2 h-4 w-4"
+                    className="animate-spin -ml-1 mr-1 h-3 w-3"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -224,37 +224,37 @@ export function PRDDisplay({
                 </span>
               ) : isSaved ? (
                 <span className="flex items-center">
-                  <CheckIcon className="w-4 h-4 mr-2" />
+                  <CheckIcon className="w-3 h-3 mr-1" />
                   Saved!
                 </span>
               ) : (
                 <span className="flex items-center">
-                  <SaveIcon className="w-4 h-4 mr-2" />
+                  <SaveIcon className="w-3 h-3 mr-1" />
                   Save
                 </span>
               )}
             </button>
             <button
               onClick={handleDownload}
-              className="flex items-center px-4 py-2 text-sm font-bold uppercase tracking-wide bg-[#4CAF50] text-white border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] focus:outline-none"
+              className="flex items-center px-3 py-1 text-xs font-bold uppercase tracking-wide bg-[#4CAF50] text-white border-[2px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] focus:outline-none"
               title="Download as Markdown"
             >
-              <DownloadIcon className="w-4 h-4 mr-2" />
+              <DownloadIcon className="w-3 h-3 mr-1" />
               Download
             </button>
             <button
               onClick={handleCopy}
-              className="flex items-center px-4 py-2 text-sm font-bold uppercase tracking-wide bg-[#2196F3] text-white border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] focus:outline-none"
+              className="flex items-center px-3 py-1 text-xs font-bold uppercase tracking-wide bg-[#2196F3] text-white border-[2px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] focus:outline-none"
               title="Copy to clipboard"
             >
               {isCopied ? (
                 <span className="flex items-center">
-                  <CheckIcon className="w-4 h-4 mr-2" />
+                  <CheckIcon className="w-3 h-3 mr-1" />
                   Copied!
                 </span>
               ) : (
                 <span className="flex items-center">
-                  <CopyIcon className="w-4 h-4 mr-2" />
+                  <CopyIcon className="w-3 h-3 mr-1" />
                   Copy
                 </span>
               )}
@@ -262,7 +262,7 @@ export function PRDDisplay({
           </div>
         )}
       </div>
-      <div className="p-6 bg-[#FAFAFA]">
+      <div className="p-4 bg-[#FAFAFA]">
         <div className="markdown-content text-black font-medium leading-relaxed">
           <MarkdownRenderer content={content} />
         </div>

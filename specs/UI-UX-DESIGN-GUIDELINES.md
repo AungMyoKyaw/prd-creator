@@ -1,4 +1,23 @@
-# PromptForge Unleashed - UI/UX Design Guidelines
+# PRD Creator - UI/UX Design Guidelines
+
+## 2025 Design System Update: Compact Neo-Brutalism
+
+**Overview:** In 2025, the PRD Creator interface was optimized for a more compact, space-efficient design while maintaining the bold Neo-Brutalism aesthetic. These changes improve content density and user experience without sacrificing the distinctive visual style.
+
+**Key Changes:**
+
+- **Reduced vertical spacing** - Header height decreased by 50% for more content visibility
+- **Compact component sizing** - Buttons, inputs, and cards use smaller padding and margins
+- **Refined borders and shadows** - Standardized to 2px borders and smaller shadow offsets
+- **Optimized typography** - Slightly smaller text sizes while maintaining readability
+- **Tighter layout gaps** - Grid spacing reduced for efficient screen utilization
+
+**Benefits:**
+
+- More screen real estate for actual content
+- Improved mobile experience with less scrolling
+- Maintained visual impact while being more functional
+- Better information density for complex forms
 
 ## 1. Design Philosophy
 
@@ -102,8 +121,9 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 **Borders:**
 
 - All borders: Pure black (#000000)
-- Border width: 3px (standard), 4px (emphasis), 2px (subtle)
+- Border width: 2px (standard), 3px (emphasis), 4px (heavy emphasis)
 - No rounded corners or minimal (2px max)
+- **Updated (2025):** Standardized to 2px borders for most components to create a more compact, refined look while maintaining the neo-brutalism aesthetic
 
 **Status Colors:**
 
@@ -204,24 +224,27 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 **Component Padding:**
 
-- Small buttons/inputs: 8px × 16px (space-2 × space-4)
-- Medium buttons/inputs: 12px × 24px (space-3 × space-6)
-- Large buttons/CTAs: 16px × 32px (space-4 × space-8)
-- Cards: 24px (space-6) to 32px (space-8)
-- Page sections: 48px (space-12) to 64px (space-16)
+- Small buttons/inputs: 4px × 12px (space-1 × space-3)
+- Medium buttons/inputs: 8px × 16px (space-2 × space-4)
+- Large buttons/CTAs: 12px × 24px (space-3 × space-6)
+- Cards: 16px (space-4) to 24px (space-6)
+- Page sections: 24px (space-6) to 32px (space-8)
+- **Updated (2025):** Reduced padding across all components for a more compact, space-efficient design
 
 **Component Margins:**
 
-- Between small elements: 8px (space-2)
-- Between related elements: 16px (space-4)
-- Between sections: 32px (space-8) to 48px (space-12)
-- Between major sections: 64px (space-16) to 80px (space-20)
+- Between small elements: 4px (space-1)
+- Between related elements: 8px (space-2) to 12px (space-3)
+- Between sections: 16px (space-4) to 24px (space-6)
+- Between major sections: 32px (space-8) to 48px (space-12)
+- **Updated (2025):** Reduced margins for tighter, more efficient layout
 
 **Grid Gaps:**
 
-- Tight grids: 12px (space-3)
-- Standard grids: 24px (space-6)
+- Tight grids: 8px (space-2)
+- Standard grids: 16px (space-4) to 24px (space-6)
 - Loose grids: 32px (space-8)
+- **Updated (2025):** Optimized grid gaps for compact layouts
 
 ### 2.4. Shadows and Depth
 
@@ -229,11 +252,12 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 ```css
 /* Hard, Offset Shadows - Neo-Brutalism Style */
---shadow-sm: 2px 2px 0px #000;
---shadow-base: 4px 4px 0px #000;
---shadow-md: 6px 6px 0px #000;
---shadow-lg: 8px 8px 0px #000;
---shadow-xl: 12px 12px 0px #000;
+--shadow-sm: 1px 1px 0px #000;
+--shadow-base: 2px 2px 0px #000;
+--shadow-md: 3px 3px 0px #000;
+--shadow-lg: 4px 4px 0px #000;
+--shadow-xl: 6px 6px 0px #000;
+/* **Updated (2025):** Reduced shadow offsets for a more compact appearance while maintaining the brutalist aesthetic */
 
 /* Colored Shadows for Accent Elements */
 --shadow-primary: 6px 6px 0px #fdd835;
@@ -245,21 +269,24 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 **Cards:**
 
-- Default state: `shadow-base` (4px offset)
-- Hover state: `shadow-lg` (8px offset) with slight transform
-- Active state: `shadow-sm` (2px offset)
+- Default state: `shadow-base` (2px offset)
+- Hover state: `shadow-lg` (4px offset) with slight transform
+- Active state: `shadow-sm` (1px offset)
+- **Updated (2025):** Reduced shadow offsets for more compact appearance
 
 **Buttons:**
 
-- Default: `shadow-base` (4px offset)
+- Default: `shadow-base` (2px offset)
 - Hover: Lift slightly with increased shadow
 - Active: `shadow-sm` to create "pressed" effect
+- **Updated (2025):** Reduced shadow offsets to match compact design system
 
 **Floating Elements:**
 
-- Modals: `shadow-xl` (12px offset)
-- Tooltips: `shadow-md` (6px offset)
-- Dropdowns: `shadow-lg` (8px offset)
+- Modals: `shadow-xl` (6px offset)
+- Tooltips: `shadow-md` (3px offset)
+- Dropdowns: `shadow-lg` (4px offset)
+- **Updated (2025):** Reduced shadow offsets for floating elements
 
 **Colored Shadows:**
 
@@ -315,11 +342,11 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```css
 .btn-primary {
   background: #ffeb3b;
-  border: 3px solid #000;
-  box-shadow: 4px 4px 0px #000;
-  padding: 12px 24px;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0px #000;
+  padding: 8px 16px;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #000;
@@ -328,14 +355,15 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 }
 
 .btn-primary:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px #000;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #000;
 }
 
 .btn-primary:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px #000;
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #000;
 }
+/* **Updated (2025):** Compact button styling with reduced borders, padding, and shadows */
 ```
 
 #### Secondary Button
@@ -343,11 +371,12 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```css
 .btn-secondary {
   background: #2196f3;
-  border: 3px solid #000;
-  box-shadow: 4px 4px 0px #000;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0px #000;
   color: #fff;
   /* ... same padding, font properties as primary */
 }
+/* **Updated (2025):** Secondary button with compact styling */
 ```
 
 #### Button States
@@ -360,9 +389,10 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 #### Button Sizes
 
-- **Small:** 8px × 16px padding, 0.875rem font
-- **Medium:** 12px × 24px padding, 1rem font (default)
-- **Large:** 16px × 32px padding, 1.125rem font
+- **Small:** 4px × 12px padding, 0.75rem font
+- **Medium:** 8px × 16px padding, 0.875rem font (default)
+- **Large:** 12px × 24px padding, 1rem font
+- **Updated (2025):** Reduced button sizes for compact interface
 
 ### 3.2. Cards
 
@@ -372,15 +402,16 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 .card {
   background: #fff;
   border: 3px solid #000;
-  box-shadow: 6px 6px 0px #000;
-  padding: 24px;
+  box-shadow: 4px 4px 0px #000;
+  padding: 16px;
   transition: all 0.2s ease;
 }
 
 .card:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 8px 8px 0px #000;
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0px #000;
 }
+/* **Updated (2025):** Compact card styling with reduced padding and shadows */
 ```
 
 #### Card Variants
@@ -410,10 +441,10 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```css
 .input {
   background: #fff;
-  border: 3px solid #000;
-  box-shadow: 4px 4px 0px #000;
-  padding: 12px 16px;
-  font-size: 1rem;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0px #000;
+  padding: 8px 12px;
+  font-size: 0.875rem;
   font-weight: 500;
   transition: all 0.15s ease;
 }
@@ -421,17 +452,19 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 .input:focus {
   outline: none;
   border-color: #2196f3;
-  box-shadow: 4px 4px 0px #2196f3;
+  box-shadow: 2px 2px 0px #2196f3;
   transform: translate(-1px, -1px);
 }
+/* **Updated (2025):** Compact input styling with reduced borders and padding */
 ```
 
 #### Textarea
 
 - Same styling as text input
-- Min height: 120px
+- Min height: 100px
 - Resize: vertical only
-- Generous padding: 16px
+- Compact padding: 12px
+- **Updated (2025):** Reduced textarea dimensions for compact layout
 
 #### Labels
 
