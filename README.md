@@ -6,7 +6,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.1.14-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](http://buymeacoffee.com/aungmyokyaw)
 
-An intelligent Product Requirements Document (PRD) generator powered by Google's Gemini AI. Transform your product ideas into comprehensive, professional PRDs in minutes with a beautiful Neo-Brutalism design that features bold borders, dramatic shadows, and playful interactions.
+An intelligent Product Requirements Document (PRD) generator powered by Google's Gemini AI. Transform your product ideas into comprehensive, professional PRDs in minutes with a beautiful Compact Neo-Brutalism design that features refined borders, optimized shadows, and efficient layouts.
 
 🌐 **Live Demo**: [https://ai-prd-creator.vercel.app/](https://ai-prd-creator.vercel.app/)
 
@@ -14,15 +14,14 @@ An intelligent Product Requirements Document (PRD) generator powered by Google's
 
 ### 🎯 Core Functionality
 
+- **🧙‍♂️ 3-Step Wizard Flow**: Guided wizard interface (Input → Generate → Review) for streamlined PRD creation
 - **🚀 Quick Start with AI**: Describe your product idea in plain text and let AI auto-fill the entire form
 - **📋 Structured Form Input**: Organized sections for all essential PRD components (9 sections including tech stack and constraints)
-- **👁️ Live Preview**: See your PRD preview as you type with real-time markdown rendering
 - **🤖 AI-Powered Generation**: Generate complete, professional PRDs using Gemini AI (40+ models available)
-- **🔄 Section Refinement**: Refine specific sections with AI-powered feedback for iterative improvement
-- **📥 One-Click Download**: Export PRDs as Markdown files with smart naming (productname_prd_date.md)
-- **📋 Copy to Clipboard**: Instantly copy generated PRDs with plain text formatting
+- **🔍 Full-Page PRD Viewer**: Dedicated full-screen viewer with enhanced readability and navigation
+- **📥 Multiple Export Options**: Download as Markdown or copy to clipboard with smart naming (productname_prd_date.md)
 - **💾 Advanced Draft Management**: Save and manage up to 12 PRD drafts with IndexedDB, localStorage fallback, and migration support
-- **📂 Git Repository Ingestion**: Analyze and ingest Git repositories for enhanced context and language detection
+- **🔄 Draft Loading**: Load saved drafts with automatic state restoration and context preservation
 - **📱 Enhanced PWA**: Full Progressive Web App support with install prompts and offline capabilities
 
 ### 🎨 Design & UX
@@ -47,14 +46,14 @@ An intelligent Product Requirements Document (PRD) generator powered by Google's
 
 - **Framework**: [Next.js 15.5.4](https://nextjs.org/) with App Router
 - **Language**: [TypeScript 5.9.2](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS 4.1.14](https://tailwindcss.com/) with compact Neo-Brutalism design system
+- **Styling**: [Tailwind CSS 4.1.14](https://tailwindcss.com/) with Compact Neo-Brutalism design system
 - **AI**: [Google Gemini API](https://ai.google.dev/) (@google/genai v1.21.0)
-- **UI Components**: [Radix UI](https://www.radix-ui.com/) primitives for accessibility
-- **Storage**: IndexedDB with idb library v8.0.3 for saved drafts (12-draft limit)
-- **Icons**: [Lucide React](https://lucide.dev/) v0.544.0 for consistent iconography
-- **Markdown**: react-markdown v10.1.0 with remark-gfm v4.0.0
-- **PWA**: next-pwa v5.6.0 for Progressive Web App support
-- **Document Export**: jsPDF v3.0.3 and docx v9.2.2 (integrated, UI implementation planned)
+- **UI Components**: [Radix UI](https://www.radix-ui.com/) primitives for accessibility (Dialog, Scroll Area, Tabs, Tooltip)
+- **Storage**: IndexedDB with idb library v8.0.3 for saved drafts (12-draft limit with auto-migration)
+- **Icons**: [Lucide React](https://lucide.dev/) v0.544.0 + [Radix Icons](https://www.radix-ui.com/icons) v1.3.1
+- **Markdown**: react-markdown v10.1.0 with remark-gfm v4.0.0 for GFM support
+- **PWA**: next-pwa v5.6.0 for Progressive Web App support with service worker caching
+- **Document Export**: jsPDF v3.0.3 and docx v9.2.2 (integrated)
 
 ## 🚀 Quick Start
 
@@ -109,30 +108,32 @@ No installation needed! Just visit [https://ai-prd-creator.vercel.app/](https://
 ```mermaid
 flowchart TD
     A[⚙️ Initial Setup] --> B[Enter API Key and Select Model]
-    B --> C{Quick Start or Manual?}
-    C -->|Quick Start| D[Enter Product Idea]
-    C -->|Manual| E[Fill Form Manually]
-    D --> F[Click Auto-fill with AI]
-    E --> G[Review & Edit Form]
-    F --> H[AI Populates All Form Fields]
-    H --> G
-    G --> I[Click Generate PRD Button]
-    I --> J[AI Generates Complete PRD]
-    J --> K{Export, Save, or Refine?}
-    K -->|Export| L[📥 Download as Markdown or 📋 Copy to Clipboard]
-    K -->|Save| N[💾 Save to Drafts with IndexedDB]
-    K -->|Refine| M[🔄 Refine Sections with AI Feedback]
-    N --> O[📚 Manage Saved Drafts]
-    O --> G
-    M --> G
+    B --> C[📝 Step 1: Input]
+    C --> D{Quick Start or Manual?}
+    D -->|Quick Start| E[Enter Product Idea]
+    D -->|Manual| F[Fill Form Manually]
+    E --> G[Click Auto-fill with AI]
+    G --> H[AI Populates All Form Fields]
+    H --> I[Review & Edit Form]
+    F --> I
+    I --> J[Navigate to Step 2]
+    J --> K[🤖 Step 2: Generate]
+    K --> L[Click Generate PRD Button]
+    L --> M[AI Generates Complete PRD]
+    M --> N[👁️ Step 3: Review]
+    N --> O{Export, Save, or View?}
+    O -->|Export| P[📥 Download as Markdown or 📋 Copy]
+    O -->|Save| Q[💾 Save Draft to IndexedDB]
+    O -->|View| R[🔍 Open Full-Page Viewer]
+    Q --> S[📚 Access from Saved Drafts]
+    S --> C
     style A fill:#4A90E2
-    style D fill:#50C878
-    style F fill:#9068BE
-    style J fill:#D6A14D
-    style L fill:#FF6B6B
-    style M fill:#4ECDC4
-    style N fill:#FF9800
-    style O fill:#795548
+    style C fill:#50C878
+    style G fill:#9068BE
+    style M fill:#D6A14D
+    style P fill:#FF6B6B
+    style Q fill:#FF9800
+    style R fill:#4ECDC4
 ```
 
 ## 📱 Progressive Web App (PWA)
@@ -231,20 +232,23 @@ prd-creator/
 │   │   │   ├── prefill/route.ts         # Form auto-fill endpoint
 │   │   │   └── refine/route.ts          # Section refinement endpoint
 │   │   ├── layout.tsx                   # Root layout with PWA config
-│   │   └── page.tsx                     # Main application page
+│   │   ├── page.tsx                     # Main application page
+│   │   └── globals.css                  # Global styles
 │   ├── components/
 │   │   ├── button.tsx                   # Reusable button component
-│   │   ├── footer.tsx                   # App footer
-│   │   ├── header.tsx                   # Header with model indicator
+│   │   ├── footer.tsx                   # App footer with copyright
+│   │   ├── full-page-prd-viewer.tsx     # Full-screen PRD viewer
+│   │   ├── header.tsx                   # Header with settings/drafts
 │   │   ├── input-field.tsx              # Text input component
 │   │   ├── loader.tsx                   # Loading spinner
 │   │   ├── markdown-renderer.tsx        # Markdown display
-│   │   ├── prd-display.tsx              # PRD viewer with download/save
+│   │   ├── prd-display.tsx              # PRD viewer with export
 │   │   ├── prd-form.tsx                 # Main form component
+│   │   ├── prd-wizard.tsx               # 3-step wizard wrapper
 │   │   ├── pwa-install-prompt.tsx       # PWA install button
 │   │   ├── refine-modal.tsx             # Section refinement dialog
 │   │   ├── saved-drafts-modal.tsx       # Draft management interface
-│   │   ├── section.tsx                  # Collapsible section
+│   │   ├── section.tsx                  # Form section wrapper
 │   │   ├── settings-modal.tsx           # API key & model settings
 │   │   └── textarea-field.tsx           # Multi-line input
 │   ├── lib/
@@ -258,12 +262,25 @@ prd-creator/
 │       └── next-pwa.d.ts                # PWA type definitions
 ├── public/
 │   ├── icon-*.png                       # PWA icons (192, 384, 512)
+│   ├── apple-touch-icon*.png            # Apple device icons
+│   ├── favicon*.{ico,png}               # Favicons
 │   ├── manifest.json                    # PWA manifest
-│   ├── sw.js                           # Service worker
-│   └── workbox-*.js                    # Workbox cache
+│   └── *.svg                           # Static SVG assets
+├── specs/                               # Project documentation
+│   ├── PBI.md                          # Product Backlog Items
+│   ├── PRD.md                          # Project PRD
+│   ├── README.md                       # Specs documentation
+│   ├── SDD.md                          # Software Design Document
+│   ├── SRS.md                          # Software Requirements
+│   └── UI-UX-DESIGN-GUIDELINES.md      # Design guidelines
+├── .editorconfig                        # Editor configuration
+├── .prettierignore                      # Prettier ignore rules
+├── .prettierrc                          # Prettier config
+├── eslint.config.mjs                    # ESLint configuration
 ├── next.config.mjs                      # Next.js + PWA config
 ├── package.json                         # Dependencies
-└── .editorconfig                        # Code style configuration
+├── postcss.config.mjs                   # PostCSS config
+└── tsconfig.json                        # TypeScript config
 ```
 
 ### API Routes
@@ -413,7 +430,7 @@ This ensures:
 ### Quick Start Flow:
 
 1. Click ⚙️ settings, enter your Gemini API key
-2. Enter the idea: "A mobile app for finding local fitness classes"
+2. **Step 1: Input** - Enter the idea: "A mobile app for finding local fitness classes"
 3. Click "Auto-fill Form with AI ✨"
 4. AI generates:
    ```
@@ -429,8 +446,9 @@ This ensures:
    ...
    ```
 5. Review and adjust as needed
-6. Click "Generate PRD" → Get a comprehensive PRD!
-7. 📥 Download as `fitfinder_prd_2025-01-21.md`
+6. **Step 2: Generate** - Click "Generate PRD" → Get a comprehensive PRD!
+7. **Step 3: Review** - View PRD in full-page viewer or export
+8. 📥 Download as `fitfinder_prd_2025-01-21.md` or 💾 save as draft
 
 ## 🚀 Building for Production
 
@@ -463,15 +481,15 @@ npm run build
 
 ## 🌟 Key Features Explained
 
-### 1. 💎 Glassmorphism UI
+### 1. 🧙‍♂️ Wizard-Based Interface
 
-Inspired by Apple's design language with:
+A streamlined 3-step workflow that guides users through PRD creation:
 
-- **Frosted glass panels** with backdrop blur
-- **Layered depth** with multiple glass layers
-- **Smooth transitions** at 60fps
-- **Adaptive shadows** for depth perception
-- **Vibrant gradients** with proper contrast
+- **Step 1: Input** - Form with quick-start AI prefill or manual entry
+- **Step 2: Generate** - One-click PRD generation with Gemini AI
+- **Step 3: Review** - Full-screen viewer with export and save options
+- **Progress indicators** for clear navigation
+- **Persistent state** across steps with draft auto-save
 
 ### 2. 💾 Advanced Draft Management
 
@@ -481,30 +499,30 @@ Inspired by Apple's design language with:
 - **One-click loading** of previous work with full state restoration
 - **Delete functionality** with confirmation dialogs
 - **Metadata storage** including creation date, model used, and content preview
-- **Git ingestion data** stored alongside drafts for context preservation
 
 ### 3. 🤖 Smart AI Integration
 
 - **Dynamic model selection** from 40+ Gemini models
-- **Contextual prompts** with date/time
+- **Contextual prompts** with date/time information
 - **Structured JSON responses** for consistency
-- **Section-based refinement** for iterative improvements
+- **Auto-fill feature** for rapid form completion
 - **Fallback models** for offline reliability
 
 ### 4. 📱 PWA Capabilities
 
-- **Installable** on any device
+- **Installable** on any device (desktop, iOS, Android)
 - **Offline support** with service workers
 - **Fast loading** with Workbox caching
 - **Native app feel** in standalone mode
 - **Auto-updates** on app launch
+- **Smart install prompts** with dismissal tracking
 
 ### 5. 📥 Export Options
 
-- **Markdown download** with smart file naming
-- **One-click copy** to clipboard
+- **Markdown download** with smart file naming (productname_prd_YYYY-MM-DD.md)
+- **One-click copy** to clipboard with plain text formatting
 - **Timestamped filenames** for version control
-- **Clean markdown format** compatible with documentation tools
+- **Clean markdown format** compatible with GitHub, GitLab, Notion, etc.
 
 ### 6. 🔒 Privacy First
 
@@ -513,7 +531,6 @@ Inspired by Apple's design language with:
 - **Direct API calls** to Google Gemini only
 - **No tracking or analytics** or user data collection
 - **Open source** for full transparency
-- **Local data processing** with optional Git repository ingestion
 - **Browser-only storage** with user control over data deletion
 
 ## 🎨 Neo-Brutalism Design System
@@ -644,12 +661,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🙏 Acknowledgments
 
 - **AI**: Powered by [Google Gemini AI](https://ai.google.dev/)
-- **Framework**: Built with [Next.js](https://nextjs.org/) and React
+- **Framework**: Built with [Next.js](https://nextjs.org/) 15.5.4 and React 19
 - **UI Components**: [Radix UI](https://www.radix-ui.com/) primitives
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4
-- **PWA**: [next-pwa](https://github.com/shadowwalker/next-pwa)
-- **Icons**: [Radix Icons](https://www.radix-ui.com/icons)
-- **Markdown**: [react-markdown](https://github.com/remarkjs/react-markdown)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4 with Compact Neo-Brutalism
+- **Icons**: [Lucide React](https://lucide.dev/) + [Radix Icons](https://www.radix-ui.com/icons)
+- **Markdown**: [react-markdown](https://github.com/remarkjs/react-markdown) with GFM support
+- **PWA**: [next-pwa](https://github.com/shadowwalker/next-pwa) for Progressive Web App
+- **Storage**: [idb](https://github.com/jakearchibald/idb) for IndexedDB management
 
 ## 🌐 Live Demo
 
@@ -658,13 +676,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 **Features to Try:**
 
 1. ⚙️ Configure your API key (free from Google AI Studio)
-2. 🚀 Use Quick Start to auto-fill a form
-3. 👁️ See live preview as you type
-4. 🤖 Generate comprehensive PRD
-5. 💾 Save drafts to browser storage with IndexedDB
-6. 📚 Manage and load saved drafts
-7. 🔄 Refine sections with AI feedback
-8. 📥 Download your PRD as Markdown
+2. 🧙‍♂️ Follow the 3-step wizard (Input → Generate → Review)
+3. 🚀 Use Quick Start to auto-fill a form
+4. 🤖 Generate comprehensive PRD with AI
+5. 🔍 View PRD in full-page viewer
+6. 💾 Save drafts to browser storage with IndexedDB
+7. 📚 Manage and load saved drafts
+8. 📥 Download PRD as Markdown or copy to clipboard
 9. 📱 Install as PWA on your device
 
 ---
