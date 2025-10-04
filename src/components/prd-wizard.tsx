@@ -1,7 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight, Sparkles, Edit3, FileText } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Sparkles,
+  Edit3,
+  FileText,
+  Camera
+} from 'lucide-react';
 import { PrdInput, DEFAULT_PRD_INPUT, ImageAttachment } from '@/lib/prd';
 import { Button } from './button';
 import { Loader } from './loader';
@@ -425,7 +432,7 @@ export function PRDWizard({
 
               <div className="bg-blue-50 border-[3px] border-blue-200 p-4 rounded-lg">
                 <h3 className="text-lg font-bold text-blue-900 mb-2 flex items-center gap-2">
-                  <span className="text-2xl">📸</span>
+                  <Camera className="w-6 h-6" />
                   Add Visual Context (Optional)
                 </h3>
                 <p className="text-blue-700 mb-4">

@@ -136,6 +136,7 @@ Potential features for future releases include:
   - Refined offset shadows (2px 2px 0px #000 standard, 4px 4px 0px #000 for emphasis) for visual depth
   - High contrast ratios meeting WCAG 2.1 Level AA standards
   - Compact Neo-Brutalism styled components with optimized spacing
+  - Consistent iconography using Lucide React icons in application code, emojis in documentation for professional appearance
 
 ---
 
@@ -153,7 +154,7 @@ The current technology stack is:
 - Storage: IndexedDB with idb library v8.0.3 and localStorage fallback
 - Markdown Rendering: react-markdown v10.1.0 with remark-gfm v4.0.0
 - Document Export: jsPDF v3.0.3 and docx v9.2.2 (integrated but not yet implemented in UI)
-- Icons: Lucide React v0.544.0
+- Icons: Lucide React v0.544.0 (application code), Emojis (documentation)
 - PWA Functionality: @ducanh2912/next-pwa v10.2.9 with advanced caching strategies
 - Development: ESLint, Prettier, and TypeScript tooling
 - Deployment: Vercel platform

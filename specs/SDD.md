@@ -241,7 +241,7 @@ The system consists of the following major components:
 - Drafts manager from src/lib/drafts.ts
 - Radix UI Dialog primitives for modal functionality
 - UI styling libraries for compact Neo-Brutalism design
-- Lucide React icons for interface elements
+- Lucide React icons for interface elements (must use Lucide icons throughout the application code)
 
 #### 4.1.7 PWAInstallPrompt Component (src/components/pwa-install-prompt.tsx)
 

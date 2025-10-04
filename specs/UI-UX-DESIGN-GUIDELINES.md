@@ -1195,9 +1195,18 @@ While Neo-Brutalism typically uses light backgrounds, a dark mode variation:
 
 **Icon Set:**
 
-- Use consistent icon library (Heroicons Bold, Feather)
+- **Primary Icon Library (Application Code)**: Lucide React Icons - All icons in the application code must use Lucide React icons
+- **Primary Icon Library (Documentation)**: Emojis - All icons in documentation files must use emojis
+- Use consistent icon library (Lucide Icons for code, Emojis for docs)
 - Or create custom icons matching style
 - Size multiples of 8px (16, 24, 32, 48)
+
+**Icon Usage Requirements:**
+
+- **Application Code**: Use Lucide React icons throughout the application interface
+- **Documentation**: Use emojis throughout documentation files
+- Use semantic icons that match functionality (e.g., CheckCircle for success, XCircle for errors, AlertCircle for warnings in code; ✅, ❌, ⚠️ in docs)
+- Maintain consistent sizing and styling with the Neo-Brutalism design system
 
 ### 10.3. Illustrations
 

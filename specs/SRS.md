@@ -320,6 +320,8 @@ _REQ-032:_ The UI MUST maintain visual hierarchy and readability on all screen s
 
 _REQ-033:_ The application MUST provide consistent user experience following the Neo-Brutalism design language.
 
+_REQ-034:_ The application MUST use Lucide React icons throughout the interface for consistent iconography, while documentation uses emojis.
+
 ### 5.5 Business Rules
 
 _REQ-031:_ The system MUST not impose any usage limitations on the end user beyond those of the AI API.
