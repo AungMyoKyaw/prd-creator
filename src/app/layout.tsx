@@ -13,27 +13,75 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  ),
   title: 'AI PRD Creator',
   description:
     'Turn your ideas into professional Product Requirements Documents instantly with AI',
   applicationName: 'AI PRD Creator',
+  keywords: [
+    'PRD',
+    'Product Requirements Document',
+    'AI',
+    'Product Management',
+    'Documentation'
+  ],
+  authors: [{ name: 'PRD Creator Team' }],
+  creator: 'PRD Creator',
+  publisher: 'PRD Creator',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'AI PRD Creator'
+    title: 'AI PRD Creator',
+    startupImage: [
+      {
+        url: '/apple-touch-icon.png',
+        media:
+          '(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)'
+      }
+    ]
   },
   formatDetection: {
-    telephone: false
+    telephone: false,
+    address: false,
+    email: false
   },
   manifest: '/manifest.json',
   icons: {
-    icon: [
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
-    ],
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+    ],
+    other: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512x512.png', sizes: '512x512', type: 'image/png' }
     ]
+  },
+  openGraph: {
+    type: 'website',
+    title: 'AI PRD Creator',
+    description:
+      'Turn your ideas into professional Product Requirements Documents instantly with AI',
+    siteName: 'AI PRD Creator',
+    images: [
+      {
+        url: '/icon-512x512.png',
+        width: 512,
+        height: 512,
+        alt: 'AI PRD Creator'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary',
+    title: 'AI PRD Creator',
+    description:
+      'Turn your ideas into professional Product Requirements Documents instantly with AI',
+    images: ['/icon-512x512.png']
   }
 };
 
