@@ -63,25 +63,26 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    title: 'AI PRD Creator',
+    title: 'AI PRD Creator - Generate Professional PRDs Instantly',
     description:
-      'Turn your ideas into professional Product Requirements Documents instantly with AI',
+      'Transform your product ideas into comprehensive Product Requirements Documents in minutes with AI-powered assistance. Perfect for product managers, startups, and development teams.',
+    url: '/',
     siteName: 'AI PRD Creator',
     images: [
       {
-        url: '/icon-512x512.png',
-        width: 512,
-        height: 512,
-        alt: 'AI PRD Creator'
+        url: '/og-image-professional.png',
+        width: 1200,
+        height: 627,
+        alt: 'AI PRD Creator - Generate Professional PRDs Instantly'
       }
     ]
   },
   twitter: {
-    card: 'summary',
-    title: 'AI PRD Creator',
+    card: 'summary_large_image',
+    title: 'AI PRD Creator - Generate Professional PRDs Instantly',
     description:
-      'Turn your ideas into professional Product Requirements Documents instantly with AI',
-    images: ['/icon-512x512.png']
+      'Transform your product ideas into comprehensive Product Requirements Documents in minutes with AI-powered assistance. Perfect for product managers, startups, and development teams.',
+    images: ['/og-image-professional.png']
   }
 };
 
