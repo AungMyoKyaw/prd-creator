@@ -31,11 +31,11 @@ export default function OfflinePage() {
     }
   };
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
-        <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
+      <div className="w-full max-w-md rounded-lg bg-white p-8 text-center shadow-lg">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-slate-100">
           <svg
-            className="w-8 h-8 text-slate-400"
+            className="h-8 w-8 text-slate-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -55,32 +55,32 @@ export default function OfflinePage() {
           </svg>
         </div>
 
-        <h1 className="text-2xl font-bold text-slate-900 mb-4">
+        <h1 className="mb-4 text-2xl font-bold text-slate-900">
           You&apos;re Offline
         </h1>
 
-        <p className="text-slate-600 mb-8">
+        <p className="mb-8 text-slate-600">
           It looks like you&apos;ve lost your internet connection. Some features
           may not be available until you&apos;re back online.
         </p>
 
         <div className="space-y-4">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <h2 className="font-semibold text-blue-900 mb-2">
+          <div className="rounded-lg border border-blue-200 bg-blue-50 p-4">
+            <h2 className="mb-2 font-semibold text-blue-900">
               Available Offline
             </h2>
-            <ul className="text-sm text-blue-700 space-y-1">
+            <ul className="space-y-1 text-sm text-blue-700">
               <li>&bull; View previously generated PRDs</li>
               <li>&bull; Access saved drafts</li>
               <li>&bull; Edit form fields</li>
             </ul>
           </div>
 
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-            <h2 className="font-semibold text-amber-900 mb-2">
+          <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
+            <h2 className="mb-2 font-semibold text-amber-900">
               Requires Internet
             </h2>
-            <ul className="text-sm text-amber-700 space-y-1">
+            <ul className="space-y-1 text-sm text-amber-700">
               <li>&bull; Generate new PRDs with AI</li>
               <li>&bull; Refine existing documents</li>
               <li>&bull; Sync with cloud</li>
@@ -91,12 +91,12 @@ export default function OfflinePage() {
         <Button
           onClick={handleRetry}
           disabled={isRetrying}
-          className="w-full mt-8"
+          className="mt-8 w-full"
         >
           {isRetrying ? 'Checking Connection...' : 'Try Again'}
         </Button>
 
-        <p className="text-xs text-slate-500 mt-4">
+        <p className="mt-4 text-xs text-slate-500">
           This page will automatically refresh when your connection is restored.
         </p>
       </div>

@@ -80,30 +80,30 @@ export function PWAInstallPrompt() {
   if (isInstalled || !showInstallButton) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md z-50 animate-slide-up">
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg shadow-2xl p-4 border border-indigo-500">
+    <div className="animate-slide-up fixed right-4 bottom-4 left-4 z-50 md:right-4 md:left-auto md:max-w-md">
+      <div className="rounded-lg border border-indigo-500 bg-gradient-to-r from-indigo-600 to-purple-600 p-4 shadow-2xl">
         <div className="flex items-start gap-3">
-          <div className="flex-shrink-0 w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-            <Smartphone className="w-8 h-8 text-indigo-600" />
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-white">
+            <Smartphone className="h-8 w-8 text-indigo-600" />
           </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="text-white font-semibold text-sm mb-1">
+          <div className="min-w-0 flex-1">
+            <h3 className="mb-1 text-sm font-semibold text-white">
               Install AI PRD Creator
             </h3>
-            <p className="text-indigo-100 text-xs mb-3">
+            <p className="mb-3 text-xs text-indigo-100">
               Install this app on your device for quick access and offline
               support
             </p>
             <div className="flex gap-2">
               <button
                 onClick={handleInstallClick}
-                className="px-4 py-2 bg-white text-indigo-600 rounded-md text-sm font-medium hover:bg-indigo-50 transition-colors"
+                className="rounded-md bg-white px-4 py-2 text-sm font-medium text-indigo-600 transition-colors hover:bg-indigo-50"
               >
                 Install App
               </button>
               <button
                 onClick={handleDismiss}
-                className="px-4 py-2 bg-indigo-700 text-white rounded-md text-sm font-medium hover:bg-indigo-800 transition-colors"
+                className="rounded-md bg-indigo-700 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-800"
               >
                 Maybe Later
               </button>
@@ -111,11 +111,11 @@ export function PWAInstallPrompt() {
           </div>
           <button
             onClick={handleDismiss}
-            className="flex-shrink-0 text-indigo-200 hover:text-white transition-colors"
+            className="flex-shrink-0 text-indigo-200 transition-colors hover:text-white"
             aria-label="Close"
           >
             <svg
-              className="w-5 h-5"
+              className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

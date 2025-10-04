@@ -110,30 +110,30 @@ export function SettingsModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-      <div className="bg-white border-[5px] border-black shadow-[12px_12px_0px_#000] max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
+      <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto border-[5px] border-black bg-white shadow-[12px_12px_0px_#000]">
         <div className="p-8">
           {/* Header */}
-          <div className="flex items-center justify-between mb-8 border-b-[3px] border-black pb-4">
+          <div className="mb-8 flex items-center justify-between border-b-[3px] border-black pb-4">
             <h2
-              className="text-3xl font-black text-black uppercase tracking-tight"
+              className="text-3xl font-black tracking-tight text-black uppercase"
               style={{
                 fontFamily:
                   "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
               }}
             >
               <span className="flex items-center gap-2">
-                <Settings className="w-6 h-6" />
+                <Settings className="h-6 w-6" />
                 SETTINGS
               </span>
             </h2>
             <button
               onClick={onClose}
-              className="p-2 text-black hover:bg-[#F44336] hover:text-white border-[3px] border-black transition-all duration-150"
+              className="border-[3px] border-black p-2 text-black transition-all duration-150 hover:bg-[#F44336] hover:text-white"
               aria-label="Close"
             >
               <svg
-                className="w-6 h-6"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -149,11 +149,11 @@ export function SettingsModal({
           </div>
 
           {/* API Key Section */}
-          <div className="space-y-6 mb-8">
+          <div className="mb-8 space-y-6">
             <div>
               <label
                 htmlFor="apiKey"
-                className="block text-sm font-bold uppercase tracking-wide text-black mb-3"
+                className="mb-3 block text-sm font-bold tracking-wide text-black uppercase"
               >
                 Gemini API Key <span className="text-[#E91E63]">*</span>
               </label>
@@ -164,12 +164,12 @@ export function SettingsModal({
                   value={apiKey}
                   onChange={handleApiKeyChange}
                   placeholder="Enter your Gemini API key"
-                  className="w-full px-4 py-3 pr-24 bg-white border-[3px] border-black shadow-[4px_4px_0px_#000] text-black placeholder-gray-500 font-medium focus:outline-none focus:border-[#2196F3] focus:shadow-[4px_4px_0px_#2196F3]"
+                  className="w-full border-[3px] border-black bg-white px-4 py-3 pr-24 font-medium text-black placeholder-gray-500 shadow-[4px_4px_0px_#000] focus:border-[#2196F3] focus:shadow-[4px_4px_0px_#2196F3] focus:outline-none"
                 />
                 <button
                   type="button"
                   onClick={() => setShowApiKey(!showApiKey)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1 text-xs font-bold uppercase bg-[#FFEB3B] border-[2px] border-black hover:bg-[#FDD835] transition-colors"
+                  className="absolute top-1/2 right-2 -translate-y-1/2 border-[2px] border-black bg-[#FFEB3B] px-3 py-1 text-xs font-bold uppercase transition-colors hover:bg-[#FDD835]"
                 >
                   {showApiKey ? 'Hide' : 'Show'}
                 </button>
@@ -180,7 +180,7 @@ export function SettingsModal({
                   href="https://aistudio.google.com/apikey"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#2196F3] font-bold underline hover:text-[#1976D2]"
+                  className="font-bold text-[#2196F3] underline hover:text-[#1976D2]"
                 >
                   Google AI Studio
                 </a>
@@ -189,17 +189,17 @@ export function SettingsModal({
 
             {/* Model Selection */}
             <div>
-              <div className="flex items-center justify-between mb-3">
+              <div className="mb-3 flex items-center justify-between">
                 <label
                   htmlFor="model"
-                  className="block text-sm font-bold uppercase tracking-wide text-black"
+                  className="block text-sm font-bold tracking-wide text-black uppercase"
                 >
                   Model Selection
                 </label>
                 {loadingModels && (
-                  <span className="text-xs font-bold text-[#2196F3] flex items-center uppercase">
+                  <span className="flex items-center text-xs font-bold text-[#2196F3] uppercase">
                     <svg
-                      className="animate-spin h-4 w-4 mr-2"
+                      className="mr-2 h-4 w-4 animate-spin"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -224,7 +224,7 @@ export function SettingsModal({
                 {!loadingModels && models.length > GEMINI_MODELS.length && (
                   <span className="text-xs font-bold text-[#4CAF50] uppercase">
                     <span className="flex items-center gap-1">
-                      <Check className="w-3 h-3" />
+                      <Check className="h-3 w-3" />
                       {models.length} LOADED
                     </span>
                   </span>
@@ -232,7 +232,7 @@ export function SettingsModal({
               </div>
 
               {modelsError && (
-                <div className="mb-3 text-sm font-bold text-black bg-[#FF9800] border-[3px] border-black px-4 py-2">
+                <div className="mb-3 border-[3px] border-black bg-[#FF9800] px-4 py-2 text-sm font-bold text-black">
                   {modelsError}
                 </div>
               )}
@@ -242,7 +242,7 @@ export function SettingsModal({
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
                 disabled={loadingModels}
-                className="w-full px-4 py-3 bg-white border-[3px] border-black shadow-[4px_4px_0px_#000] text-black font-medium focus:outline-none focus:border-[#2196F3] focus:shadow-[4px_4px_0px_#2196F3] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full border-[3px] border-black bg-white px-4 py-3 font-medium text-black shadow-[4px_4px_0px_#000] focus:border-[#2196F3] focus:shadow-[4px_4px_0px_#2196F3] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {models.map((modelOption) => (
                   <option key={modelOption.value} value={modelOption.value}>
@@ -269,10 +269,10 @@ export function SettingsModal({
             </div>
 
             {/* Token Info */}
-            <div className="bg-[#2196F3] border-[3px] border-black shadow-[4px_4px_0px_#000] p-6">
+            <div className="border-[3px] border-black bg-[#2196F3] p-6 shadow-[4px_4px_0px_#000]">
               <div className="flex items-start">
                 <svg
-                  className="w-6 h-6 text-white mt-0.5 mr-4 flex-shrink-0"
+                  className="mt-0.5 mr-4 h-6 w-6 flex-shrink-0 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -285,7 +285,7 @@ export function SettingsModal({
                   />
                 </svg>
                 <div>
-                  <h4 className="text-base font-black text-white mb-2 uppercase">
+                  <h4 className="mb-2 text-base font-black text-white uppercase">
                     Unlimited Token Generation
                   </h4>
                   <p className="text-sm font-medium text-white">
@@ -299,17 +299,17 @@ export function SettingsModal({
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4 pt-6 border-t-[3px] border-black">
+          <div className="flex gap-4 border-t-[3px] border-black pt-6">
             <button
               onClick={handleSave}
               disabled={!apiKey.trim()}
-              className="flex-1 px-6 py-3 bg-[#FFEB3B] text-black font-bold uppercase tracking-wide border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-[4px_4px_0px_#000]"
+              className="flex-1 border-[3px] border-black bg-[#FFEB3B] px-6 py-3 font-bold tracking-wide text-black uppercase shadow-[4px_4px_0px_#000] transition-all duration-150 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#000] disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-[4px_4px_0px_#000]"
             >
               Save Settings
             </button>
             <button
               onClick={onClose}
-              className="px-6 py-3 bg-white text-black font-bold uppercase tracking-wide border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px]"
+              className="border-[3px] border-black bg-white px-6 py-3 font-bold tracking-wide text-black uppercase shadow-[4px_4px_0px_#000] transition-all duration-150 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#000]"
             >
               Cancel
             </button>

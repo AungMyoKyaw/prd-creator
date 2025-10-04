@@ -20,7 +20,7 @@ function CopyIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       strokeWidth={2.5}
       stroke="currentColor"
-      className={className || 'w-6 h-6'}
+      className={className || 'h-6 w-6'}
     >
       <path
         strokeLinecap="round"
@@ -39,7 +39,7 @@ function CheckIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       strokeWidth={2.5}
       stroke="currentColor"
-      className={className || 'w-6 h-6'}
+      className={className || 'h-6 w-6'}
     >
       <path
         strokeLinecap="round"
@@ -58,7 +58,7 @@ function DownloadIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       strokeWidth={2.5}
       stroke="currentColor"
-      className={className || 'w-6 h-6'}
+      className={className || 'h-6 w-6'}
     >
       <path
         strokeLinecap="round"
@@ -143,13 +143,13 @@ export function FullPagePRDViewer({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-0">
-      <div className="w-full h-full bg-white flex flex-col">
+    <div className="bg-opacity-90 fixed inset-0 z-50 flex items-center justify-center bg-black p-0">
+      <div className="flex h-full w-full flex-col bg-white">
         {/* Header */}
-        <div className="flex justify-between items-center p-6 border-b-[4px] border-black bg-white flex-shrink-0">
+        <div className="flex flex-shrink-0 items-center justify-between border-b-[4px] border-black bg-white p-6">
           <div className="flex items-center gap-4">
             <h1
-              className="text-3xl font-black text-black uppercase tracking-wide"
+              className="text-3xl font-black tracking-wide text-black uppercase"
               style={{
                 fontFamily:
                   "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
@@ -157,7 +157,7 @@ export function FullPagePRDViewer({
             >
               {productName} - PRD
             </h1>
-            <span className="px-3 py-1 bg-[#FFEB3B] text-black text-sm font-bold uppercase tracking-wide border-[2px] border-black">
+            <span className="border-[2px] border-black bg-[#FFEB3B] px-3 py-1 text-sm font-bold tracking-wide text-black uppercase">
               {model}
             </span>
           </div>
@@ -165,17 +165,17 @@ export function FullPagePRDViewer({
           <div className="flex items-center gap-3">
             <button
               onClick={handleCopy}
-              className="flex items-center px-4 py-2 text-sm font-bold uppercase tracking-wide bg-[#2196F3] text-white border-[2px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] focus:outline-none"
+              className="flex items-center border-[2px] border-black bg-[#2196F3] px-4 py-2 text-sm font-bold tracking-wide text-white uppercase shadow-[2px_2px_0px_#000] transition-all duration-150 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_#000] focus:outline-none active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000]"
               title="Copy to clipboard"
             >
               {isCopied ? (
                 <span className="flex items-center">
-                  <CheckIcon className="w-4 h-4 mr-2" />
+                  <CheckIcon className="mr-2 h-4 w-4" />
                   Copied!
                 </span>
               ) : (
                 <span className="flex items-center">
-                  <CopyIcon className="w-4 h-4 mr-2" />
+                  <CopyIcon className="mr-2 h-4 w-4" />
                   Copy
                 </span>
               )}
@@ -183,40 +183,40 @@ export function FullPagePRDViewer({
 
             <button
               onClick={handleDownload}
-              className="flex items-center px-4 py-2 text-sm font-bold uppercase tracking-wide bg-[#4CAF50] text-white border-[2px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] focus:outline-none"
+              className="flex items-center border-[2px] border-black bg-[#4CAF50] px-4 py-2 text-sm font-bold tracking-wide text-white uppercase shadow-[2px_2px_0px_#000] transition-all duration-150 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_#000] focus:outline-none active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000]"
               title="Download as Markdown"
             >
-              <DownloadIcon className="w-4 h-4 mr-2" />
+              <DownloadIcon className="mr-2 h-4 w-4" />
               Download
             </button>
 
             <button
               onClick={onClose}
-              className="flex items-center px-4 py-2 text-sm font-bold uppercase tracking-wide bg-[#F44336] text-white border-[2px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] focus:outline-none"
+              className="flex items-center border-[2px] border-black bg-[#F44336] px-4 py-2 text-sm font-bold tracking-wide text-white uppercase shadow-[2px_2px_0px_#000] transition-all duration-150 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_#000] focus:outline-none active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000]"
               title="Close (Esc)"
             >
-              <X className="w-4 h-4 mr-2" />
+              <X className="mr-2 h-4 w-4" />
               Close
             </button>
           </div>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-auto neo-full-page-content">
-          <div className="max-w-5xl mx-auto p-8">
+        <div className="neo-full-page-content flex-1 overflow-auto">
+          <div className="mx-auto max-w-5xl p-8">
             {content && content.trim().length > 0 ? (
-              <div className="markdown-content text-black font-medium leading-relaxed">
+              <div className="markdown-content leading-relaxed font-medium text-black">
                 <MarkdownRenderer content={content} />
               </div>
             ) : (
-              <div className="text-center py-16">
-                <p className="text-gray-500 text-lg">
+              <div className="py-16 text-center">
+                <p className="text-lg text-gray-500">
                   No PRD content to display.
                 </p>
-                <p className="text-gray-400 mt-2">
+                <p className="mt-2 text-gray-400">
                   Please generate a PRD first.
                 </p>
-                <p className="text-gray-300 mt-1 text-sm">
+                <p className="mt-1 text-sm text-gray-300">
                   Debug: Content length = {content?.length || 0}
                 </p>
               </div>

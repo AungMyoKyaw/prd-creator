@@ -96,21 +96,21 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F5F5F5]">
+    <div className="flex min-h-screen flex-col bg-[#F5F5F5]">
       <Header
         onSettingsClick={() => setIsSettingsOpen(true)}
         onSavedDraftsClick={() => setIsSavedDraftsOpen(true)}
       />
 
-      <main className="flex-grow container mx-auto px-4 py-4 min-h-0">
-        <div className="max-w-7xl mx-auto h-full flex flex-col min-h-0">
+      <main className="container mx-auto min-h-0 flex-grow px-4 py-4">
+        <div className="mx-auto flex h-full min-h-0 max-w-7xl flex-col">
           {/* Setup Prompt Banner */}
           {showSetupPrompt && (
-            <div className="mb-6 bg-[#FFEB3B] border-[3px] border-black shadow-[6px_6px_0px_#000] p-6">
-              <div className="flex items-center justify-between flex-wrap gap-4">
+            <div className="mb-6 border-[3px] border-black bg-[#FFEB3B] p-6 shadow-[6px_6px_0px_#000]">
+              <div className="flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center">
                   <svg
-                    className="w-8 h-8 text-black mr-4 flex-shrink-0"
+                    className="mr-4 h-8 w-8 flex-shrink-0 text-black"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -123,17 +123,17 @@ export default function Home() {
                     />
                   </svg>
                   <div>
-                    <h3 className="text-lg font-bold text-black uppercase tracking-wide mb-1">
+                    <h3 className="mb-1 text-lg font-bold tracking-wide text-black uppercase">
                       Setup Required
                     </h3>
-                    <p className="text-black font-medium">
+                    <p className="font-medium text-black">
                       Add your Gemini API key to start generating PRDs
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsSettingsOpen(true)}
-                  className="flex items-center px-4 py-2 bg-white text-black font-bold uppercase tracking-wide border-[2px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] focus:outline-none"
+                  className="flex items-center border-[2px] border-black bg-white px-4 py-2 font-bold tracking-wide text-black uppercase shadow-[2px_2px_0px_#000] transition-all duration-150 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_#000] focus:outline-none active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000]"
                 >
                   Configure API Key
                 </button>
@@ -142,7 +142,7 @@ export default function Home() {
           )}
 
           {/* Main Content - Wizard Only */}
-          <div className="max-w-6xl mx-auto">
+          <div className="mx-auto max-w-6xl">
             <PRDWizard
               apiKey={apiKey}
               selectedModel={selectedModel}

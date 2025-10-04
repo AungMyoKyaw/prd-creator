@@ -79,25 +79,25 @@ export function SavedDraftsModal({
   return (
     <Dialog.Root open={isOpen} onOpenChange={onClose}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/50 z-[100]" />
-        <Dialog.Content className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-white border-[3px] border-black shadow-[8px_8px_0px_#000] w-[95vw] max-w-3xl max-h-[85vh] overflow-hidden z-[101] focus:outline-none">
-          <div className="flex flex-col h-full max-h-[85vh]">
+        <Dialog.Overlay className="fixed inset-0 z-[100] bg-black/50" />
+        <Dialog.Content className="fixed top-[50%] left-[50%] z-[101] max-h-[85vh] w-[95vw] max-w-3xl translate-x-[-50%] translate-y-[-50%] overflow-hidden border-[3px] border-black bg-white shadow-[8px_8px_0px_#000] focus:outline-none">
+          <div className="flex h-full max-h-[85vh] flex-col">
             {/* Header */}
-            <div className="p-6 border-b-[3px] border-black bg-[#FFEB3B]">
-              <div className="flex justify-between items-center">
+            <div className="border-b-[3px] border-black bg-[#FFEB3B] p-6">
+              <div className="flex items-center justify-between">
                 <Dialog.Title
-                  className="text-2xl font-black text-black uppercase tracking-wide"
+                  className="text-2xl font-black tracking-wide text-black uppercase"
                   style={{
                     fontFamily:
                       "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
                   }}
                 >
                   <span className="flex items-center gap-2">
-                    <Save className="w-5 h-5" />
+                    <Save className="h-5 w-5" />
                     Saved PRDs
                   </span>
                 </Dialog.Title>
-                <Dialog.Close className="text-black hover:text-gray-700 transition-colors">
+                <Dialog.Close className="text-black transition-colors hover:text-gray-700">
                   <svg
                     width="24"
                     height="24"
@@ -113,7 +113,7 @@ export function SavedDraftsModal({
                   </svg>
                 </Dialog.Close>
               </div>
-              <p className="text-black text-sm font-medium mt-2">
+              <p className="mt-2 text-sm font-medium text-black">
                 {drafts.length} saved PRD{drafts.length !== 1 ? 's' : ''} (max
                 12)
               </p>
@@ -123,13 +123,13 @@ export function SavedDraftsModal({
             <div className="flex-1 overflow-y-auto p-6">
               {isLoading ? (
                 <div className="flex flex-col items-center justify-center py-12">
-                  <div className="animate-spin rounded-full h-12 w-12 border-4 border-black border-t-transparent mb-4"></div>
-                  <p className="text-black font-bold">Loading drafts...</p>
+                  <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-black border-t-transparent"></div>
+                  <p className="font-bold text-black">Loading drafts...</p>
                 </div>
               ) : drafts.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-12 text-center">
                   <svg
-                    className="w-16 h-16 text-gray-400 mb-4"
+                    className="mb-4 h-16 w-16 text-gray-400"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -141,10 +141,10 @@ export function SavedDraftsModal({
                       d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     />
                   </svg>
-                  <h3 className="text-xl font-bold text-black mb-2">
+                  <h3 className="mb-2 text-xl font-bold text-black">
                     No Saved PRDs
                   </h3>
-                  <p className="text-gray-600 font-medium">
+                  <p className="font-medium text-gray-600">
                     Generate and save your first PRD to see it here!
                   </p>
                 </div>
@@ -154,25 +154,25 @@ export function SavedDraftsModal({
                     <div
                       key={draft.id}
                       onClick={() => handleLoadDraft(draft)}
-                      className="bg-white border-[3px] border-black shadow-[4px_4px_0px_#000] p-4 cursor-pointer transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px]"
+                      className="cursor-pointer border-[3px] border-black bg-white p-4 shadow-[4px_4px_0px_#000] transition-all duration-150 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#000]"
                     >
-                      <div className="flex justify-between items-start">
+                      <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <h3 className="text-lg font-bold text-black mb-1">
+                          <h3 className="mb-1 text-lg font-bold text-black">
                             {draft.title}
                           </h3>
-                          <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-600 font-medium">
+                          <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium text-gray-600">
                             <span className="flex items-center gap-1">
-                              <Calendar className="w-3 h-3" />
+                              <Calendar className="h-3 w-3" />
                               {formatDate(draft.createdAt)}
                             </span>
                             <span className="flex items-center gap-1">
-                              <Bot className="w-3 h-3" />
+                              <Bot className="h-3 w-3" />
                               {draft.model}
                             </span>
                           </div>
                           {draft.inputs.problemStatement && (
-                            <p className="text-sm text-gray-700 font-medium mt-2 line-clamp-2">
+                            <p className="mt-2 line-clamp-2 text-sm font-medium text-gray-700">
                               {draft.inputs.problemStatement}
                             </p>
                           )}
@@ -180,7 +180,7 @@ export function SavedDraftsModal({
                         <button
                           onClick={(e) => handleDelete(draft.id, e)}
                           disabled={deletingId === draft.id}
-                          className="ml-4 px-3 py-2 bg-[#F44336] text-white font-bold text-sm uppercase border-[3px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[4px_4px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="ml-4 border-[3px] border-black bg-[#F44336] px-3 py-2 text-sm font-bold text-white uppercase shadow-[2px_2px_0px_#000] transition-all duration-150 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[4px_4px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000] disabled:cursor-not-allowed disabled:opacity-50"
                           title="Delete draft"
                         >
                           {deletingId === draft.id ? '...' : 'Delete'}
@@ -193,11 +193,11 @@ export function SavedDraftsModal({
             </div>
 
             {/* Footer */}
-            <div className="p-6 border-t-[3px] border-black bg-[#F5F5F5]">
+            <div className="border-t-[3px] border-black bg-[#F5F5F5] p-6">
               <div className="flex justify-end gap-3">
                 <button
                   onClick={onClose}
-                  className="px-6 py-3 bg-white text-black font-bold uppercase tracking-wide border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px]"
+                  className="border-[3px] border-black bg-white px-6 py-3 font-bold tracking-wide text-black uppercase shadow-[4px_4px_0px_#000] transition-all duration-150 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#000]"
                 >
                   Close
                 </button>

@@ -14,7 +14,7 @@ function SparklesIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       strokeWidth={2.5}
       stroke="currentColor"
-      className={className || 'w-5 h-5'}
+      className={className || 'h-5 w-5'}
     >
       <path
         strokeLinecap="round"
@@ -27,10 +27,10 @@ function SparklesIcon({ className }: { className?: string }) {
 
 export function Section({ title, children, onRefine }: SectionProps) {
   return (
-    <div className="bg-white p-4 border-[3px] border-black shadow-[4px_4px_0px_#000]">
-      <div className="flex justify-between items-center border-b-[2px] border-black pb-2 mb-4">
+    <div className="border-[3px] border-black bg-white p-4 shadow-[4px_4px_0px_#000]">
+      <div className="mb-4 flex items-center justify-between border-b-[2px] border-black pb-2">
         <h2
-          className="text-xl font-extrabold text-black tracking-tight"
+          className="text-xl font-extrabold tracking-tight text-black"
           style={{
             fontFamily:
               "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
@@ -42,10 +42,10 @@ export function Section({ title, children, onRefine }: SectionProps) {
           <button
             type="button"
             onClick={onRefine}
-            className="flex items-center gap-2 px-3 py-1 text-xs font-bold uppercase tracking-wide bg-[#E91E63] text-white border-[2px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] focus:outline-none focus:border-[#FFEB3B]"
+            className="flex items-center gap-2 border-[2px] border-black bg-[#E91E63] px-3 py-1 text-xs font-bold tracking-wide text-white uppercase shadow-[2px_2px_0px_#000] transition-all duration-150 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_#000] focus:border-[#FFEB3B] focus:outline-none active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000]"
             aria-label={`Refine ${title} section with AI`}
           >
-            <SparklesIcon className="w-3 h-3" />
+            <SparklesIcon className="h-3 w-3" />
             Refine
           </button>
         ) : null}

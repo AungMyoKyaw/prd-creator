@@ -249,12 +249,12 @@ export function PRDWizard({
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto flex flex-col">
+    <div className="mx-auto flex w-full max-w-6xl flex-col">
       {/* Progress Steps */}
       <div className="mb-8">
         <div className="relative">
           {/* Background Progress Line */}
-          <div className="absolute top-6 left-0 right-0 h-1 bg-gray-300">
+          <div className="absolute top-6 right-0 left-0 h-1 bg-gray-300">
             <div
               className="h-1 bg-[#4CAF50] transition-all duration-500"
               style={{
@@ -264,7 +264,7 @@ export function PRDWizard({
           </div>
 
           {/* Step Indicators */}
-          <div className="flex items-center justify-between relative">
+          <div className="relative flex items-center justify-between">
             {steps.map((step) => {
               const Icon = step.icon;
               const isActive = currentStep === step.id;
@@ -279,31 +279,28 @@ export function PRDWizard({
                   <button
                     onClick={() => isClickable && handleStepClick(step.id)}
                     disabled={!isClickable}
-                    className={`
-                      relative z-10 flex items-center justify-center w-14 h-14 rounded-full border-[4px] transition-all duration-300 transform
-                      ${
-                        isActive
-                          ? 'bg-[#FFEB3B] border-black shadow-[6px_6px_0px_#000] scale-110'
-                          : isCompleted
-                            ? 'bg-[#4CAF50] border-black shadow-[4px_4px_0px_#000] hover:scale-105'
-                            : isClickable
-                              ? 'bg-white border-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-x-[2px] hover:-translate-y-[2px] hover:scale-105'
-                              : 'bg-gray-200 border-gray-400 cursor-not-allowed'
-                      }
-                    `}
+                    className={`relative z-10 flex h-14 w-14 transform items-center justify-center rounded-full border-[4px] transition-all duration-300 ${
+                      isActive
+                        ? 'scale-110 border-black bg-[#FFEB3B] shadow-[6px_6px_0px_#000]'
+                        : isCompleted
+                          ? 'border-black bg-[#4CAF50] shadow-[4px_4px_0px_#000] hover:scale-105'
+                          : isClickable
+                            ? 'border-black bg-white shadow-[4px_4px_0px_#000] hover:-translate-x-[2px] hover:-translate-y-[2px] hover:scale-105 hover:shadow-[6px_6px_0px_#000]'
+                            : 'cursor-not-allowed border-gray-400 bg-gray-200'
+                    } `}
                   >
                     <Icon
-                      className={`w-7 h-7 ${isActive || isCompleted ? 'text-black' : 'text-gray-500'}`}
+                      className={`h-7 w-7 ${isActive || isCompleted ? 'text-black' : 'text-gray-500'}`}
                     />
                     {isCompleted && (
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-4 h-4 bg-black rounded-full"></div>
+                        <div className="h-4 w-4 rounded-full bg-black"></div>
                       </div>
                     )}
                   </button>
                   <div className="mt-4 text-center">
                     <p
-                      className={`text-sm font-bold uppercase tracking-wide ${
+                      className={`text-sm font-bold tracking-wide uppercase ${
                         isActive
                           ? 'text-black'
                           : isCompleted
@@ -318,7 +315,7 @@ export function PRDWizard({
                       {step.title}
                     </p>
                     <p
-                      className={`text-xs mt-1 ${
+                      className={`mt-1 text-xs ${
                         isActive ? 'text-black' : 'text-gray-500'
                       }`}
                     >
@@ -334,9 +331,9 @@ export function PRDWizard({
 
       {/* Model Info */}
       <div className="mb-6 flex justify-center">
-        <div className="inline-flex items-center px-4 py-2 bg-[#FFEB3B] border-[4px] border-black shadow-[4px_4px_0px_#000] model-info-badge">
+        <div className="model-info-badge inline-flex items-center border-[4px] border-black bg-[#FFEB3B] px-4 py-2 shadow-[4px_4px_0px_#000]">
           <div className="flex items-center space-x-3">
-            <div className="w-3 h-3 bg-[#4CAF50] rounded-full animate-pulse"></div>
+            <div className="h-3 w-3 animate-pulse rounded-full bg-[#4CAF50]"></div>
             <div className="text-left">
               <p className="text-xs font-bold text-black uppercase">
                 Currently Using:
@@ -350,16 +347,16 @@ export function PRDWizard({
       </div>
 
       {/* Sticky Navigation Bar */}
-      <div className="sticky bottom-0 left-0 right-0 bg-white border-t-[4px] border-black shadow-[0_-4px_0px_#000] z-40">
+      <div className="sticky right-0 bottom-0 left-0 z-40 border-t-[4px] border-black bg-white shadow-[0_-4px_0px_#000]">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <Button
               variant="ghost"
               onClick={handlePrevious}
               disabled={currentStep === 1}
               className="flex items-center gap-2 px-6 py-3"
             >
-              <ArrowLeft className="w-5 h-5" />
+              <ArrowLeft className="h-5 w-5" />
               Previous
             </Button>
 
@@ -379,22 +376,22 @@ export function PRDWizard({
               className="flex items-center gap-2 px-6 py-3"
             >
               {currentStep === 3 ? 'Start New Idea' : 'Next'}
-              {currentStep < 3 && <ArrowRight className="w-5 h-5" />}
+              {currentStep < 3 && <ArrowRight className="h-5 w-5" />}
             </Button>
           </div>
         </div>
       </div>
 
       {/* Step Content */}
-      <div className="min-h-[500px] bg-white border-[4px] border-black shadow-[6px_6px_0px_#000] rounded-none p-8 pb-20">
+      <div className="min-h-[500px] rounded-none border-[4px] border-black bg-white p-8 pb-20 shadow-[6px_6px_0px_#000]">
         {currentStep === 1 && (
-          <div className="max-w-3xl mx-auto space-y-8">
+          <div className="mx-auto max-w-3xl space-y-8">
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#FFEB3B] border-[4px] border-black shadow-[4px_4px_0px_#000] mb-6">
-                <Sparkles className="w-8 h-8 text-black" />
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center border-[4px] border-black bg-[#FFEB3B] shadow-[4px_4px_0px_#000]">
+                <Sparkles className="h-8 w-8 text-black" />
               </div>
               <h2
-                className="text-4xl font-black text-black mb-4 uppercase tracking-wide"
+                className="mb-4 text-4xl font-black tracking-wide text-black uppercase"
                 style={{
                   fontFamily:
                     "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
@@ -402,7 +399,7 @@ export function PRDWizard({
               >
                 What&apos;s Your Product Idea?
               </h2>
-              <p className="text-xl text-gray-700 leading-relaxed">
+              <p className="text-xl leading-relaxed text-gray-700">
                 Tell us about your product in a few sentences, and we&apos;ll
                 help you build a comprehensive PRD.
               </p>
@@ -420,12 +417,12 @@ export function PRDWizard({
                 description="Describe your product concept, target users, and key features in your own words."
               />
 
-              <div className="bg-blue-50 border-[3px] border-blue-200 p-4 rounded-lg">
-                <h3 className="text-lg font-bold text-blue-900 mb-2 flex items-center gap-2">
-                  <Camera className="w-6 h-6" />
+              <div className="rounded-lg border-[3px] border-blue-200 bg-blue-50 p-4">
+                <h3 className="mb-2 flex items-center gap-2 text-lg font-bold text-blue-900">
+                  <Camera className="h-6 w-6" />
                   Add Visual Context (Optional)
                 </h3>
-                <p className="text-blue-700 mb-4">
+                <p className="mb-4 text-blue-700">
                   Attach mockups, diagrams, wireframes, or reference photos to
                   help the AI better understand your product idea.
                 </p>
@@ -439,8 +436,8 @@ export function PRDWizard({
             </div>
 
             {prefillError && (
-              <div className="bg-[#F44336] border-[4px] border-black text-white p-6 shadow-[4px_4px_0px_#000]">
-                <p className="font-bold uppercase tracking-wide mb-2">Error:</p>
+              <div className="border-[4px] border-black bg-[#F44336] p-6 text-white shadow-[4px_4px_0px_#000]">
+                <p className="mb-2 font-bold tracking-wide uppercase">Error:</p>
                 <p className="font-medium">{prefillError}</p>
               </div>
             )}
@@ -448,13 +445,13 @@ export function PRDWizard({
         )}
 
         {currentStep === 2 && (
-          <div className="max-w-4xl mx-auto space-y-8">
+          <div className="mx-auto max-w-4xl space-y-8">
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#2196F3] border-[4px] border-black shadow-[4px_4px_0px_#000] mb-6">
-                <Edit3 className="w-8 h-8 text-white" />
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center border-[4px] border-black bg-[#2196F3] shadow-[4px_4px_0px_#000]">
+                <Edit3 className="h-8 w-8 text-white" />
               </div>
               <h2
-                className="text-4xl font-black text-black mb-4 uppercase tracking-wide"
+                className="mb-4 text-4xl font-black tracking-wide text-black uppercase"
                 style={{
                   fontFamily:
                     "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
@@ -462,16 +459,16 @@ export function PRDWizard({
               >
                 Review & Customize Details
               </h2>
-              <p className="text-xl text-gray-700 leading-relaxed">
+              <p className="text-xl leading-relaxed text-gray-700">
                 We&apos;ve pre-filled your PRD based on your idea. Review and
                 edit any section as needed.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-bold uppercase tracking-wide text-black mb-2">
+                  <label className="mb-2 block text-sm font-bold tracking-wide text-black uppercase">
                     Product Name
                   </label>
                   <input
@@ -480,7 +477,7 @@ export function PRDWizard({
                     name="productName"
                     value={prdInput.productName}
                     onChange={handleChange}
-                    className="block w-full px-4 py-3 bg-white border-[3px] border-black shadow-[4px_4px_0px_#000] text-black placeholder-gray-500 font-medium transition-all duration-150 focus:outline-none focus:border-[#2196F3] focus:shadow-[4px_4px_0px_#2196F3] focus:translate-x-[-1px] focus:translate-y-[-1px]"
+                    className="block w-full border-[3px] border-black bg-white px-4 py-3 font-medium text-black placeholder-gray-500 shadow-[4px_4px_0px_#000] transition-all duration-150 focus:translate-x-[-1px] focus:translate-y-[-1px] focus:border-[#2196F3] focus:shadow-[4px_4px_0px_#2196F3] focus:outline-none"
                     placeholder="e.g., Apollo - The AI Trip Planner"
                   />
                 </div>
@@ -534,8 +531,8 @@ export function PRDWizard({
             </div>
 
             {generateError && (
-              <div className="bg-[#F44336] border-[4px] border-black text-white p-6 shadow-[4px_4px_0px_#000]">
-                <p className="font-bold uppercase tracking-wide mb-2">Error:</p>
+              <div className="border-[4px] border-black bg-[#F44336] p-6 text-white shadow-[4px_4px_0px_#000]">
+                <p className="mb-2 font-bold tracking-wide uppercase">Error:</p>
                 <p className="font-medium">{generateError}</p>
               </div>
             )}
@@ -545,11 +542,11 @@ export function PRDWizard({
         {currentStep === 3 && (
           <div className="space-y-8">
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#4CAF50] border-[4px] border-black shadow-[4px_4px_0px_#000] mb-6">
-                <FileText className="w-8 h-8 text-white" />
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center border-[4px] border-black bg-[#4CAF50] shadow-[4px_4px_0px_#000]">
+                <FileText className="h-8 w-8 text-white" />
               </div>
               <h2
-                className="text-4xl font-black text-black mb-4 uppercase tracking-wide"
+                className="mb-4 text-4xl font-black tracking-wide text-black uppercase"
                 style={{
                   fontFamily:
                     "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
@@ -557,7 +554,7 @@ export function PRDWizard({
               >
                 Your PRD is Ready!
               </h2>
-              <p className="text-xl text-gray-700 leading-relaxed">
+              <p className="text-xl leading-relaxed text-gray-700">
                 Here&apos;s your generated Product Requirements Document. You
                 can download it, copy it, or view in full page mode.
               </p>

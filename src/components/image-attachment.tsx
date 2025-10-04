@@ -164,14 +164,11 @@ export default function ImageAttachmentComponent({
       {/* Upload Area */}
       {images.length < maxImages && (
         <div
-          className={`
-            relative border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-all
-            ${
-              dragActive
-                ? 'border-blue-500 bg-blue-50 transform scale-105'
-                : 'border-gray-300 hover:border-gray-400 hover:bg-gray-50'
-            }
-          `}
+          className={`relative cursor-pointer rounded-lg border-2 border-dashed p-6 text-center transition-all ${
+            dragActive
+              ? 'scale-105 transform border-blue-500 bg-blue-50'
+              : 'border-gray-300 hover:border-gray-400 hover:bg-gray-50'
+          } `}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
@@ -198,7 +195,7 @@ export default function ImageAttachmentComponent({
               <p className="text-sm text-gray-500">
                 Drag and drop or click to select files
               </p>
-              <p className="text-xs text-gray-400 mt-1">
+              <p className="mt-1 text-xs text-gray-400">
                 Max {maxImages} images • Max{' '}
                 {(maxFileSize / 1024 / 1024).toFixed(1)}MB each
               </p>
@@ -216,7 +213,7 @@ export default function ImageAttachmentComponent({
           {errors.map((error, index) => (
             <div
               key={index}
-              className="flex items-center space-x-2 text-red-600 text-sm"
+              className="flex items-center space-x-2 text-sm text-red-600"
             >
               <AlertCircle className="h-4 w-4 flex-shrink-0" />
               <span>{error}</span>
@@ -229,7 +226,7 @@ export default function ImageAttachmentComponent({
       {images.length > 0 && (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-medium text-gray-900 flex items-center space-x-2">
+            <h3 className="flex items-center space-x-2 text-lg font-medium text-gray-900">
               <ImageIcon className="h-5 w-5" />
               <span>
                 Attached Images ({images.length}/{maxImages})
@@ -239,35 +236,35 @@ export default function ImageAttachmentComponent({
               <button
                 type="button"
                 onClick={openFileDialog}
-                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                className="text-sm font-medium text-blue-600 hover:text-blue-700"
               >
                 Add More
               </button>
             )}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {images.map((image) => (
               <div
                 key={image.id}
-                className="relative group border-2 border-gray-200 rounded-lg overflow-hidden bg-white"
+                className="group relative overflow-hidden rounded-lg border-2 border-gray-200 bg-white"
               >
-                <div className="aspect-square relative">
+                <div className="relative aspect-square">
                   <img
                     src={image.preview}
                     alt={image.name}
-                    className="w-full h-full object-cover"
+                    className="h-full w-full object-cover"
                   />
                   <button
                     type="button"
                     onClick={() => removeImage(image.id)}
-                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute top-2 right-2 rounded-full bg-red-500 p-1 text-white opacity-0 transition-opacity group-hover:opacity-100"
                   >
                     <X className="h-4 w-4" />
                   </button>
                 </div>
-                <div className="p-3 space-y-1">
-                  <p className="text-sm font-medium text-gray-900 truncate">
+                <div className="space-y-1 p-3">
+                  <p className="truncate text-sm font-medium text-gray-900">
                     {image.name}
                   </p>
                   <p className="text-xs text-gray-500">

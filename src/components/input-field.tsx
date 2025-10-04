@@ -19,17 +19,17 @@ export function InputField({
     <div className="w-full">
       <label
         htmlFor={id}
-        className="block text-sm font-semibold uppercase tracking-wide text-black mb-2"
+        className="mb-2 block text-sm font-semibold tracking-wide text-black uppercase"
       >
         {label}
-        {required && <span className="text-[#E91E63] ml-1">*</span>}
+        {required && <span className="ml-1 text-[#E91E63]">*</span>}
       </label>
       <input
         id={id}
         className={clsx(
-          'block w-full px-4 py-3 bg-white border-[3px] border-black shadow-[4px_4px_0px_#000] text-black placeholder-gray-500 font-medium transition-all duration-150',
-          'focus:outline-none focus:border-[#2196F3] focus:shadow-[4px_4px_0px_#2196F3] focus:translate-x-[-1px] focus:translate-y-[-1px]',
-          'disabled:opacity-50 disabled:cursor-not-allowed',
+          'block w-full border-[3px] border-black bg-white px-4 py-3 font-medium text-black placeholder-gray-500 shadow-[4px_4px_0px_#000] transition-all duration-150',
+          'focus:translate-x-[-1px] focus:translate-y-[-1px] focus:border-[#2196F3] focus:shadow-[4px_4px_0px_#2196F3] focus:outline-none',
+          'disabled:cursor-not-allowed disabled:opacity-50',
           error && 'border-[#F44336] shadow-[4px_4px_0px_#F44336]',
           className
         )}

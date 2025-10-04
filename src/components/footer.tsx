@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="py-8 border-t-[4px] border-black bg-white shadow-[0_-4px_0px_#000]">
+    <footer className="border-t-[4px] border-black bg-white py-8 shadow-[0_-4px_0px_#000]">
       <div className="container mx-auto px-4 text-center">
         <div className="mb-4">
           <a
@@ -18,7 +18,7 @@ export function Footer() {
             />
           </a>
         </div>
-        <p className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
+        <p className="text-sm font-semibold tracking-wide text-gray-700 uppercase">
           Powered by Gemini API • Built for modern product teams
         </p>
       </div>

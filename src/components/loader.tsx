@@ -1,8 +1,8 @@
 export function Loader() {
   return (
-    <div className="flex flex-col items-center justify-center p-12 bg-[#FFEB3B] border-[3px] border-black shadow-[8px_8px_0px_#000]">
+    <div className="flex flex-col items-center justify-center border-[3px] border-black bg-[#FFEB3B] p-12 shadow-[8px_8px_0px_#000]">
       <svg
-        className="animate-spin h-16 w-16 text-black stroke-[4]"
+        className="h-16 w-16 animate-spin stroke-[4] text-black"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -22,7 +22,7 @@ export function Loader() {
         />
       </svg>
       <p
-        className="mt-6 text-2xl font-black text-black uppercase tracking-wide"
+        className="mt-6 text-2xl font-black tracking-wide text-black uppercase"
         style={{
           fontFamily:
             "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
@@ -30,7 +30,7 @@ export function Loader() {
       >
         Generating your PRD...
       </p>
-      <p className="text-base font-bold text-black mt-2">
+      <p className="mt-2 text-base font-bold text-black">
         The AI is thinking. This may take a moment.
       </p>
     </div>

@@ -9,21 +9,21 @@ interface HeaderProps {
 
 export function Header({ onSettingsClick, onSavedDraftsClick }: HeaderProps) {
   return (
-    <header className="bg-white border-b-[4px] border-black shadow-[0_4px_0px_#000] sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-2 relative">
+    <header className="sticky top-0 z-50 border-b-[4px] border-black bg-white shadow-[0_4px_0px_#000]">
+      <div className="relative container mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <h1
-              className="text-2xl md:text-3xl font-black text-black tracking-tight"
+              className="text-2xl font-black tracking-tight text-black md:text-3xl"
               style={{
                 fontFamily:
                   "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
               }}
             >
               <span className="text-[#2196F3]">PRD</span> CREATOR{' '}
-              <FileText className="inline w-6 h-6 text-black" />
+              <FileText className="inline h-6 w-6 text-black" />
             </h1>
-            <p className="hidden md:block text-sm text-gray-700 font-medium">
+            <p className="hidden text-sm font-medium text-gray-700 md:block">
               Create professional PRDs instantly
             </p>
           </div>
@@ -33,12 +33,12 @@ export function Header({ onSettingsClick, onSavedDraftsClick }: HeaderProps) {
             {onSavedDraftsClick && (
               <button
                 onClick={onSavedDraftsClick}
-                className="p-2 bg-[#FFEB3B] text-black border-[2px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px]"
+                className="border-[2px] border-black bg-[#FFEB3B] p-2 text-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000]"
                 aria-label="Saved PRDs"
                 title="Saved PRDs"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="h-5 w-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -54,12 +54,12 @@ export function Header({ onSettingsClick, onSavedDraftsClick }: HeaderProps) {
             )}
             <button
               onClick={onSettingsClick}
-              className="p-2 bg-white text-black border-[2px] border-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] active:shadow-[1px_1px_0px_#000] active:translate-x-[1px] active:translate-y-[1px]"
+              className="border-[2px] border-black bg-white p-2 text-black shadow-[2px_2px_0px_#000] transition-all duration-150 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000]"
               aria-label="Settings"
               title="Settings"
             >
               <svg
-                className="w-5 h-5"
+                className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

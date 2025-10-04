@@ -34,16 +34,16 @@ export function RefineModal({
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative w-full max-w-lg bg-white border-[5px] border-black shadow-[12px_12px_0px_#000] p-8">
+      <div className="relative w-full max-w-lg border-[5px] border-black bg-white p-8 shadow-[12px_12px_0px_#000]">
         <div className="flex items-start gap-4">
-          <div className="flex h-16 w-16 items-center justify-center bg-[#E91E63] border-[3px] border-black flex-shrink-0">
+          <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center border-[3px] border-black bg-[#E91E63]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={2.5}
               stroke="currentColor"
-              className="w-8 h-8 text-white"
+              className="h-8 w-8 text-white"
             >
               <path
                 strokeLinecap="round"
@@ -54,7 +54,7 @@ export function RefineModal({
           </div>
           <div className="flex-1">
             <h3
-              className="text-2xl font-black text-black uppercase tracking-tight mb-4"
+              className="mb-4 text-2xl font-black tracking-tight text-black uppercase"
               style={{
                 fontFamily:
                   "'Big Shoulders Display', 'Impact', 'Arial Black', sans-serif"
@@ -74,7 +74,7 @@ export function RefineModal({
               />
             </div>
             {error ? (
-              <div className="mt-4 bg-[#F44336] border-[3px] border-black text-white p-4 shadow-[4px_4px_0px_#000]">
+              <div className="mt-4 border-[3px] border-black bg-[#F44336] p-4 text-white shadow-[4px_4px_0px_#000]">
                 <p>
                   <span className="font-bold uppercase">Error:</span> {error}
                 </p>
@@ -82,7 +82,7 @@ export function RefineModal({
             ) : null}
           </div>
         </div>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-end border-t-[3px] border-black pt-6">
+        <div className="mt-8 flex flex-col gap-3 border-t-[3px] border-black pt-6 sm:flex-row sm:justify-end">
           <Button
             type="button"
             onClick={onSubmit}
@@ -97,7 +97,7 @@ export function RefineModal({
             type="button"
             onClick={onClose}
             disabled={isLoading}
-            className="w-full sm:w-auto inline-flex justify-center px-6 py-3 bg-white text-black font-bold uppercase tracking-wide border-[3px] border-black shadow-[4px_4px_0px_#000] transition-all duration-150 hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-50"
+            className="inline-flex w-full justify-center border-[3px] border-black bg-white px-6 py-3 font-bold tracking-wide text-black uppercase shadow-[4px_4px_0px_#000] transition-all duration-150 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#000] disabled:opacity-50 sm:w-auto"
           >
             Cancel
           </button>
