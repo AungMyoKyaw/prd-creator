@@ -166,7 +166,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ models });
   } catch (error) {
-    console.error('Error fetching models:', error);
     const message =
       error instanceof Error
         ? error.message

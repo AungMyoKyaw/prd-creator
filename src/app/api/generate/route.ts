@@ -77,7 +77,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ data: { prd: text } });
   } catch (error) {
-    console.error('Error generating PRD:', error);
     const message =
       error instanceof Error
         ? error.message

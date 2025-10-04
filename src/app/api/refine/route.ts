@@ -133,7 +133,6 @@ Your task is to update the values for the fields in the "${sectionTitle}" sectio
 
     return NextResponse.json({ data: validatedResult });
   } catch (error) {
-    console.error('Error refining PRD section:', error);
     const message =
       error instanceof Error
         ? error.message

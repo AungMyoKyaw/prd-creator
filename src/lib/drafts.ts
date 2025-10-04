@@ -96,11 +96,7 @@ export async function loadDrafts(): Promise<StoredDraft[]> {
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
     return allDrafts;
-  } catch (error) {
-    console.warn(
-      'IndexedDB not available, falling back to localStorage:',
-      error
-    );
+  } catch {
     return loadDraftsFromLocalStorage();
   }
 }
@@ -131,11 +127,7 @@ export async function saveDraft(draft: StoredDraft): Promise<StoredDraft[]> {
     saveDraftsToLocalStorage(draftsForStorage);
 
     return draftsForStorage;
-  } catch (error) {
-    console.warn(
-      'IndexedDB not available, falling back to localStorage:',
-      error
-    );
+  } catch {
     const storage = getStorage();
     if (!storage) {
       return [];
@@ -163,11 +155,7 @@ export async function deleteDraft(id: string): Promise<StoredDraft[]> {
     saveDraftsToLocalStorage(remaining);
 
     return remaining;
-  } catch (error) {
-    console.warn(
-      'IndexedDB not available, falling back to localStorage:',
-      error
-    );
+  } catch {
     const next = loadDraftsFromLocalStorage().filter(
       (draft) => draft.id !== id
     );
@@ -180,11 +168,7 @@ export async function getDraft(id: string): Promise<StoredDraft | undefined> {
   try {
     const db = await getDB();
     return await db.get(STORE_NAME, id);
-  } catch (error) {
-    console.warn(
-      'IndexedDB not available, falling back to localStorage:',
-      error
-    );
+  } catch {
     const drafts = loadDraftsFromLocalStorage();
     return drafts.find((draft) => draft.id === id);
   }
@@ -209,10 +193,7 @@ export async function migrateLocalStorageToIndexedDB(): Promise<void> {
     }
 
     await tx.done;
-    console.log('Successfully migrated localStorage data to IndexedDB');
-  } catch (error) {
-    console.warn('Failed to migrate localStorage to IndexedDB:', error);
-  }
+  } catch {}
 }
 
 export function sanitizeIngestForStorage(

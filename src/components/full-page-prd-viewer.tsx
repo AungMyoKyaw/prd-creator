@@ -125,18 +125,6 @@ export function FullPagePRDViewer({
     }
   };
 
-  // Debug: Check if content is empty
-  useEffect(() => {
-    if (isOpen && !content) {
-      console.warn('Full page viewer opened with no content');
-    } else if (isOpen) {
-      console.log(
-        'Full page viewer opened with content length:',
-        content.length
-      );
-    }
-  }, [isOpen, content]);
-
   const handleDownload = () => {
     const sanitizedName = productName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
     const fileName = `${sanitizedName}_prd_${new Date().toISOString().split('T')[0]}.md`;

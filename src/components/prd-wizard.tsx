@@ -55,12 +55,6 @@ export function PRDWizard({
       : internalPrdInput;
   const generatedPrd = externalGeneratedPrd || internalGeneratedPrd;
 
-  // Debug logs
-  console.log('Current Step:', currentStep);
-  console.log('External PRD Input:', externalPrdInput);
-  console.log('Internal PRD Input:', internalPrdInput);
-  console.log('Final PRD Input being used:', prdInput);
-
   const [productIdea, setProductIdea] = useState<string>('');
   const [productIdeaImages, setProductIdeaImages] = useState<ImageAttachment[]>(
     []
@@ -128,13 +122,10 @@ export function PRDWizard({
       }
 
       const responseJson = await response.json();
-      console.log('API Response:', responseJson); // Debug log
       const { data } = responseJson;
-      console.log('Data being set:', data); // Debug log
       setInternalPrdInput(data);
       setCurrentStep(2);
     } catch (err) {
-      console.error('Error prefilling form:', err);
       setPrefillError(
         err instanceof Error
           ? err.message
@@ -178,7 +169,6 @@ export function PRDWizard({
       onGeneratedPRD(data.prd, prdInput);
       setCurrentStep(3);
     } catch (err) {
-      console.error('Error generating PRD:', err);
       setGenerateError(
         err instanceof Error
           ? err.message

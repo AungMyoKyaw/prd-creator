@@ -74,8 +74,7 @@ export function SettingsModal({
           setModel(data.models[0].value);
         }
       }
-    } catch (error) {
-      console.error('Error fetching models:', error);
+    } catch {
       setModelsError('Could not fetch models. Using default list.');
       // Fallback to static list
       setModels(GEMINI_MODELS);

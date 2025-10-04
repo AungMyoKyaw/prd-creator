@@ -92,11 +92,6 @@ export default function Home() {
   };
 
   const handleFullPageView = () => {
-    console.log(
-      'Opening full page view with content length:',
-      generatedPrd.length
-    );
-    console.log('Content preview:', generatedPrd.substring(0, 100) + '...');
     setIsFullPageViewOpen(true);
   };
 
@@ -157,7 +152,6 @@ export default function Home() {
               generatedPrd={generatedPrd}
               prdInput={prdInput}
               onGeneratedPRD={(prd, inputs) => {
-                console.log('PRD generated with length:', prd.length);
                 setGeneratedPrd(prd);
                 setPrdInput(inputs);
               }}

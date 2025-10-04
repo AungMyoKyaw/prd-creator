@@ -154,7 +154,6 @@ export function PRDDisplay({
 
   const handleSave = async () => {
     if (!prdInputs) {
-      console.warn('Cannot save: PRD inputs are not available');
       return;
     }
 
@@ -174,8 +173,7 @@ export function PRDDisplay({
       if (onSaved) {
         onSaved();
       }
-    } catch (error) {
-      console.error('Failed to save draft:', error);
+    } catch {
     } finally {
       setIsSaving(false);
     }

@@ -116,7 +116,6 @@ Return the response as a JSON object that strictly adheres to the provided schem
 
     return NextResponse.json({ data: result });
   } catch (error) {
-    console.error('Error generating PRD inputs:', error);
     const message =
       error instanceof Error
         ? error.message

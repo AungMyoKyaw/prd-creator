@@ -29,7 +29,7 @@ export function SavedDraftsModal({
     if (isOpen) {
       loadDraftsData();
       // Attempt migration on first load
-      migrateLocalStorageToIndexedDB().catch(console.error);
+      migrateLocalStorageToIndexedDB().catch(() => {});
     }
   }, [isOpen]);
 
@@ -38,8 +38,7 @@ export function SavedDraftsModal({
     try {
       const loadedDrafts = await loadDrafts();
       setDrafts(loadedDrafts);
-    } catch (error) {
-      console.error('Failed to load drafts:', error);
+    } catch {
     } finally {
       setIsLoading(false);
     }
@@ -55,8 +54,7 @@ export function SavedDraftsModal({
     try {
       const updatedDrafts = await deleteDraft(id);
       setDrafts(updatedDrafts);
-    } catch (error) {
-      console.error('Failed to delete draft:', error);
+    } catch {
     } finally {
       setDeletingId(null);
     }
