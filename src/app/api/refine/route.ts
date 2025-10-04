@@ -8,7 +8,7 @@ function isPrdInput(value: unknown): value is PrdInput {
     return false;
   }
   const input = value as Record<keyof PrdInput, unknown>;
-  const fields: Array<keyof PrdInput> = [
+  const stringFields: Array<keyof PrdInput> = [
     'productName',
     'targetAudience',
     'problemStatement',
@@ -19,7 +19,18 @@ function isPrdInput(value: unknown): value is PrdInput {
     'techStack',
     'constraints'
   ];
-  return fields.every((field) => typeof input[field] === 'string');
+
+  const arrayFields: Array<keyof PrdInput> = ['productIdeaImages'];
+
+  const stringFieldsValid = stringFields.every(
+    (field) => typeof input[field] === 'string'
+  );
+
+  const arrayFieldsValid = arrayFields.every(
+    (field) => !input[field] || Array.isArray(input[field])
+  );
+
+  return stringFieldsValid && arrayFieldsValid;
 }
 
 export async function POST(request: NextRequest) {
@@ -62,7 +73,7 @@ export async function POST(request: NextRequest) {
     }
 
     const fieldsToRefine = SECTION_FIELD_MAPPING[sectionTitle];
-    const currentSectionData: Partial<PrdInput> = {};
+    const currentSectionData: Record<string, unknown> = {};
     fieldsToRefine.forEach((key) => {
       currentSectionData[key] = currentInputs[key];
     });
@@ -115,7 +126,8 @@ Your task is to update the values for the fields in the "${sectionTitle}" sectio
         Object.prototype.hasOwnProperty.call(parsed, field) &&
         typeof parsed[field] === 'string'
       ) {
-        validatedResult[field] = parsed[field];
+        // Type assertion to satisfy TypeScript
+        (validatedResult as any)[field] = parsed[field];
       }
     });
 

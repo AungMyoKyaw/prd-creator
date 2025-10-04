@@ -130,6 +130,9 @@ No specific hardware interfaces required beyond standard computing devices with 
 - Service Workers for PWA functionality and offline caching with NetworkFirst strategy
 - Clipboard API for content copying
 - File System Access API for potential future file operations
+- File API for image upload and processing
+- Canvas API for image resizing and optimization
+- URL.createObjectURL for temporary image preview handling
 
 ### 3.4 Communications Interfaces
 
@@ -156,6 +159,16 @@ _REQ-004:_ The system MUST implement updated compact Neo-Brutalism design princi
 _REQ-005:_ The system MUST ensure all form inputs meet WCAG 2.1 Level AA contrast requirements with a minimum ratio of 4.5:1.
 
 _REQ-006:_ The system MUST provide clear visual feedback for form states (default, hover, focus, active, error) following Neo-Brutalism design patterns.
+
+_REQ-006.1:_ The system MUST provide an image attachment interface in the product idea section to allow users to upload visual context (mockups, diagrams, reference photos).
+
+_REQ-006.2:_ The system MUST support common image formats including JPEG, PNG, GIF, and WebP.
+
+_REQ-006.3:_ The system MUST limit image file size to a maximum of 10MB per image and allow up to 5 images per product idea.
+
+_REQ-006.4:_ The system MUST provide visual previews of uploaded images with options to remove or replace them.
+
+_REQ-006.5:_ The system MUST process uploaded images and include them in the AI prompt for enhanced context understanding.
 
 ### 4.2 AI-Powered PRD Generation
 

@@ -90,14 +90,14 @@ The essential features for the Minimum Viable Product are:
 - **API Key Configuration with Compact Neo-Brutalism UI**: Secure configuration for Google Gemini API access using updated compact Neo-Brutalism interface elements with improved usability
 - **Responsive Compact Neo-Brutalism Design**: Fully responsive interface optimized for all device sizes with improved content density and mobile experience
 - **Section Refinement**: AI-powered refinement of specific PRD sections based on user feedback for iterative improvement
-- **Form Prefill with AI**: Quick start feature that uses AI to automatically populate form fields from a simple product idea description
+- **Form Prefill with AI**: Quick start feature that uses AI to automatically populate form fields from a simple product idea description with support for image attachments to provide visual context
 - **PWA Capabilities**: Full Progressive Web App implementation with install prompts, offline support, and cross-platform compatibility
 
 ### 4.2 User Stories
 
 **As a product manager**, I want to input structured information about my product idea through a bold, visually striking Neo-Brutalism interface so that I can generate a professional PRD quickly.
 
-**As a startup founder**, I want to describe my product concept in plain language through an accessible, high-contrast Neo-Brutalism interface so that the AI can help me structure it into a professional document.
+**As a startup founder**, I want to describe my product concept in plain language and attach relevant images (mockups, diagrams, reference photos) through an accessible, high-contrast Neo-Brutalism interface so that the AI can help me structure it into a professional document with better visual understanding.
 
 **As a technical lead**, I want to preview the PRD as I build it with a visually distinct Neo-Brutalism design so that I can ensure it contains all necessary information for my development team.
 

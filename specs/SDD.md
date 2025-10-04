@@ -287,6 +287,31 @@ The system consists of the following major components:
 - Radix UI Dialog primitives
 - Form handling components
 
+#### 4.1.10 ImageAttachment Component (src/components/image-attachment.tsx)
+
+**Responsibilities:**
+
+- Handle image upload and preview functionality
+- Validate file types and sizes
+- Provide image management interface (add, remove, replace)
+- Generate optimized image previews using Canvas API
+- Convert images to base64 for API transmission
+
+**Dependencies:**
+
+- File API for file handling
+- Canvas API for image processing
+- URL.createObjectURL for temporary previews
+- File type validation utilities
+
+**Properties:**
+
+- Accepts image files (JPEG, PNG, GIF, WebP)
+- Maximum file size: 10MB per image
+- Maximum images: 5 per product idea
+- Provides drag-and-drop interface
+- Shows image preview with remove/replace options
+
 ### 4.2 API Routes Architecture
 
 The application implements server-side API routes using Next.js App Router pattern:
@@ -397,6 +422,17 @@ interface PrdInput {
   futureFeatures: string;
   techStack: string;
   constraints: string;
+  productIdeaImages?: ImageAttachment[];
+}
+
+interface ImageAttachment {
+  id: string;
+  file: File;
+  preview: string;
+  name: string;
+  size: number;
+  type: string;
+  uploadedAt: Date;
 }
 ```
 
@@ -416,10 +452,12 @@ interface StoredDraft {
 ### 5.2 Data Flow
 
 1. **Input Collection**: User inputs form data into PrdInput structure
-2. **API Processing**: Data sent to /api/generate with model selection
-3. **Content Generation**: Gemini API returns structured PRD content
-4. **Local Storage**: Generated PRD stored in IndexedDB with metadata
-5. **Export**: Content formatted for download in various formats
+2. **Image Upload**: User attaches images through ImageAttachment component
+3. **Image Processing**: Images validated, resized, and converted to base64
+4. **API Processing**: Data and images sent to /api/generate with model selection
+5. **Content Generation**: Gemini API returns structured PRD content with enhanced context from images
+6. **Local Storage**: Generated PRD stored in IndexedDB with metadata
+7. **Export**: Content formatted for download in various formats
 
 ### 5.3 Storage Architecture
 

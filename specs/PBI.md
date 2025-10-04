@@ -6,7 +6,7 @@ This document outlines the Product Backlog Items (PBIs) required to implement th
 
 ## Implementation Status Summary
 
-### Completed PBIs: ✅ 18/20 (90.0%)
+### Completed PBIs: ✅ 18/21 (85.7%)
 
 - ✅ PBI-001: Form Input System with Neo-Brutalism Design
 - ✅ PBI-002: AI-Powered PRD Generation
@@ -28,10 +28,11 @@ This document outlines the Product Backlog Items (PBIs) required to implement th
 - ✅ PBI-019: Compact Neo-Brutalism Design System Update
 - ✅ PBI-020: Git Repository Ingestion Feature
 
-### In Progress PBIs: ⚠️ 0/20 (0%)
+### In Progress PBIs: ⚠️ 0/21 (0%)
 
-### Not Started PBIs: ❌ 2/20 (10.0%)
+### Not Started PBIs: ❌ 3/21 (14.3%)
 
+- ❌ PBI-008.1: Image Attachment for Product Ideas
 - ❌ PBI-017: Unit and Integration Testing
 - ❌ PBI-018: Cross-browser and Responsive Testing
 
@@ -239,6 +240,31 @@ This document outlines the Product Backlog Items (PBIs) required to implement th
 
 **Priority:** Medium
 **Story Points:** 5
+
+#### PBI-008.1: Image Attachment for Product Ideas ❌
+
+**Status:** ❌ **NOT STARTED** (New feature to be implemented)
+
+**Description:** Add image attachment functionality to the product idea section to enhance AI understanding with visual context.
+
+- Create image upload interface with drag-and-drop support
+- Support common image formats (JPEG, PNG, GIF, WebP)
+- Implement file validation (max 10MB per image, max 5 images)
+- Provide image preview with remove/replace functionality
+- Process images and include them in AI prompts for better context
+- Store image metadata with form data for persistence
+
+**Acceptance Criteria:**
+
+- Users can upload up to 5 images per product idea
+- File size validation prevents uploads larger than 10MB
+- Visual previews display uploaded images with management options
+- Images are processed and included in AI prompt for enhanced PRD generation
+- Image data persists with form state during session
+- Interface follows compact Neo-Brutalism design principles
+
+**Priority:** Medium
+**Story Points:** 8
 
 ### 4. UI/UX Design Implementation PBIs
 

@@ -5,8 +5,15 @@ import { getContextHeader } from '../_lib/datetime';
 
 export async function POST(request: NextRequest) {
   try {
-    const { productIdea, apiKey, model } = (await request.json()) as {
+    const { productIdea, images, apiKey, model } = (await request.json()) as {
       productIdea?: string;
+      images?: Array<{
+        id: string;
+        name: string;
+        type: string;
+        size: number;
+        data: string;
+      }>;
       apiKey?: string;
       model?: string;
     };
@@ -26,9 +33,23 @@ export async function POST(request: NextRequest) {
     }
 
     const client = new GoogleGenAI({ apiKey });
+
+    // Build image context if images are provided
+    let imageContext = '';
+    if (images && images.length > 0) {
+      imageContext =
+        '\n\nVisual Context: The user has also provided the following images to help illustrate their product idea:\n';
+      images.forEach((img, index) => {
+        imageContext += `\n${index + 1}. Image: ${img.name} (${img.type}, ${(img.size / 1024 / 1024).toFixed(1)}MB)\n`;
+        imageContext += `   [Note: This is a base64 encoded image that provides visual context for the product idea]`;
+      });
+      imageContext +=
+        "\n\nPlease consider these visual materials when analyzing the product idea. They may contain mockups, wireframes, diagrams, or reference photos that provide additional context about the user's vision.";
+    }
+
     const basePrompt = `You are a brilliant product strategist. A user has provided a high-level product idea. Your task is to analyze this idea and break it down into the foundational components of a Product Requirements Document. Based on the idea, generate a plausible product name, identify a specific target audience, formulate a clear problem statement and a corresponding solution, brainstorm core features for an MVP, identify key differentiating features, suggest business goals and specific success metrics (KPIs), and recommend future features and tech stack.
 
-User's Idea: "${productIdea}"
+User's Idea: "${productIdea}"${imageContext}
 
 Return the response as a JSON object that strictly adheres to the provided schema. For features, use bullet points within the string. For success metrics, include specific, measurable KPIs with targets where appropriate.`;
 

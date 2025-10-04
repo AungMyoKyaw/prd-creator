@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight, Sparkles, Edit3, FileText } from 'lucide-react';
-import { PrdInput, DEFAULT_PRD_INPUT } from '@/lib/prd';
+import { PrdInput, DEFAULT_PRD_INPUT, ImageAttachment } from '@/lib/prd';
 import { Button } from './button';
 import { Loader } from './loader';
 import { TextareaField } from './textarea-field';
 import { PRDDisplay } from './prd-display';
+import ImageAttachmentComponent from './image-attachment';
 
 interface PRDWizardProps {
   apiKey: string;
@@ -41,10 +42,22 @@ export function PRDWizard({
 
   const currentStep = externalCurrentStep ?? internalCurrentStep;
   const setCurrentStep = externalSetCurrentStep ?? setInternalCurrentStep;
-  const prdInput = externalPrdInput ?? internalPrdInput;
-  const generatedPrd = externalGeneratedPrd ?? internalGeneratedPrd;
+  const prdInput =
+    externalPrdInput && externalPrdInput.productName
+      ? externalPrdInput
+      : internalPrdInput;
+  const generatedPrd = externalGeneratedPrd || internalGeneratedPrd;
+
+  // Debug logs
+  console.log('Current Step:', currentStep);
+  console.log('External PRD Input:', externalPrdInput);
+  console.log('Internal PRD Input:', internalPrdInput);
+  console.log('Final PRD Input being used:', prdInput);
 
   const [productIdea, setProductIdea] = useState<string>('');
+  const [productIdeaImages, setProductIdeaImages] = useState<ImageAttachment[]>(
+    []
+  );
   const [isPrefilling, setIsPrefilling] = useState<boolean>(false);
   const [prefillError, setPrefillError] = useState<string>('');
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
@@ -77,6 +90,17 @@ export function PRDWizard({
     setIsPrefilling(true);
     setPrefillError('');
 
+    // Convert images to base64 for API transmission
+    const imageData = await Promise.all(
+      productIdeaImages.map(async (img) => ({
+        id: img.id,
+        name: img.name,
+        type: img.type,
+        size: img.size,
+        data: img.preview // This is already base64 from the FileReader
+      }))
+    );
+
     try {
       const response = await fetch('/api/prefill', {
         method: 'POST',
@@ -85,6 +109,7 @@ export function PRDWizard({
         },
         body: JSON.stringify({
           productIdea: productIdea.trim(),
+          images: imageData,
           apiKey,
           model: selectedModel
         })
@@ -95,12 +120,11 @@ export function PRDWizard({
         throw new Error(errorData.error || 'Failed to prefill form');
       }
 
-      const { data } = await response.json();
-      if (externalPrdInput) {
-        // If using external state, do nothing - parent will handle
-      } else {
-        setInternalPrdInput(data);
-      }
+      const responseJson = await response.json();
+      console.log('API Response:', responseJson); // Debug log
+      const { data } = responseJson;
+      console.log('Data being set:', data); // Debug log
+      setInternalPrdInput(data);
       setCurrentStep(2);
     } catch (err) {
       console.error('Error prefilling form:', err);
@@ -118,6 +142,12 @@ export function PRDWizard({
     setIsGenerating(true);
     setGenerateError('');
 
+    // Include images in the generation request
+    const inputsWithImages = {
+      ...prdInput,
+      productIdeaImages: productIdeaImages
+    };
+
     try {
       const response = await fetch('/api/generate', {
         method: 'POST',
@@ -125,7 +155,7 @@ export function PRDWizard({
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          inputs: prdInput,
+          inputs: inputsWithImages,
           apiKey,
           model: selectedModel
         })
@@ -137,11 +167,7 @@ export function PRDWizard({
       }
 
       const { data } = await response.json();
-      if (externalGeneratedPrd) {
-        // If using external state, do nothing - parent will handle
-      } else {
-        setInternalGeneratedPrd(data.prd);
-      }
+      setInternalGeneratedPrd(data.prd);
       onGeneratedPRD(data.prd, prdInput);
       setCurrentStep(3);
     } catch (err) {
@@ -160,11 +186,7 @@ export function PRDWizard({
     HTMLInputElement | HTMLTextAreaElement
   > = (event) => {
     const { name, value } = event.target;
-    if (externalPrdInput) {
-      // If using external state, do nothing - parent will handle
-    } else {
-      setInternalPrdInput((previous) => ({ ...previous, [name]: value }));
-    }
+    setInternalPrdInput((previous) => ({ ...previous, [name]: value }));
   };
 
   const canGoToStep2 = productIdea.trim().length > 0;
@@ -198,6 +220,7 @@ export function PRDWizard({
     // Reset to step 1 to start a new idea
     setCurrentStep(1);
     setProductIdea('');
+    setProductIdeaImages([]);
     if (externalPrdInput) {
       // If using external state, notify parent to reset
       onResetState?.();
@@ -388,7 +411,7 @@ export function PRDWizard({
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
               <TextareaField
                 label="Product Idea"
                 id="productIdea"
@@ -399,6 +422,23 @@ export function PRDWizard({
                 rows={8}
                 description="Describe your product concept, target users, and key features in your own words."
               />
+
+              <div className="bg-blue-50 border-[3px] border-blue-200 p-4 rounded-lg">
+                <h3 className="text-lg font-bold text-blue-900 mb-2 flex items-center gap-2">
+                  <span className="text-2xl">📸</span>
+                  Add Visual Context (Optional)
+                </h3>
+                <p className="text-blue-700 mb-4">
+                  Attach mockups, diagrams, wireframes, or reference photos to
+                  help the AI better understand your product idea.
+                </p>
+                <ImageAttachmentComponent
+                  images={productIdeaImages}
+                  onImagesChange={setProductIdeaImages}
+                  maxImages={5}
+                  maxFileSize={10 * 1024 * 1024} // 10MB
+                />
+              </div>
             </div>
 
             {prefillError && (

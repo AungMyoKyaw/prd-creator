@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { buildGenerationPrompt, PrdInput } from '../../../lib/prd';
+import {
+  buildGenerationPrompt,
+  PrdInput,
+  ImageAttachment
+} from '../../../lib/prd';
 import { GoogleGenAI } from '@google/genai';
 import { getContextHeader } from '../_lib/datetime';
 
@@ -19,9 +23,34 @@ function validateInputs(value: unknown): value is PrdInput {
     'successMetrics',
     'futureFeatures',
     'techStack',
+    'constraints',
+    'productIdeaImages'
+  ];
+
+  // Check string fields
+  const stringFields: Array<keyof PrdInput> = [
+    'productName',
+    'targetAudience',
+    'problemStatement',
+    'proposedSolution',
+    'coreFeatures',
+    'keyFeatures',
+    'businessGoals',
+    'successMetrics',
+    'futureFeatures',
+    'techStack',
     'constraints'
   ];
-  return fields.every((field) => typeof input[field] === 'string');
+
+  const stringFieldsValid = stringFields.every(
+    (field) => typeof input[field] === 'string'
+  );
+
+  // Check productIdeaImages field (optional)
+  const imagesValid =
+    !input.productIdeaImages || Array.isArray(input.productIdeaImages);
+
+  return stringFieldsValid && imagesValid;
 }
 
 export async function POST(request: NextRequest) {

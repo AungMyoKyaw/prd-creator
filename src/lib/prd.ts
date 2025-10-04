@@ -1,3 +1,13 @@
+export interface ImageAttachment {
+  id: string;
+  file: File;
+  preview: string;
+  name: string;
+  size: number;
+  type: string;
+  uploadedAt: Date;
+}
+
 export interface PrdInput {
   productName: string;
   targetAudience: string;
@@ -10,6 +20,7 @@ export interface PrdInput {
   futureFeatures: string;
   techStack: string;
   constraints: string;
+  productIdeaImages?: ImageAttachment[];
 }
 
 export const DEFAULT_PRD_INPUT: PrdInput = {
@@ -23,7 +34,8 @@ export const DEFAULT_PRD_INPUT: PrdInput = {
   successMetrics: '',
   futureFeatures: '',
   techStack: '',
-  constraints: ''
+  constraints: '',
+  productIdeaImages: []
 };
 
 export const SECTION_FIELD_MAPPING: Record<string, Array<keyof PrdInput>> = {
@@ -114,10 +126,23 @@ ${inputs.constraints || '...'}
 }
 
 export function buildGenerationPrompt(inputs: PrdInput): string {
+  // Build image context if images are provided
+  let imageContext = '';
+  if (inputs.productIdeaImages && inputs.productIdeaImages.length > 0) {
+    imageContext =
+      '\n\n**Visual Context:** The user has provided the following images to help illustrate the product concept:\n';
+    inputs.productIdeaImages.forEach((img, index) => {
+      imageContext += `\n${index + 1}. ${img.name} (${img.type})\n`;
+      imageContext += `   [Image data included for context - may contain mockups, wireframes, diagrams, or reference photos]\n`;
+    });
+    imageContext +=
+      "\nPlease consider these visual materials when writing the PRD. They provide important context about the user's vision for the product design, user interface, and functionality.";
+  }
+
   return `
 You are an expert Senior Product Manager at a leading tech company. Your task is to write a comprehensive Product Requirements Document (PRD) based on the following information. The PRD should be well-structured, clear, professional, and detailed, suitable for a development team to start working from. Format the output in clean Markdown.
 
-**Product Name:** ${inputs.productName}
+**Product Name:** ${inputs.productName}${imageContext}
 
 ---
 
