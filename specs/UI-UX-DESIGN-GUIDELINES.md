@@ -23,11 +23,11 @@
 
 ### 1.1. Neo-Brutalism Design System
 
-PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspiration from the Neo-Brutalism UI Library (https://neo-brutalism-ui-library.vercel.app/). This design approach creates a bold, memorable, and highly functional user interface that stands out from traditional LLM tools.
+PRD Creator adopts a **Neo-Brutalism** design aesthetic, drawing inspiration from the Neo-Brutalism UI Library (https://neo-brutalism-ui-library.vercel.app/). This design approach creates a bold, memorable, and highly functional user interface that stands out from traditional product planning tools.
 
 **Core Philosophy:**
 
-> "Transform the prompt engineering experience with eye-catching, bold design elements that command attention while maintaining exceptional usability. Create a visually captivating interface that makes advanced AI tools feel accessible and empowering."
+> "Transform the PRD creation experience with eye-catching, bold design elements that command attention while maintaining exceptional usability. Create a visually captivating interface that makes AI-powered product planning feel accessible and empowering."
 
 ### 1.2. Design Principles
 
@@ -252,12 +252,10 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 ```css
 /* Hard, Offset Shadows - Neo-Brutalism Style */
---shadow-sm: 1px 1px 0px #000;
---shadow-base: 2px 2px 0px #000;
---shadow-md: 3px 3px 0px #000;
---shadow-lg: 4px 4px 0px #000;
---shadow-xl: 6px 6px 0px #000;
-/* **Updated (2025):** Reduced shadow offsets for a more compact appearance while maintaining the brutalist aesthetic */
+--shadow-sm: 1px 1px 0px #000; /* Minimal/active states */
+--shadow-base: 2px 2px 0px #000; /* Standard components */
+--shadow-emphasis: 4px 4px 0px #000; /* Emphasis elements */
+/* **Updated (2025):** Standardized shadow offsets for compact neo-brutalism design */
 
 /* Colored Shadows for Accent Elements */
 --shadow-primary: 6px 6px 0px #fdd835;
@@ -270,23 +268,20 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 **Cards:**
 
 - Default state: `shadow-base` (2px offset)
-- Hover state: `shadow-lg` (4px offset) with slight transform
+- Hover state: `shadow-emphasis` (4px offset) with slight transform
 - Active state: `shadow-sm` (1px offset)
-- **Updated (2025):** Reduced shadow offsets for more compact appearance
 
 **Buttons:**
 
 - Default: `shadow-base` (2px offset)
-- Hover: Lift slightly with increased shadow
-- Active: `shadow-sm` to create "pressed" effect
-- **Updated (2025):** Reduced shadow offsets to match compact design system
+- Hover: Lift slightly with `shadow-emphasis` (4px offset)
+- Active: `shadow-sm` (1px offset) to create "pressed" effect
 
 **Floating Elements:**
 
-- Modals: `shadow-xl` (6px offset)
-- Tooltips: `shadow-md` (3px offset)
-- Dropdowns: `shadow-lg` (4px offset)
-- **Updated (2025):** Reduced shadow offsets for floating elements
+- Modals: `shadow-emphasis` (4px offset) or colored shadow variants
+- Tooltips: `shadow-base` (2px offset)
+- Dropdowns: `shadow-emphasis` (4px offset)
 
 **Colored Shadows:**
 
@@ -298,10 +293,9 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 ```css
 /* Border Widths */
---border-thin: 2px;
---border-base: 3px;
---border-thick: 4px;
---border-heavy: 5px;
+--border-thin: 2px; /* Standard components */
+--border-base: 3px; /* Emphasis elements */
+--border-thick: 4px; /* Heavy emphasis (rare) */
 
 /* Border Styles */
 --border-solid: solid;
@@ -317,15 +311,15 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 **Standard Components:**
 
-- All cards, buttons, inputs: 3px solid black border
-- Focus states: 4px solid with accent color
+- All cards, buttons, inputs: 2px solid black border (standard)
+- Focus states: 3px solid with accent color (emphasis)
 - Disabled states: 2px dashed gray border
+- Featured elements: 3px solid black border (emphasis)
 
-**Emphasis:**
+**Additional Emphasis:**
 
-- Featured elements: 4px solid black border
-- Critical CTAs: 5px solid black border
-- Separators: 2-3px solid black
+- Critical CTAs: 3px solid black border (emphasis)
+- Separators: 2px solid black (standard)
 
 **Border Radius:**
 
@@ -356,14 +350,14 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 .btn-primary:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px #000;
+  box-shadow: 4px 4px 0px #000;
 }
 
 .btn-primary:active {
   transform: translate(1px, 1px);
   box-shadow: 1px 1px 0px #000;
 }
-/* **Updated (2025):** Compact button styling with reduced borders, padding, and shadows */
+/* **Updated (2025):** Compact button styling with standardized shadows */
 ```
 
 #### Secondary Button
@@ -401,17 +395,17 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```css
 .card {
   background: #fff;
-  border: 3px solid #000;
-  box-shadow: 4px 4px 0px #000;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0px #000;
   padding: 16px;
   transition: all 0.2s ease;
 }
 
 .card:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 6px 6px 0px #000;
+  box-shadow: 4px 4px 0px #000;
 }
-/* **Updated (2025):** Compact card styling with reduced padding and shadows */
+/* **Updated (2025):** Compact card styling with standardized borders and shadows */
 ```
 
 #### Card Variants
@@ -419,7 +413,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 **Accent Card:**
 
 - Background: Primary yellow or secondary blue
-- Border: 3px solid black
+- Border: 3px solid black (emphasis)
 - Text: Black (on light) or white (on dark)
 
 **Info Card:**
@@ -451,11 +445,11 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 .input:focus {
   outline: none;
-  border-color: #2196f3;
+  border: 3px solid #2196f3;
   box-shadow: 2px 2px 0px #2196f3;
   transform: translate(-1px, -1px);
 }
-/* **Updated (2025):** Compact input styling with reduced borders and padding */
+/* **Updated (2025):** Compact input styling with standardized borders and shadows */
 ```
 
 #### Textarea
@@ -519,8 +513,8 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```css
 .modal {
   background: #fff;
-  border: 5px solid #000;
-  box-shadow: 12px 12px 0px #000;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #000;
   padding: 32px;
   max-width: 600px;
 }
@@ -536,7 +530,7 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 - Large bold heading (text-3xl, weight 800)
 - Close button: Bold X with thick strokes
-- Bottom border: 3px solid black
+- Bottom border: 2px solid black (standard)
 
 ### 3.6. Progress Indicators
 
@@ -545,14 +539,14 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 ```css
 .progress-bar {
   background: #e0e0e0;
-  border: 3px solid #000;
+  border: 2px solid #000;
   height: 24px;
   position: relative;
 }
 
 .progress-fill {
   background: #ffeb3b;
-  border-right: 3px solid #000;
+  border-right: 2px solid #000;
   height: 100%;
   transition: width 0.3s ease;
 }
@@ -617,14 +611,14 @@ PromptForge Unleashed adopts a **Neo-Brutalism** design aesthetic, drawing inspi
 
 ```css
 .table {
-  border: 3px solid #000;
+  border: 2px solid #000;
   border-collapse: separate;
   border-spacing: 0;
 }
 
 .table th {
   background: #ffeb3b;
-  border-bottom: 3px solid #000;
+  border-bottom: 2px solid #000;
   font-weight: 700;
   text-transform: uppercase;
   padding: 12px;
@@ -1279,4 +1273,4 @@ While Neo-Brutalism typically uses light backgrounds, a dark mode variation:
 
 **Document Version:** 1.0
 **Last Updated:** 2025
-**Maintained By:** PromptForge Unleashed Design Team
+**Maintained By:** PRD Creator Design Team
