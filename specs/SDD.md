@@ -93,9 +93,11 @@ The PRD Creator application follows a client-server architecture pattern where:
 The application follows:
 
 - **Next.js App Router Pattern**: Uses the modern App Router for routing and rendering
-- **Component-Based Architecture**: React components for UI modularity
+- **Component-Based Architecture**: React components for UI modularity with TypeScript interfaces
 - **Client-Server Architecture**: Separation between client-side UI and server-side API routes
 - **API-First Design**: API routes handle communication with external services
+- **Progressive Web App**: PWA capabilities with service workers and offline support
+- **State Management**: React hooks for local state, localStorage for persistence
 
 ### 3.3 Design Rationale
 
@@ -245,134 +247,140 @@ The system consists of the following major components:
 
 **Responsibilities:**
 
-- Detect PWA installation eligibility and display install prompt
-- Handle PWA installation flow and user choice tracking
-- Manage install prompt dismissal and localStorage persistence
-- Provide install instructions and benefits communication
-- Apply compact Neo-Brutalism styling to install prompt
+- Detect PWA installation eligibility
+- Display install prompt to users
+- Handle PWA installation process
+- Store installation preference
 
 **Dependencies:**
 
-- Browser PWA APIs (beforeinstallprompt, appinstalled events)
-- Lucide React icons for interface elements
-- LocalStorage for dismissal tracking
+- PWA installation APIs
+- Local storage for preferences
 
-### 4.2 API Components
-
-#### 4.2.1 Generate API Route (src/app/api/generate/route.ts)
+#### 4.1.8 FullPagePRDViewer Component (src/components/full-page-prd-viewer.tsx)
 
 **Responsibilities:**
 
+- Display generated PRD in full-screen modal
+- Provide enhanced reading experience
+- Offer export and sharing options
+- Maintain Neo-Brutalism styling
+
+**Dependencies:**
+
+- Markdown rendering libraries
+- Radix UI Dialog primitives
+- Export functionality utilities
+
+#### 4.1.9 RefineModal Component (src/components/refine-modal.tsx)
+
+**Responsibilities:**
+
+- Provide interface for section refinement
+- Handle user feedback input
+- Coordinate with refine API endpoint
+- Display refined results
+
+**Dependencies:**
+
+- API client for refine operations
+- Radix UI Dialog primitives
+- Form handling components
+
+### 4.2 API Routes Architecture
+
+The application implements server-side API routes using Next.js App Router pattern:
+
+#### 4.2.1 Generate Route (src/app/api/generate/route.ts)
+
+**Responsibilities:**
+
+- Handle PRD generation requests
 - Validate input data
 - Communicate with Google Gemini API
-- Format and return generated PRD content
+- Format and return generated content
 
-**Dependencies:**
-
-- Google Gemini SDK
-- PRD utilities from src/lib/prd.ts
-- Date/time context helper
-
-#### 4.2.2 Prefill API Route (src/app/api/prefill/route.ts)
-
-**Responsibilities:**
-
-- Generate form data from a product idea description
-- Communicate with Google Gemini API
-- Return structured form data
-
-#### 4.2.3 Refine API Route (src/app/api/refine/route.ts)
-
-**Responsibilities:**
-
-- Refine specific sections based on user feedback
-- Update relevant portions of PRD data
-- Communicate with Google Gemini API
-
-#### 4.2.4 Models API Route (src/app/api/models/route.ts)
+#### 4.2.2 Models Route (src/app/api/models/route.ts)
 
 **Responsibilities:**
 
 - Fetch available Gemini models
-- Handle model list caching
-- Return model information
+- Cache model information
+- Provide model selection data
 
-### 4.3 Utility Components
+#### 4.2.3 Prefill Route (src/app/api/prefill/route.ts)
+
+**Responsibilities:**
+
+- Process product idea descriptions
+- Generate structured form data
+- Auto-populate PRD input fields
+
+#### 4.2.4 Refine Route (src/app/api/refine/route.ts)
+
+**Responsibilities:**
+
+- Handle section refinement requests
+- Process user feedback
+- Generate improved content sections
+
+### 4.3 Library Modules Architecture
 
 #### 4.3.1 PRD Library (src/lib/prd.ts)
 
 **Responsibilities:**
 
-- Define PrdInput interface and default values
-- Generate preview Markdown from inputs
-- Build generation prompts for AI
-- Provide section-to-field mappings
+- Define TypeScript interfaces for PRD data
+- Provide default values and validation
+- Generate preview content
+- Map form fields to sections
 
-**Dependencies:**
-
-- TypeScript type system
-
-#### 4.3.2 Drafts Manager (src/lib/drafts.ts)
+#### 4.3.2 Drafts Library (src/lib/drafts.ts)
 
 **Responsibilities:**
 
-- Initialize and manage IndexedDB database connection using idb library
-- Create and maintain database schema for PRD storage with metadata
-- Implement CRUD operations for PRD records with 12-draft limit
-- Handle database version upgrades and migration from localStorage
-- Provide fallback to localStorage when IndexedDB is unavailable
-- Implement proper error handling for database operations
-- Sanitize ingestion data for storage to prevent storage quota issues
+- Manage IndexedDB operations
+- Handle draft storage and retrieval
+- Provide CRUD operations for saved PRDs
+- Implement localStorage fallback
 
-**Dependencies:**
-
-- idb library v8.0.3 for IndexedDB operations
-- TypeScript type system
-- PRD interfaces for data validation
-- Ingest interfaces for repository data handling
-
-#### 4.3.3 Git Ingestion Analyzer (src/lib/ingest.ts)
+#### 4.3.3 Models Library (src/lib/models.ts)
 
 **Responsibilities:**
 
-- Analyze Git repository data in JSON format
-- Detect programming languages from file extensions
-- Extract repository metadata including name and last updated date
-- Generate key insights about repository structure and composition
-- Provide language statistics and module analysis
-- Sanitize and prepare ingestion data for storage
+- Interface with Gemini model API
+- Cache model information
+- Handle model selection logic
 
-**Dependencies:**
-
-- TypeScript type system for data structure validation
-- File extension mapping for language detection
-- JSON parsing utilities for data extraction
-
-#### 4.3.3 Date/Time Context Helper (src/app/api/\_lib/datetime.ts)
+#### 4.3.4 Download Library (src/lib/download.ts)
 
 **Responsibilities:**
 
-- Generate current date/time context for AI prompts
-- Format date/time strings consistently
+- Handle file download operations
+- Generate appropriate filenames
+- Support multiple export formats
 
-#### 4.3.5 Download Utilities (src/lib/download.ts)
+#### 4.3.5 Ingest Library (src/lib/ingest.ts)
 
 **Responsibilities:**
 
-- Generate sanitized filenames for downloaded PRDs
-- Handle blob creation and download triggering
-- Provide file naming conventions with date stamps
+- Process Git repository data
+- Analyze repository structure
+- Extract relevant insights
 
-**Dependencies:**
+#### 4.3.6 Prompt Library (src/lib/prompt.ts)
 
-- Browser File API for blob operations
-- URL API for download handling
+**Responsibilities:**
+
+- Generate AI prompts
+- Format request data
+- Handle response processing
 
 ---
 
 ## 5. Data Design
 
-### 5.1 Data Models
+### 5.1 Data Structures
 
 #### 5.1.1 PrdInput Interface
 
@@ -383,94 +391,42 @@ interface PrdInput {
   problemStatement: string;
   proposedSolution: string;
   coreFeatures: string;
+  keyFeatures: string;
   businessGoals: string;
+  successMetrics: string;
   futureFeatures: string;
   techStack: string;
   constraints: string;
 }
 ```
 
-**Description:** Represents the structured input data for PRD generation.
-
 #### 5.1.2 StoredDraft Interface
 
 ```typescript
 interface StoredDraft {
   id: string;
-  title: string;
-  createdAt: string;
-  model: string;
   inputs: PrdInput;
   markdown: string;
-  ingest?: {
-    insight: IngestInsight | null;
-    fileName?: string;
-    fileSize?: number;
-  };
+  model: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 ```
-
-**Description:** Represents a stored PRD draft with metadata and optional ingestion data.
-
-#### 5.1.3 IngestInsight Interface
-
-```typescript
-interface IngestInsight {
-  rawText: string;
-  json: UnknownRecord | UnknownRecord[] | null;
-  fileCount: number;
-  moduleNames: string[];
-  languageStats: Array<{ language: string; count: number }>;
-  keyInsights: string[];
-  repoName?: string;
-  lastUpdated?: string;
-}
-```
-
-**Description:** Represents analysis results from Git repository ingestion.
-
-#### 5.1.4 Form State Structure
-
-The application maintains a structured state object containing:
-
-- User input data (PrdInput object)
-- UI state (loading indicators, error messages)
-- Configuration (API key, selected model, model display name)
-- Generated content (PRD text)
-- Product idea for prefill functionality
-- Refinement state (section being refined, feedback)
-- Modal states (settings, saved drafts, refine)
-- PWA installation state
 
 ### 5.2 Data Flow
 
-#### 5.2.1 User Input Flow
+1. **Input Collection**: User inputs form data into PrdInput structure
+2. **API Processing**: Data sent to /api/generate with model selection
+3. **Content Generation**: Gemini API returns structured PRD content
+4. **Local Storage**: Generated PRD stored in IndexedDB with metadata
+5. **Export**: Content formatted for download in various formats
 
-1. User enters data in UI components
-2. onChange events update the state in page.tsx
-3. State changes trigger re-renders of preview components
-4. Data is validated before submission to AI
+### 5.3 Storage Architecture
 
-#### 5.2.2 PRD Generation Flow
-
-1. User submits form
-2. Form data is validated
-3. Client sends request to /api/generate
-4. Server-side route processes request and calls Gemini API
-5. Generated response is returned to client
-6. UI updates to display generated PRD
-
-#### 5.2.3 Data Persistence
-
-- API key and model preferences stored in browser localStorage
-- No server-side storage of user data
-- Form data exists only in browser memory during session
-- Generated PRDs stored in IndexedDB (max 12 drafts) with fallback to localStorage
-- PRD metadata (product name, creation date, model used) stored alongside content
-- IndexedDB implementation using idb library with proper error handling and transaction management
-- Automatic migration from localStorage to IndexedDB on first load
-- Git ingestion data stored alongside PRD drafts for context preservation
-- PWA install prompt dismissal tracking in localStorage
+- **Configuration**: localStorage for API keys and model preferences
+- **Draft Storage**: IndexedDB for PRD documents with full metadata
+- **Fallback Storage**: localStorage when IndexedDB unavailable
+- **Caching**: Service worker caches for offline functionality
 
 ---
 
@@ -478,298 +434,55 @@ The application maintains a structured state object containing:
 
 ### 6.1 User Interface
 
-#### 6.1.1 Main Layout
+The application implements a compact Neo-Brutalism design system with:
 
-The application follows a responsive compact Neo-Brutalism layout with:
+- **Typography**: Big Shoulders Display (headings), Inter (body text)
+- **Color Palette**: Primary yellow (#FFEB3B), secondary blue (#2196F3), accent pink (#E91E63)
+- **Borders**: 2px black borders (3px for emphasis)
+- **Shadows**: Offset shadows (2px 2px 0px #000 standard, 4px 4px 0px #000 for emphasis)
+- **Layout**: Responsive grid system optimized for content density
 
-- Header with settings and model indicator, styled with refined 2px black borders and compact offset shadows (2px 2px 0px)
-- Main content area split into form and preview, with clear visual separation using compact Neo-Brutalism design elements
-- Footer with additional information, maintaining consistent compact styling with the Neo-Brutalism aesthetic
-- Primary yellow (#FFEB3B), secondary blue (#2196F3), and accent pink (#E91E63) color accents as specified in the design guidelines
-- Bold typography using Big Shoulders Display for headings and Inter for body text with optimized sizing
+### 6.2 API Interface Design
 
-#### 6.1.2 Form Interface
+All API routes follow RESTful conventions:
 
-- Structured sections with expandable/collapsible behavior, styled with compact Neo-Brutalism design principles
-- Input fields with refined 2px black borders, compact offset shadows (2px 2px 0px), and appropriate labels and descriptions
-- Real-time validation feedback with distinct error and success states following compact Neo-Brutalism patterns
-- Section-specific refine buttons implemented with compact Neo-Brutalism styling
-- All interactive elements have clear hover, focus, and active states with visual feedback
+- **POST /api/generate**: Generate PRD from input data
+- **GET /api/models**: Retrieve available AI models
+- **POST /api/prefill**: Generate structured form data from ideas
+- **POST /api/refine**: Refine specific PRD sections
 
-#### 6.1.3 Display Interface
+### 6.3 Component Interface Design
 
-- Markdown-formatted preview of PRD content with compact Neo-Brutalism styling applied
-- Download and copy buttons implemented with primary yellow background and refined 2px black borders
-- Responsive formatting for all content types maintaining compact Neo-Brutalism principles across devices
-- High contrast readability meeting WCAG 2.1 Level AA standards
+Components accept props following TypeScript best practices:
 
-#### 6.1.4 Neo-Brutalism Component Specifications
-
-All UI components must implement the following Neo-Brutalism design standards:
-
-**Buttons:**
-
-- Primary buttons: Background #FFEB3B, border 2px solid #000, shadow 2px 2px 0px #000
-- Secondary buttons: Background #2196F3, border 2px solid #000, shadow 2px 2px 0px #000
-- Hover state: Transform (-2px, -2px) with increased shadow to 3px 3px 0px
-- Active state: Transform (2px, 2px) with reduced shadow to 1px 1px 0px
-- Focus state: 4px solid accent color border
-
-**Cards:**
-
-- Background #FFF, border 2px solid #000, shadow 2px 2px 0px #000
-- Hover state: Transform (-2px, -2px) with increased shadow to 4px 4px 0px
-- Padding: 16px with consistent spacing (reduced for compact design)
-
-**Inputs:**
-
-- Background #FFF, border 2px solid #000, shadow 2px 2px 0px #000
-- Focus state: Border color #2196F3, shadow 2px 2px 0px #2196F3
-- Padding: 8px 12px for text inputs (reduced for compact design)
-- Min height: 100px for textareas
-
-### 6.2 API Interfaces
-
-#### 6.2.1 Generate Endpoint
-
-**URL:** POST /api/generate
-**Request Body:**
-
-```json
-{
-  "inputs": {
-    "productName": "string",
-    "targetAudience": "string",
-    "problemStatement": "string",
-    "proposedSolution": "string",
-    "coreFeatures": "string",
-    "businessGoals": "string",
-    "futureFeatures": "string",
-    "techStack": "string",
-    "constraints": "string"
-  },
-  "apiKey": "string",
-  "model": "string"
-}
-```
-
-**Response:**
-
-```json
-{
-  "data": "markdown formatted PRD content"
-}
-```
-
-#### 6.2.2 Prefill Endpoint
-
-**URL:** POST /api/prefill
-**Request Body:**
-
-```json
-{
-  "productIdea": "string",
-  "apiKey": "string",
-  "model": "string"
-}
-```
-
-**Response:**
-
-```json
-{
-  "data": {
-    // PrdInput object
-  }
-}
-```
-
-#### 6.2.3 Refine Endpoint
-
-**URL:** POST /api/refine
-**Request Body:**
-
-```json
-{
-  "currentInputs": {
-    // PrdInput object
-  },
-  "sectionTitle": "string",
-  "userFeedback": "string",
-  "apiKey": "string",
-  "model": "string"
-}
-```
-
-**Response:**
-
-```json
-{
-  "data": {
-    // Updated PrdInput fields
-  }
-}
-```
+- **Required Props**: Essential data for component functionality
+- **Optional Props**: Enhanced features and customization
+- **Event Handlers**: Standardized callback patterns
+- **Styling Props**: Consistent design system integration
 
 ---
 
-## 7. Design Rationale
+## 7. Implementation Notes
 
-### 7.1 Technology Choices
+### 7.1 PWA Configuration
 
-#### 7.1.1 Next.js Framework
+The application uses @ducanh2912/next-pwa with the following configuration:
 
-Next.js was chosen for its:
+- **Service Worker**: Enabled for production builds
+- **Caching Strategy**: NetworkFirst for API routes, CacheFirst for static assets
+- **Offline Support**: Fallback page for offline navigation
+- **Install Prompt**: Custom install prompt with Neo-Brutalism styling
 
-- Excellent performance with server-side rendering and static generation
-- Built-in API routes for server-side processing
-- Strong TypeScript support
-- Deployment ease through Vercel
-- PWA capabilities with minimal configuration
+### 7.2 Performance Optimizations
 
-#### 7.1.2 TypeScript
+- **Code Splitting**: Automatic with Next.js App Router
+- **Image Optimization**: Next.js Image component usage
+- **Bundle Analysis**: Webpack Bundle Analyzer integration
+- **Caching**: Service worker caching for static assets
 
-TypeScript was selected for:
+### 7.3 Development Workflow
 
-- Early error detection during development
-- Better code maintainability
-- Improved IDE support and autocompletion
-- Explicit API contracts between components
-
-#### 7.1.3 Tailwind CSS
-
-Tailwind CSS was chosen for:
-
-- Rapid UI development
-- Consistent design system
-- Responsive design capabilities out of the box
-- Customization for Neo-Brutalism design effects
-- Implementation of design tokens for consistent Neo-Brutalism styling
-
-#### 7.1.4 Google Gemini API
-
-Google Gemini was selected for:
-
-- Advanced AI capabilities for content generation
-- Good documentation and SDK support
-- Competitive pricing and performance
-- Integration with Google's ecosystem
-
-### 7.2 Architecture Decisions
-
-#### 7.2.1 Client-Server Separation
-
-The decision to keep sensitive data (API keys) on the client-side was made to:
-
-- Maintain security with no server-side storage of credentials
-- Eliminate the need for user accounts or authentication
-- Provide a more straightforward deployment model
-
-#### 7.2.2 Component-Based Architecture
-
-The component-based approach was chosen to:
-
-- Enable reusability of UI elements
-- Improve maintainability through modular design
-- Facilitate easier testing of individual components
-- Support responsive design principles
-
-### 7.3 Security Considerations
-
-- API keys are stored in browser localStorage only
-- All communication with Gemini API uses HTTPS
-- No server-side logging of user data or API keys
-- Client-side validation of all inputs before API calls
-
-### 7.4 Neo-Brutalism Implementation Considerations
-
-- Implementation of design tokens for consistent color, typography, and spacing
-- Use of CSS variables for Neo-Brutalism styling elements (borders, shadows, colors)
-- Component-based architecture to ensure consistent application of Neo-Brutalism principles
-- Responsive design patterns that maintain Neo-Brutalism aesthetics across all device sizes
-- Accessibility implementation meeting WCAG 2.1 Level AA standards with high contrast elements
-- Animation and interaction patterns following Neo-Brutalism principles (bold, purposeful movements)
-
----
-
-## 8. Implementation Plan
-
-### 8.1 Development Phases
-
-#### Phase 1: Core Functionality
-
-- Implement basic form UI
-- Create API routes for PRD generation
-- Implement client-server communication
-- Add basic styling and responsive design
-
-#### Phase 2: Enhanced UX
-
-- Implement real-time preview
-- Add error handling and validation
-- Implement settings modal for API configuration
-- Add export functionality
-
-#### Phase 2.5: Local Storage Implementation
-
-- Design and implement IndexedDB schema for PRD storage
-- Create IndexedDB manager utility for CRUD operations
-- Implement fallback to localStorage when IndexedDB unavailable
-- Create UI component for managing saved PRDs
-
-#### Phase 3: Advanced Features
-
-- Implement prefill functionality
-- Add section refinement capabilities
-- Implement model selection interface
-- Add PWA functionality
-
-#### Phase 4: Polish and Deployment
-
-- Add comprehensive error handling
-- Implement proper loading states
-- Optimize performance
-- Deploy to production environment
-
-### 8.2 Testing Strategy
-
-- Unit tests for utility functions
-- Integration tests for API routes
-- End-to-end tests for critical user flows
-- Cross-browser compatibility testing
-- Responsive design testing on multiple devices
-
----
-
-## 9. Quality Assurance
-
-### 9.1 Quality Attributes
-
-- **Performance:** Fast load times and API response handling
-- **Usability:** Intuitive interface with clear instructions
-- **Reliability:** Graceful error handling and fallbacks
-- **Security:** Safe handling of API keys and user data
-- **Maintainability:** Clean, well-documented code
-
-### 9.2 Verification and Validation
-
-- Regular code reviews
-- Automated testing of critical paths
-- User acceptance testing before releases
-- Performance monitoring in production
-
----
-
-## Appendix A: Diagrams
-
-### A.1 Component Architecture Diagram
-
-[Component diagram showing relationships between major UI and API components]
-
-### A.2 Data Flow Diagram
-
-[Data flow diagram showing how information moves through the application]
-
-### A.3 API Architecture Diagram
-
-[API architecture diagram showing request flow between client and external services]
+- **Type Safety**: Full TypeScript implementation
+- **Code Quality**: ESLint and Prettier configuration
+- **Testing**: Component testing setup (ready for implementation)
+- **Build Process**: Next.js optimization and minification

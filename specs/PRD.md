@@ -145,7 +145,7 @@ Potential features for future releases include:
 
 The current technology stack is:
 
-- Frontend: Next.js 15.5.4 with React 19.1.1
+- Frontend: Next.js 15.5.4 with React 19.1.1 and App Router
 - Styling: Tailwind CSS 4.1.14 with compact Neo-Brutalism design implementation
 - Client-side: TypeScript 5.9.2 for type safety
 - UI Components: Radix UI primitives for accessibility, extended with compact Neo-Brutalism styling
@@ -154,7 +154,7 @@ The current technology stack is:
 - Markdown Rendering: react-markdown v10.1.0 with remark-gfm v4.0.0
 - Document Export: jsPDF v3.0.3 and docx v9.2.2 (integrated but not yet implemented in UI)
 - Icons: Lucide React v0.544.0
-- PWA Functionality: next-pwa v5.6.0
+- PWA Functionality: @ducanh2912/next-pwa v10.2.9 with advanced caching strategies
 - Development: ESLint, Prettier, and TypeScript tooling
 - Deployment: Vercel platform
 

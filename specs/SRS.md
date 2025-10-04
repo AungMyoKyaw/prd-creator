@@ -110,15 +110,24 @@ No specific hardware interfaces required beyond standard computing devices with 
 
 **Google Gemini API:**
 
-- API endpoint for content generation
-- API endpoint for model listing
+- API endpoint for content generation (/api/generate)
+- API endpoint for model listing (/api/models)
+- API endpoint for form prefilling (/api/prefill)
+- API endpoint for section refinement (/api/refine)
 - Authentication using API key
+
+**Internal API Routes:**
+
+- /api/generate: Handles PRD generation requests
+- /api/models: Retrieves available Gemini models
+- /api/prefill: Auto-populates form fields from product ideas
+- /api/refine: Refines specific PRD sections
 
 **Browser APIs:**
 
 - LocalStorage for configuration storage and fallback
 - IndexedDB for PRD document storage with metadata (using idb library v8.0.3)
-- Service Workers for PWA functionality and offline caching
+- Service Workers for PWA functionality and offline caching with NetworkFirst strategy
 - Clipboard API for content copying
 - File System Access API for potential future file operations
 
