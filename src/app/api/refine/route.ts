@@ -127,7 +127,7 @@ Your task is to update the values for the fields in the "${sectionTitle}" sectio
         typeof parsed[field] === 'string'
       ) {
         // Type assertion to satisfy TypeScript
-        (validatedResult as any)[field] = parsed[field];
+        (validatedResult as Record<string, unknown>)[field] = parsed[field];
       }
     });
 

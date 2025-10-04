@@ -32,44 +32,50 @@ export default function ImageAttachmentComponent({
   const [errors, setErrors] = useState<string[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const validateFile = (file: File): string | null => {
-    if (!acceptedTypes.includes(file.type)) {
-      return `File type ${file.type} is not supported. Accepted types: JPEG, PNG, GIF, WebP`;
-    }
+  const validateFile = useCallback(
+    (file: File): string | null => {
+      if (!acceptedTypes.includes(file.type)) {
+        return `File type ${file.type} is not supported. Accepted types: JPEG, PNG, GIF, WebP`;
+      }
 
-    if (file.size > maxFileSize) {
-      return `File size ${(file.size / 1024 / 1024).toFixed(1)}MB exceeds maximum of ${(maxFileSize / 1024 / 1024).toFixed(1)}MB`;
-    }
+      if (file.size > maxFileSize) {
+        return `File size ${(file.size / 1024 / 1024).toFixed(1)}MB exceeds maximum of ${(maxFileSize / 1024 / 1024).toFixed(1)}MB`;
+      }
 
-    return null;
-  };
-
-  const processFile = async (file: File): Promise<ImageAttachment | null> => {
-    const error = validateFile(file);
-    if (error) {
-      setErrors((prev) => [...prev, error]);
       return null;
-    }
+    },
+    [acceptedTypes, maxFileSize]
+  );
 
-    try {
-      const preview = await createImagePreview(file);
-      return {
-        id: Math.random().toString(36).substr(2, 9),
-        file,
-        preview,
-        name: file.name,
-        size: file.size,
-        type: file.type,
-        uploadedAt: new Date()
-      };
-    } catch (err) {
-      setErrors((prev) => [
-        ...prev,
-        `Failed to process ${file.name}: ${err instanceof Error ? err.message : 'Unknown error'}`
-      ]);
-      return null;
-    }
-  };
+  const processFile = useCallback(
+    async (file: File): Promise<ImageAttachment | null> => {
+      const error = validateFile(file);
+      if (error) {
+        setErrors((prev) => [...prev, error]);
+        return null;
+      }
+
+      try {
+        const preview = await createImagePreview(file);
+        return {
+          id: Math.random().toString(36).substr(2, 9),
+          file,
+          preview,
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          uploadedAt: new Date()
+        };
+      } catch (err) {
+        setErrors((prev) => [
+          ...prev,
+          `Failed to process ${file.name}: ${err instanceof Error ? err.message : 'Unknown error'}`
+        ]);
+        return null;
+      }
+    },
+    [validateFile]
+  );
 
   const createImagePreview = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -80,30 +86,33 @@ export default function ImageAttachmentComponent({
     });
   };
 
-  const handleFiles = async (files: FileList) => {
-    setErrors([]);
+  const handleFiles = useCallback(
+    async (files: FileList) => {
+      setErrors([]);
 
-    if (images.length + files.length > maxImages) {
-      setErrors((prev) => [
-        ...prev,
-        `Cannot add more than ${maxImages} images`
-      ]);
-      return;
-    }
-
-    const newImages: ImageAttachment[] = [];
-
-    for (let i = 0; i < files.length; i++) {
-      const imageAttachment = await processFile(files[i]);
-      if (imageAttachment) {
-        newImages.push(imageAttachment);
+      if (images.length + files.length > maxImages) {
+        setErrors((prev) => [
+          ...prev,
+          `Cannot add more than ${maxImages} images`
+        ]);
+        return;
       }
-    }
 
-    if (newImages.length > 0) {
-      onImagesChange([...images, ...newImages]);
-    }
-  };
+      const newImages: ImageAttachment[] = [];
+
+      for (let i = 0; i < files.length; i++) {
+        const imageAttachment = await processFile(files[i]);
+        if (imageAttachment) {
+          newImages.push(imageAttachment);
+        }
+      }
+
+      if (newImages.length > 0) {
+        onImagesChange([...images, ...newImages]);
+      }
+    },
+    [images, maxImages, onImagesChange, processFile]
+  );
 
   const removeImage = (id: string) => {
     onImagesChange(images.filter((img) => img.id !== id));
@@ -129,7 +138,7 @@ export default function ImageAttachmentComponent({
         handleFiles(e.dataTransfer.files);
       }
     },
-    [images]
+    [handleFiles]
   );
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {

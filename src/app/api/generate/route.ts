@@ -1,9 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import {
-  buildGenerationPrompt,
-  PrdInput,
-  ImageAttachment
-} from '../../../lib/prd';
+import { buildGenerationPrompt, PrdInput } from '../../../lib/prd';
 import { GoogleGenAI } from '@google/genai';
 import { getContextHeader } from '../_lib/datetime';
 
@@ -12,20 +8,6 @@ function validateInputs(value: unknown): value is PrdInput {
     return false;
   }
   const input = value as Record<keyof PrdInput, unknown>;
-  const fields: Array<keyof PrdInput> = [
-    'productName',
-    'targetAudience',
-    'problemStatement',
-    'proposedSolution',
-    'coreFeatures',
-    'keyFeatures',
-    'businessGoals',
-    'successMetrics',
-    'futureFeatures',
-    'techStack',
-    'constraints',
-    'productIdeaImages'
-  ];
 
   // Check string fields
   const stringFields: Array<keyof PrdInput> = [
