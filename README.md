@@ -1,3 +1,5 @@
+
+
 # 📝 AI PRD Creator
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge&logo=vercel)](https://ai-prd-creator.vercel.app/)
@@ -71,7 +73,7 @@ No installation needed! Just visit [https://ai-prd-creator.vercel.app/](https://
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/prd-creator.git
+   git clone https://github.com/AungMyoKyaw/prd-creator.git
    cd prd-creator
    ```
 
